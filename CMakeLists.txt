@@ -11,6 +11,6 @@ include_directories(Utils)
 include_directories(View)
 
 add_executable(ConnectTheNumbers
-        main.cpp)
+        main.cpp View/PuzzleGrid.cpp View/PuzzleGrid.h)
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${FLTK_LIBRARIES})
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${OPENGL_LIBRARIES})
