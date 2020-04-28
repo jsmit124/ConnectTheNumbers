@@ -5,7 +5,7 @@ namespace model
 
 PuzzleManager::PuzzleManager()
 {
-    //ctor
+    *this->puzzles = new Puzzle[PUZZLE_DEFAULT_COUNT];
 }
 
 PuzzleManager::~PuzzleManager()

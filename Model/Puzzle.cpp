@@ -5,7 +5,7 @@ namespace model
 
 Puzzle::Puzzle()
 {
-    this->grid = new int[64];
+    *this->nodes = new PuzzleNode[PUZZLE_DEFAULT_SIZE];
 }
 
 Puzzle::~Puzzle()
