@@ -1,6 +1,14 @@
 #ifndef PUZZLEREADER_H
 #define PUZZLEREADER_H
 
+#include "../Model/Puzzle.h"
+using namespace model;
+
+#include <string>
+using namespace std;
+
+namespace io
+{
 
 class PuzzleReader
 {
@@ -8,9 +16,9 @@ class PuzzleReader
         PuzzleReader();
         virtual ~PuzzleReader();
 
-    protected:
-
-    private:
+        Puzzle readPuzzleFromFile(const string& filename);
 };
+
+}
 
 #endif // PUZZLEREADER_H

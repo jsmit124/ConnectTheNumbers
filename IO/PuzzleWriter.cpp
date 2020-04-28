@@ -5,12 +5,14 @@ namespace io
 
 PuzzleWriter::PuzzleWriter()
 {
-    //ctor
 }
 
 PuzzleWriter::~PuzzleWriter()
 {
-    //dtor
+}
+
+void PuzzleWriter::writePuzzleToFile(const string& filename, const Puzzle puzzle)
+{
 }
 
 }

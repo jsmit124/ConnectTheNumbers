@@ -5,12 +5,14 @@ namespace io
 
 PuzzleReader::PuzzleReader()
 {
-    //ctor
 }
 
 PuzzleReader::~PuzzleReader()
 {
-    //dtor
+}
+
+Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
+{
 }
 
 }

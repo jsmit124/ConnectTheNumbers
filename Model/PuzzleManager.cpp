@@ -56,4 +56,22 @@ Puzzle PuzzleManager::getCurrentPuzzle()
     return this->puzzles->at(this->currentPuzzleIndex);
 }
 
+/// Returns the current puzzle number (+1 for vector offset)
+//
+// @precondition: none
+// @postcondition: none
+// @return the current puzzle number
+//
+int PuzzleManager::getCurrentPuzzleNumber()
+{
+    return this->currentPuzzleIndex + 1;
+}
+
+/// TODO
+//
+bool PuzzleManager::evaluateCurrentPuzzle()
+{
+    return false;
+}
+
 }

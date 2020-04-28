@@ -14,12 +14,14 @@ namespace model
 class Puzzle
 {
     private:
+        int startLocation;
         vector<PuzzleNode>* nodes;
 
     public:
         Puzzle();
         virtual ~Puzzle();
 
+        void setStartLocation(int location);
         void add(const PuzzleNode& node);
         void replace(unsigned int value, int index);
 };

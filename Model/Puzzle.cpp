@@ -24,6 +24,16 @@ Puzzle::~Puzzle()
     this->nodes = nullptr;
 }
 
+/// Sets the start location of the puzzle
+//
+// @precondition: none
+// @postcondition: this->startLocation = location
+//
+void Puzzle::setStartLocation(int location)
+{
+    this->startLocation = location;
+}
+
 /// Adds a [node] to the end of the puzzle
 //
 // @precondition: none
