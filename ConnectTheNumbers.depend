@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1588106304 source:/home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/Controller/GameManager.cpp
+	"GameManager.h"
+
+1588106324 /home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/Controller/GameManager.h
+
+1588101569 source:/home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/main.cpp
+	<FL/Fl.H>
+	<FL/Fl_Window.H>
+	"./View/PuzzleGrid.h"
+
+1588101569 /home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/View/PuzzleGrid.h
+	<FL/Fl_Button.H>
+	<FL/Fl_Group.H>
+	<string>
+
+1588106880 source:/home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/Model/Puzzle.cpp
+	"Puzzle.h"
+
+1588106885 /home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/Model/Puzzle.h
+	"PuzzleNode.h"
+	<array>
+
+1588107070 /home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/Model/PuzzleNode.h
+
+1588107078 source:/home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/Model/PuzzleNode.cpp
+	"PuzzleNode.h"
+
+1588101569 source:/home/nwilli27/Documents/Code/ConnecTheNumbers/GroupDConnectTheNumbers/View/PuzzleGrid.cpp
+	"PuzzleGrid.h"
+

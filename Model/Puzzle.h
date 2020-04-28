@@ -3,19 +3,25 @@
 
 #include "PuzzleNode.h"
 
+#include <vector>
+using namespace std;
+
 namespace model
 {
 
+/// Holds functionality for managing a collection of PuzzleNodes
+//
 class Puzzle
 {
-    const int PUZZLE_DEFAULT_SIZE = 64;
-
     private:
-        PuzzleNode* nodes[];
+        vector<PuzzleNode>* nodes;
 
     public:
         Puzzle();
         virtual ~Puzzle();
+
+        void add(const PuzzleNode& node);
+        void replace(unsigned int value, int index);
 };
 
 }

@@ -3,19 +3,28 @@
 
 #include "Puzzle.h"
 
+#include <vector>
+#include <iostream>
+using namespace std;
+
 namespace model
 {
 
+/// Holds functionality for managing a collection of Puzzles
+//
 class PuzzleManager
 {
-    const int PUZZLE_DEFAULT_COUNT = 4;
-
     private:
-        Puzzle* puzzles[];
+        int currentPuzzleIndex;
+        vector<Puzzle>* puzzles;
 
     public:
         PuzzleManager();
         virtual ~PuzzleManager();
+
+        void add(const Puzzle& puzzle);
+        void moveToNextPuzzle();
+        Puzzle getCurrentPuzzle();
 };
 
 }
