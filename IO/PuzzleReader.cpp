@@ -1,7 +1,21 @@
 #include "PuzzleReader.h"
 
-namespace io
-{
+//namespace io
+//{
+//
+//PuzzleReader::PuzzleReader()
+//{
+//}
+//
+//PuzzleReader::~PuzzleReader()
+//{
+//}
+//
+//Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
+//{
+//}
+//
+//}
 
 /// Puzzle Reader constructor
 //

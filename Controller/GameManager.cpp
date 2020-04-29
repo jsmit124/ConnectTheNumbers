@@ -1,22 +1,22 @@
 #include "GameManager.h"
 
-namespace controller
-{
+//namespace controller
+//{
 
 /// The GameManager constructor
 //
 // @precondition: none
 // @postcondition: none
 //
-GameManager::GameManager()
-{
-}
+//GameManager::GameManager()
+//{
+//}
 
 /// The GameManager destructor
 //
 // @postcondition: none
-GameManager::~GameManager()
-{
-}
-
-}
+//GameManager::~GameManager()
+//{
+//}
+//
+//}
