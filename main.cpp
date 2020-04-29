@@ -2,9 +2,10 @@
 #include <FL/Fl_Window.H>
 
 #include "./View/PuzzleGrid.h"
-
 using namespace view;
 
+/// Program launch point.
+//
 int main (int argc, char ** argv)
 {
   Fl_Window *window;

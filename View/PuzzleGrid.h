@@ -20,9 +20,9 @@
 using namespace std;
 
 namespace view {
-    /**
-     * A puzzle grid widget whose labels can be arbitrarily set and react to click events.
-     */
+
+    /// A puzzle grid widget whose labels can be arbitrarily set and react to click events.
+    //
     class PuzzleGrid {
     public:
         /**

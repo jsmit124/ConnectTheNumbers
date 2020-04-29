@@ -14,6 +14,7 @@ namespace model
 class Puzzle
 {
     private:
+        int id;
         int startLocation;
         vector<PuzzleNode>* nodes;
 
@@ -21,6 +22,11 @@ class Puzzle
         Puzzle();
         virtual ~Puzzle();
 
+        PuzzleNode getStartNode();
+        vector<PuzzleNode>& getNodes();
+        int getId();
+
+        void setId(int id);
         void setStartLocation(int location);
         void add(const PuzzleNode& node);
         void replace(unsigned int value, int index);

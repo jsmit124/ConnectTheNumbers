@@ -13,6 +13,9 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Controller" />
+					<Add directory="IO" />
+					<Add directory="Utils" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -23,6 +26,9 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-s" />
+					<Add directory="Controller" />
+					<Add directory="IO" />
+					<Add directory="Utils" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -32,6 +38,25 @@
 		<Linker>
 			<Add option="`fltk-config --ldstaticflags`" />
 		</Linker>
+		<Unit filename="Controller/GameManager.cpp" />
+		<Unit filename="Controller/GameManager.h" />
+		<Unit filename="IO/PuzzleReader.cpp" />
+		<Unit filename="IO/PuzzleReader.h" />
+		<Unit filename="IO/PuzzleWriter.cpp" />
+		<Unit filename="IO/PuzzleWriter.h" />
+		<Unit filename="Model/Puzzle.cpp" />
+		<Unit filename="Model/Puzzle.h" />
+		<Unit filename="Model/PuzzleManager.cpp" />
+		<Unit filename="Model/PuzzleManager.h" />
+		<Unit filename="Model/PuzzleNode.cpp" />
+		<Unit filename="Model/PuzzleNode.h" />
+		<Unit filename="Utils/Exceptions.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Utils/Utils.cpp" />
+		<Unit filename="Utils/Utils.h" />
+		<Unit filename="View/PuzzleGrid.cpp" />
+		<Unit filename="View/PuzzleGrid.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

@@ -24,6 +24,50 @@ Puzzle::~Puzzle()
     this->nodes = nullptr;
 }
 
+/// Returns the puzzle id
+//
+// @precondition: none
+// @postcondition: none
+// @return the puzzle id
+//
+int Puzzle::getId()
+{
+    return this->id;
+}
+
+/// Returns the collection of nodes in the puzzle
+//
+// @precondition: none
+// @postcondition: none
+// @return the collection of nodes
+//
+vector<PuzzleNode>& Puzzle::getNodes()
+{
+    return *this->nodes;
+}
+
+/// Returns the puzzles start location
+//
+// @precondition: none
+// @postcondition: none
+// @return value of puzzles start location
+//
+PuzzleNode Puzzle::getStartNode()
+{
+    return this->nodes->at(this->startLocation);
+}
+
+/// Sets the puzzle id to [id]
+//
+// @precondition: none
+// @postcondition: this->id = id
+// @param id: the id to set
+//
+void Puzzle::setId(int id)
+{
+    this->id = id;
+}
+
 /// Sets the start location of the puzzle
 //
 // @precondition: none
