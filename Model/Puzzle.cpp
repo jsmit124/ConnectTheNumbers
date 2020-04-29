@@ -32,6 +32,16 @@ int Puzzle::getId()
     return this->id;
 }
 
+int Puzzle::getPuzzleNodeValue(int index)
+{
+    return this->nodes.at(index).getValue();
+}
+
+bool Puzzle::isPuzzleNodeEditable(int index)
+{
+    return this->nodes.at(index).getIsEditable();
+}
+
 /// Returns the collection of nodes in the puzzle
 //
 // @precondition: none

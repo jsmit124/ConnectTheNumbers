@@ -26,6 +26,8 @@ class Puzzle
         vector<PuzzleNode>& getNodes();
         int getId();
 
+        int getPuzzleNodeValue(int index);
+        bool isPuzzleNodeEditable(int index);
         void setId(int id);
         void setStartLocation(int location);
         void add(PuzzleNode node);

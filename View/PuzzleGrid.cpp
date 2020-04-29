@@ -59,7 +59,7 @@ namespace view {
         if (buttonValueEntry.getValue() != 0)
         {
             auto * currButton = (PuzzleGridButton*)widget;
-            window->getGameManager().setValue(buttonValueEntry.getValue(), currButton->getID()); // 1 needs to be an actual index
+            window->getGameManager().setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID()); // 1 needs to be an actual index
             widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
         }
     }

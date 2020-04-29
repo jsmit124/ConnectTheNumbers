@@ -11,6 +11,7 @@ namespace controller
 GameManager::GameManager()
 {
     this->puzzleManager = new PuzzleManager(DEFAULT_PUZZLE_COUNT);
+    this->initialize();
 }
 
 /// The GameManager destructor
@@ -21,6 +22,11 @@ GameManager::~GameManager()
 {
     delete this->puzzleManager;
     this->puzzleManager = nullptr;
+}
+
+void GameManager::initialize()
+{
+    this->loadPuzzles();
 }
 
 void GameManager::loadPuzzles()
@@ -52,7 +58,17 @@ int GameManager::getCurrentPuzzleNumber()
     return this->puzzleManager->getCurrentPuzzleNumber();
 }
 
-void GameManager::setValue(int value, int index)
+int GameManager::getPuzzleNodeValue(int index)
+{
+    return this->puzzleManager->getCurrentPuzzle().getPuzzleNodeValue(index);
+}
+
+bool GameManager::isPuzzleNodeEditable(int index)
+{
+    return this->puzzleManager->getCurrentPuzzle().isPuzzleNodeEditable(index);
+}
+
+void GameManager::setPuzzleNodeValue(int value, int index)
 {
     this->puzzleManager->getCurrentPuzzle().replace(value, index);
 }

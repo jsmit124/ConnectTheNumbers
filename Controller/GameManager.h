@@ -32,7 +32,10 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
-        void setValue(int value, int index);
+        int getPuzzleNodeValue(int index);
+        bool isPuzzleNodeEditable(int index);
+        void initialize();
+        void setPuzzleNodeValue(int value, int index);
         int getCurrentPuzzleNumber();
         void loadPuzzles();
         void loadSavedPuzzle();
