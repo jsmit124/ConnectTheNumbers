@@ -34,9 +34,10 @@
 	<FL/Fl_Window.H>
 	"./View/PuzzleGrid.h"
 
-1588192039 /home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/View/PuzzleGrid.h
+1588194615 /home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/View/PuzzleGrid.h
 	<FL/Fl_Button.H>
 	<Fl/Fl.H>
+	<Fl/Fl_Box.H>
 	<FL/Fl_Group.H>
 	<Fl/Fl_Window.H>
 	<string>
@@ -92,7 +93,7 @@
 1588115720 source:/home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/Model/PuzzleNode.cpp
 	"PuzzleNode.h"
 
-1588192310 source:/home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/View/PuzzleGrid.cpp
+1588194774 source:/home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/View/PuzzleGrid.cpp
 	"PuzzleGrid.h"
 
 1588191505 /home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/Utils/Utils.h
@@ -130,6 +131,6 @@
 1588191723 source:/home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/Utils/Utils.cpp
 	"Utils.h"
 
-1588192498 source:/home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/View/ButtonValueWindow.cpp
+1588193281 source:/home/justinsmith/Documents/PC2/Pro4/GroupDConnectTheNumbers/View/ButtonValueWindow.cpp
 	"ButtonValueWindow.h"
 

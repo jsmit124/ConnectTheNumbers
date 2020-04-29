@@ -3,6 +3,7 @@
 
 #include <FL/Fl_Button.H>
 #include <Fl/Fl.H>
+#include <Fl/Fl_Box.H>
 #include <FL/Fl_Group.H>
 #include <Fl/Fl_Window.H>
 #include <string>

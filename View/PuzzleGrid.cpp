@@ -27,7 +27,17 @@ namespace view {
             }
         }
         this->gridGroup->end();
+
+//    string labelText = strcat("Puzzle Number: ", "TODO");
+//    int labelLength = labelText.length();
+//    char char_array[labelLength + 1];
+//    strcpy(char_array, labelText.c_str());
+    Fl_Box* puzzleNumberLabel = new Fl_Box(15, 350, 150, 25, "Puzzle Number: "); // TODO add puzzle number here!!
+    puzzleNumberLabel->box(FL_UP_BOX);
+    puzzleNumberLabel->labelsize(14);
     }
+
+
 
     /// Handles the button click callback event
     //
