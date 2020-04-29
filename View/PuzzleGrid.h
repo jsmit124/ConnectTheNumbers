@@ -19,8 +19,10 @@
 using namespace controller;
 
 #include "ButtonValueWindow.h"
+#include "PuzzleGridButton.h"
 using namespace view;
 
+#include <vector>
 #include <iostream>
 using namespace std;
 
@@ -38,7 +40,6 @@ namespace view {
         Fl_Group *gridGroup;
         static void cbButtonSelected(Fl_Widget*, void*);
         GameManager gameManager;
-
     };
 }
 

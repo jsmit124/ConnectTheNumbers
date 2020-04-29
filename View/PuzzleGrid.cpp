@@ -12,6 +12,7 @@ namespace view {
     // @param y the y-location to place the widget
     //
     PuzzleGrid::PuzzleGrid(int x, int y) {
+
         this->gridGroup = new Fl_Group(x, y, PUZZLE_ROWS * BUTTON_WIDTH + BUTTON_PADDING,
                 PUZZLE_COLS * BUTTON_HEIGHT + BUTTON_PADDING, nullptr);
 
@@ -21,10 +22,11 @@ namespace view {
                 int placedY = row * BUTTON_WIDTH + BUTTON_PADDING;
                 int number = row * PUZZLE_ROWS + col + 1;
 
-                auto *button = new Fl_Button(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, "");
+                auto *button = new PuzzleGridButton(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, number - 1);
                 button->copy_label(to_string(number).c_str());
                 button->callback(cbButtonSelected, this);
-                button->deactivate();
+
+                //button->deactivate(); //TODO check if puzzle node is editable, if not, then call deactivate
             }
         }
         this->gridGroup->end();
@@ -33,9 +35,9 @@ namespace view {
 //    int labelLength = labelText.length();
 //    char char_array[labelLength + 1];
 //    strcpy(char_array, labelText.c_str());
-    Fl_Box* puzzleNumberLabel = new Fl_Box(15, 350, 150, 25, "Puzzle Number: "); // TODO add puzzle number here!!
-    puzzleNumberLabel->box(FL_UP_BOX);
-    puzzleNumberLabel->labelsize(14);
+        Fl_Box* puzzleNumberLabel = new Fl_Box(15, 350, 150, 25, "Puzzle Number: "); // TODO add puzzle number here!!
+        puzzleNumberLabel->box(FL_UP_BOX);
+        puzzleNumberLabel->labelsize(14);
     }
 
 
@@ -56,8 +58,8 @@ namespace view {
 
         if (buttonValueEntry.getValue() != 0)
         {
-            cout << "Value entered: " << buttonValueEntry.getValue() << endl;
-            window->getGameManager().setValue(buttonValueEntry.getValue(), 1); // 1 needs to be an actual index
+            auto * currButton = (PuzzleGridButton*)widget;
+            window->getGameManager().setValue(buttonValueEntry.getValue(), currButton->getID()); // 1 needs to be an actual index
             widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
         }
     }
