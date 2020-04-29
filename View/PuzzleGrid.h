@@ -15,6 +15,9 @@
 #define BUTTON_HEIGHT 40
 #define BUTTON_PADDING 10
 
+#include "GameManager.h"
+using namespace controller;
+
 #include "ButtonValueWindow.h"
 using namespace view;
 
@@ -29,10 +32,12 @@ namespace view {
     public:
         PuzzleGrid(int x, int y);
         ~PuzzleGrid();
+        GameManager getGameManager();
 
     private:
         Fl_Group *gridGroup;
         static void cbButtonSelected(Fl_Widget*, void*);
+        GameManager gameManager;
 
     };
 }

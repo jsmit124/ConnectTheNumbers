@@ -32,6 +32,8 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        void setValue(int value, int index);
+        int getCurrentPuzzleNumber();
         void loadPuzzles();
         void loadSavedPuzzle();
         void saveCurrentPuzzle(const string& filename);

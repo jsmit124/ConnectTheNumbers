@@ -24,6 +24,7 @@ namespace view {
                 auto *button = new Fl_Button(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, "");
                 button->copy_label(to_string(number).c_str());
                 button->callback(cbButtonSelected, this);
+                button->deactivate();
             }
         }
         this->gridGroup->end();
@@ -56,6 +57,7 @@ namespace view {
         if (buttonValueEntry.getValue() != 0)
         {
             cout << "Value entered: " << buttonValueEntry.getValue() << endl;
+            window->getGameManager().setValue(buttonValueEntry.getValue(), 1); // 1 needs to be an actual index
             widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
         }
     }
@@ -64,5 +66,10 @@ namespace view {
     //
     PuzzleGrid::~PuzzleGrid() {
         delete this->gridGroup;
+    }
+
+    GameManager PuzzleGrid::getGameManager()
+    {
+        return this->gameManager;
     }
 }

@@ -14,10 +14,6 @@ int main (int argc, char ** argv)
   Fl_Window *window;
   PuzzleGrid *grid;
 
-  GameManager manager;
-  manager.loadPuzzles();
-  manager.loadSavedPuzzle();
-
   window = new Fl_Window (500, 400, "Connect the Numbers by Smith, Williams, and Steinborn");
   grid = new PuzzleGrid (20, 40);
 

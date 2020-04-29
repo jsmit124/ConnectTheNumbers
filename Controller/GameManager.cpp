@@ -47,4 +47,14 @@ void GameManager::saveCurrentPuzzle(const string& filename)
     this->writer.savePuzzleToFile(puzzle);
 }
 
+int GameManager::getCurrentPuzzleNumber()
+{
+    return this->puzzleManager->getCurrentPuzzleNumber();
+}
+
+void GameManager::setValue(int value, int index)
+{
+    this->puzzleManager->getCurrentPuzzle().replace(value, index);
+}
+
 }
