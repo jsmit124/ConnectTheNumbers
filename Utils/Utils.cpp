@@ -29,6 +29,20 @@ vector<string> split(string stringToSplit, string delimeter)
     return splittedString;
 }
 
+bool checkFileExists(string filename)
+{
+    ifstream inFile;
+    inFile.open(filename);
+
+    if (!inFile)
+    {
+        return false;
+    }
+
+    inFile.close();
+    return true;
+}
+
 string filterNumbers(string input)
 {
     return regex_replace(input, regex(R"([\D])"), "");

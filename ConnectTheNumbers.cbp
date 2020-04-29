@@ -44,6 +44,10 @@
 		<Unit filename="IO/PuzzleReader.h" />
 		<Unit filename="IO/PuzzleWriter.cpp" />
 		<Unit filename="IO/PuzzleWriter.h" />
+		<Unit filename="Model/HighScoreEntry.cpp" />
+		<Unit filename="Model/HighScoreEntry.h" />
+		<Unit filename="Model/HighScoreManager.cpp" />
+		<Unit filename="Model/HighScoreManager.h" />
 		<Unit filename="Model/Puzzle.cpp" />
 		<Unit filename="Model/Puzzle.h" />
 		<Unit filename="Model/PuzzleManager.cpp" />
@@ -55,6 +59,8 @@
 		</Unit>
 		<Unit filename="Utils/Utils.cpp" />
 		<Unit filename="Utils/Utils.h" />
+		<Unit filename="View/ButtonValueWindow.cpp" />
+		<Unit filename="View/ButtonValueWindow.h" />
 		<Unit filename="View/PuzzleGrid.cpp" />
 		<Unit filename="View/PuzzleGrid.h" />
 		<Unit filename="main.cpp" />

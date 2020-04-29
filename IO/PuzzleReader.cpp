@@ -16,17 +16,18 @@ PuzzleReader::~PuzzleReader()
 }
 
 /// Reads the formatted puzzle from the specified [filename]
+/// Line 1 = id
+/// Line 2 = list of puzzle nodes separated by [DELIMETER]
 //
 // @precondition: none
 // @postcondition: none
 // @param filename: the name of the file containing the puzzle
 // @return the puzzle read from the file
 //
-const Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
+Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
 {
     ifstream inFile;
     inFile.open(filename);
-
 
     if (!inFile)
     {
@@ -51,6 +52,27 @@ const Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
     }
 
     return puzzle;
+}
+
+Puzzle PuzzleReader::readSavedPuzzle()
+{
+    string filePath = PUZZLES_DIRECTORY + PUZZLE_INDICATOR + SAVED_PUZZLE;
+    return this->readPuzzleFromFile(filePath);
+}
+
+vector<Puzzle> PuzzleReader::readAllPuzzles(int puzzleCount)
+{
+    vector<Puzzle> puzzles;
+    puzzles.reserve(puzzleCount);
+
+    for (int i = 1; i <= puzzleCount; i++)
+    {
+        string filePath = PUZZLES_DIRECTORY + PUZZLE_INDICATOR + to_string(i);
+        Puzzle puzzle = this->readPuzzleFromFile(filePath);
+        puzzles.push_back(puzzle);
+    }
+
+    return puzzles;
 }
 
 void PuzzleReader::loadPuzzleNodes(Puzzle& puzzle, string& line)

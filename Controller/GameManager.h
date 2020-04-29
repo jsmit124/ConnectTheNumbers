@@ -1,8 +1,17 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
+#include "../IO/PuzzleReader.h"
+#include "../IO/PuzzleWriter.h"
+using namespace io;
+
 #include "../Model/PuzzleManager.h"
 using namespace model;
+
+#include "../Utils/Utils.h"
+
+#include <string>
+using namespace std;
 
 namespace controller
 {
@@ -11,12 +20,21 @@ namespace controller
 //
 class GameManager
 {
+    const string SAVED_PUZZLE_PATH = "Puzzles/puzzle_saved";
+    const int DEFAULT_PUZZLE_COUNT = 12;
+
     private:
-        PuzzleManager puzzleManager;
+        PuzzleManager* puzzleManager;
+        PuzzleReader reader;
+        PuzzleWriter writer;
 
     public:
         GameManager();
         virtual ~GameManager();
+
+        void loadPuzzles();
+        void loadSavedPuzzle();
+        void saveCurrentPuzzle(const string& filename);
 };
 
 }

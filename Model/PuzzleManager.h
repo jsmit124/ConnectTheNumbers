@@ -16,13 +16,14 @@ class PuzzleManager
 {
     private:
         int currentPuzzleIndex;
-        vector<Puzzle>* puzzles;
+        vector<Puzzle> puzzles;
 
     public:
-        PuzzleManager();
+        PuzzleManager(int puzzleCount);
         virtual ~PuzzleManager();
 
-        void add(const Puzzle& puzzle);
+        void setCurrentPuzzle(Puzzle puzzle);
+        void add(const Puzzle puzzle);
         void moveToNextPuzzle();
         Puzzle getCurrentPuzzle();
         int getCurrentPuzzleNumber();

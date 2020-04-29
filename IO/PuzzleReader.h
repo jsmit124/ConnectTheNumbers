@@ -21,6 +21,9 @@ namespace io
 //
 class PuzzleReader
 {
+    const string PUZZLES_DIRECTORY = "Puzzles/";
+    const string PUZZLE_INDICATOR = "puzzle_";
+    const string SAVED_PUZZLE = "saved";
     const string EDITABLE_INDICATOR = "x";
     const string DELIMETER = ",";
     const int PUZZLE_START_LOCATION = 1;
@@ -28,12 +31,15 @@ class PuzzleReader
     private:
         void loadPuzzleNodes(Puzzle& puzzle, string& line);
         const PuzzleNode formatPuzzleNode(string nodeString);
+        Puzzle readPuzzleFromFile(const string& filename);
 
     public:
         PuzzleReader();
         virtual ~PuzzleReader();
 
-        const Puzzle readPuzzleFromFile(const string& filename);
+        Puzzle readSavedPuzzle();
+        vector<Puzzle> readAllPuzzles(int puzzleCount);
+
 };
 
 }

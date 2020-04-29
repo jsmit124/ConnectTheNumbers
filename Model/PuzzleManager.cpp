@@ -9,21 +9,30 @@ namespace model
 // @postcondition: this->puzzles.size() == 0
 //                 this->currentPuzzleIndex == 0
 //
-PuzzleManager::PuzzleManager()
+PuzzleManager::PuzzleManager(int puzzleCount)
 {
-    this->puzzles = new vector<Puzzle>();
+    this->puzzles.reserve(puzzleCount);
     this->currentPuzzleIndex = 0;
 }
 
 /// Puzzle manager destructor
 //
-// @postcondition: this->puzzles.size() == 0
-//                 this->puzzles == nullptr
-//
 PuzzleManager::~PuzzleManager()
 {
-    delete this->puzzles;
-    this->puzzles = nullptr;
+}
+
+/// Sets the puzzle as the current puzzle and replaces the previous puzzle
+/// at the location based on its puzzle ID.
+//
+// @precondition: none
+// @postcondition: this->currentPuzzleIndex = puzzle.getId() - 1
+//                 this->puzzles[index] = puzzle
+// @param puzzle: puzzle to set
+//
+void PuzzleManager::setCurrentPuzzle(Puzzle puzzle)
+{
+    this->currentPuzzleIndex = puzzle.getId() - 1;
+    this->puzzles.at(this->currentPuzzleIndex) = puzzle;
 }
 
 /// Adds a [puzzle] to the puzzle collection
@@ -31,9 +40,9 @@ PuzzleManager::~PuzzleManager()
 // @precondition: none
 // @postcondition: this->puzzles.size()++
 //
-void PuzzleManager::add(const Puzzle& puzzle)
+void PuzzleManager::add(const Puzzle puzzle)
 {
-    this->puzzles->push_back(puzzle);
+    this->puzzles.push_back(puzzle);
 }
 
 /// Increments the current puzzle index by one
@@ -53,7 +62,7 @@ void PuzzleManager::moveToNextPuzzle()
 // @return the current puzzle
 Puzzle PuzzleManager::getCurrentPuzzle()
 {
-    return this->puzzles->at(this->currentPuzzleIndex);
+    return this->puzzles.at(this->currentPuzzleIndex);
 }
 
 /// Returns the current puzzle number (+1 for vector offset)

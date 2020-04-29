@@ -15,15 +15,19 @@ PuzzleWriter::~PuzzleWriter()
 {
 }
 
-/// Writes the [puzzle] to the specified [filename] in a specific format
+/// Writes the [puzzle] to the specified [SAVE_PUZZLE_FILENAME] in a specific format
 /// Line 1 = id
 /// Line 2 = list of puzzle nodes separated by [DELIMETER]
 //
 // @precondition: none
 // @postcondition: none
-// @param filename: name of file to write to
 // @param puzzle: the puzzle to write out
 //
+void PuzzleWriter::savePuzzleToFile(Puzzle& puzzle)
+{
+    this->writePuzzleToFile(SAVE_PUZZLE_FILENAME, puzzle);
+}
+
 void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle)
 {
     ofstream outFile(filename);

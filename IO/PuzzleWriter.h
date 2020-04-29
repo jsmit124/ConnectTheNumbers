@@ -19,13 +19,17 @@ class PuzzleWriter
 {
     const string EDITABLE_INDICATOR = "x";
     const string DELIMETER = ",";
+    const string SAVE_PUZZLE_FILENAME = "puzzle_saved";
+
+    private:
+        const string formatNode(PuzzleNode& node);
+        void writePuzzleToFile(const string& filename, Puzzle& puzzle);
 
     public:
         PuzzleWriter();
         virtual ~PuzzleWriter();
 
-        void writePuzzleToFile(const string& filename, Puzzle& puzzle);
-        const string formatNode(PuzzleNode& node);
+        void savePuzzleToFile(Puzzle& puzzle);
 };
 
 }

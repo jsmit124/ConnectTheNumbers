@@ -16,7 +16,7 @@ class Puzzle
     private:
         int id;
         int startLocation;
-        vector<PuzzleNode>* nodes;
+        vector<PuzzleNode> nodes;
 
     public:
         Puzzle();
@@ -28,7 +28,7 @@ class Puzzle
 
         void setId(int id);
         void setStartLocation(int location);
-        void add(const PuzzleNode& node);
+        void add(PuzzleNode node);
         void replace(unsigned int value, int index);
 };
 

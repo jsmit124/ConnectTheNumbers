@@ -10,7 +10,6 @@ namespace model
 //
 Puzzle::Puzzle()
 {
-    this->nodes = new vector<PuzzleNode>();
 }
 
 /// Puzzle destructor
@@ -20,8 +19,6 @@ Puzzle::Puzzle()
 //
 Puzzle::~Puzzle()
 {
-    delete this->nodes;
-    this->nodes = nullptr;
 }
 
 /// Returns the puzzle id
@@ -43,7 +40,7 @@ int Puzzle::getId()
 //
 vector<PuzzleNode>& Puzzle::getNodes()
 {
-    return *this->nodes;
+    return this->nodes;
 }
 
 /// Returns the puzzles start location
@@ -54,7 +51,7 @@ vector<PuzzleNode>& Puzzle::getNodes()
 //
 PuzzleNode Puzzle::getStartNode()
 {
-    return this->nodes->at(this->startLocation);
+    return this->nodes.at(this->startLocation);
 }
 
 /// Sets the puzzle id to [id]
@@ -84,9 +81,9 @@ void Puzzle::setStartLocation(int location)
 // @postcondition: this->nodes.size()++
 // @param node: the node to add
 //
-void Puzzle::add(const PuzzleNode& node)
+void Puzzle::add(PuzzleNode node)
 {
-    this->nodes->push_back(node);
+    this->nodes.push_back(node);
 }
 
 /// Replaces the value of the node at the specific [index]
@@ -98,7 +95,7 @@ void Puzzle::add(const PuzzleNode& node)
 //
 void Puzzle::replace(unsigned int value, int index)
 {
-    PuzzleNode node = this->nodes->at(index);
+    PuzzleNode node = this->nodes.at(index);
     node.setValue(value);
 }
 
