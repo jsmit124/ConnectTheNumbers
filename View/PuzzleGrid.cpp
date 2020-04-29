@@ -33,7 +33,21 @@ namespace view {
     //
     void PuzzleGrid::cbButtonSelected(Fl_Widget* widget, void* data)
     {
-        cout << "Button clicked - cbButtonSelected" << endl;
+        PuzzleGrid* window = (PuzzleGrid*)data;
+        ButtonValueWindow buttonValueEntry;
+        buttonValueEntry.set_modal();
+        buttonValueEntry.show();
+
+        while (buttonValueEntry.shown())
+        {
+            Fl::wait();
+        }
+
+        if (buttonValueEntry.getValue() != 0)
+        {
+            cout << "Value entered: " << buttonValueEntry.getValue() << endl;
+            widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
+        }
     }
 
     /// Destroys the widget, freeing all the child buttons and the grid.

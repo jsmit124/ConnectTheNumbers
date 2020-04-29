@@ -27,6 +27,7 @@ const Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
     ifstream inFile;
     inFile.open(filename);
 
+
     if (!inFile)
     {
         throw FileErrorException();

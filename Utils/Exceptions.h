@@ -1,8 +1,7 @@
 #ifndef EXCEPTIONS_H_INCLUDED
 #define EXCEPTIONS_H_INCLUDED
 
-//
-// Exception type thrown when an error occurs during a file read.
+/// Exception type thrown when an error occurs during a file read.
 //
 struct FileErrorException : public exception
 {

@@ -2,6 +2,7 @@
 #define MOVIEPLAITER_PUZZLEGRID_H
 
 #include <FL/Fl_Button.H>
+#include <Fl/Fl.H>
 #include <FL/Fl_Group.H>
 #include <Fl/Fl_Window.H>
 #include <string>
@@ -12,6 +13,9 @@
 #define BUTTON_WIDTH 40
 #define BUTTON_HEIGHT 40
 #define BUTTON_PADDING 10
+
+#include "ButtonValueWindow.h"
+using namespace view;
 
 #include <iostream>
 using namespace std;

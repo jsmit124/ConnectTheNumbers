@@ -33,3 +33,15 @@ string filterNumbers(string input)
 {
     return regex_replace(input, regex(R"([\D])"), "");
 }
+
+int toInt(const string& text, const char* errorMessage)
+{
+    istringstream streamConversion(text);
+    int value = 0;
+    if (!(streamConversion >> value))
+    {
+        throw errorMessage;
+    }
+
+    return value;
+}

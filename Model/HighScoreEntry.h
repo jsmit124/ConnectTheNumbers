@@ -31,7 +31,7 @@ class HighScoreEntry
          */
         int getDuration() const;
 
-        const int getPuzzle() const;
+        int getPuzzle() const;
 
 private:
         const std::string &name;
