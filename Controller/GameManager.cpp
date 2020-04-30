@@ -46,7 +46,6 @@ void GameManager::resetCurrentPuzzle()
 {
     Puzzle puzzle = this->reader.readPuzzleNumber(this->puzzleManager->getCurrentPuzzleNumber());
     this->puzzleManager->setCurrentPuzzle(puzzle);
-    this->timeSpentOnPuzzle = 0;
 }
 
 void GameManager::loadPuzzles()
@@ -70,12 +69,12 @@ void GameManager::loadSavedPuzzle()
 void GameManager::saveCurrentPuzzle()
 {
     Puzzle puzzle = this->puzzleManager->getCurrentPuzzle();
-    this->writer.savePuzzleToFile(puzzle, this->timeSpentOnPuzzle);
+    this->writer.savePuzzleToFile(puzzle);
 }
 
 void GameManager::onTimerTick()
 {
-    this->timeSpentOnPuzzle++;
+    this->puzzleManager->getCurrentPuzzle().incrementTimeSpent();
 }
 
 int GameManager::getCurrentPuzzleNumber()
@@ -105,7 +104,7 @@ bool GameManager::evaluateCurrentPuzzle()
 
 int GameManager::getTimeSpentOnPuzzle() const
 {
-    return this->timeSpentOnPuzzle;
+    return this->puzzleManager->getCurrentPuzzle().getTimeSpent();
 }
 
 vector<HighScoreEntry *> GameManager::getTopTenScoresByDuration()
@@ -115,17 +114,16 @@ vector<HighScoreEntry *> GameManager::getTopTenScoresByDuration()
 
 void GameManager::recordGameCompletion(const string& name)
 {
-    this->highScoreManager->add(name, this->timeSpentOnPuzzle, this->puzzleManager->getCurrentPuzzleNumber());
+    this->highScoreManager->add(name, this->puzzleManager->getCurrentPuzzle().getTimeSpent(),
+            this->puzzleManager->getCurrentPuzzleNumber());
 }
 
 void GameManager::loadHighScores()
 {
     if (checkFileExists(SAVED_SCOREBOARD_PATH))
     {
-        cout << "loading high scores" << endl;
         HighScoreReader scoreReader;
         scoreReader.loadScores(this->highScoreManager, SAVED_SCOREBOARD_PATH);
-        cout << this->highScoreManager->getScores()->size() << endl;
     }
 }
 

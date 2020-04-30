@@ -20,7 +20,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->drawTimerLabel();
 
     this->startGameTimer();
-    this->callback(this->cbOnWindowClose, this);
+    this->callback(MainGameWindow::cbOnWindowClose, this);
 
     end();
 }

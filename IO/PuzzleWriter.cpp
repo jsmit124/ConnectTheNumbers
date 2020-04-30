@@ -24,22 +24,26 @@ PuzzleWriter::~PuzzleWriter()
 // @postcondition: none
 // @param puzzle: the puzzle to write out
 //
-void PuzzleWriter::savePuzzleToFile(Puzzle& puzzle, int timeSpent)
+void PuzzleWriter::savePuzzleToFile(Puzzle& puzzle)
 {
-    this->writePuzzleToFile(PUZZLES_DIRECTORY + SAVE_PUZZLE_FILENAME, puzzle, timeSpent);
+    this->writePuzzleToFile(PUZZLES_DIRECTORY + SAVE_PUZZLE_FILENAME, puzzle);
 }
 
-void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle, int timeSpent)
+void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle)
 {
     ofstream outFile(filename);
     vector<PuzzleNode> nodes = puzzle.getNodes();
 
     outFile << puzzle.getId() << endl;
-    for (int i = 0; i < nodes.size(); i++)
+    for (auto & node : nodes)
     {
-        outFile << this->formatNode(nodes[i]);
+        outFile << this->formatNode(node);
     }
-    outFile << endl << timeSpent << endl;
+
+    if (puzzle.getTimeSpent() > 0)
+    {
+        outFile << endl << puzzle.getTimeSpent() << endl;
+    }
 
     outFile.close();
 }

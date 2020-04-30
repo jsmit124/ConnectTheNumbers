@@ -25,7 +25,6 @@ class GameManager
     const string SAVED_SCOREBOARD_PATH = "high_scores.csv";
 
     private:
-        int timeSpentOnPuzzle;
         PuzzleManager* puzzleManager;
         HighScoreManager* highScoreManager;
         PuzzleReader reader;
@@ -51,13 +50,13 @@ class GameManager
         void recordGameCompletion(const string& name);
         void saveHighScores();
 
-        int getTimeSpentOnPuzzle() const;
-
         const int DEFAULT_PUZZLE_COUNT = 2;
 
         void onTimerTick();
 
-    void loadHighScores();
+        void loadHighScores();
+
+        int getTimeSpentOnPuzzle() const;
 };
 
 }

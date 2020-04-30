@@ -34,19 +34,24 @@ Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
     }
 
     Puzzle puzzle;
-    bool readId = false;
+    PuzzleReaderState state = ID;
     string line;
 
     while (getline(inFile, line))
     {
-        if (!readId)
+        switch (state)
         {
-            puzzle.setId(stoi(line));
-            readId = true;
-        }
-        else
-        {
-            this->loadPuzzleNodes(puzzle, line);
+            case ID:
+                puzzle.setId(stoi(line));
+                state = NODES;
+                break;
+            case NODES:
+                this->loadPuzzleNodes(puzzle, line);
+                state = DURATION;
+                break;
+            case DURATION:
+                puzzle.setTimeSpent(stoi(line));
+                break;
         }
     }
 

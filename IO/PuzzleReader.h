@@ -20,6 +20,13 @@ using namespace std;
 namespace io
 {
 
+enum PuzzleReaderState
+{
+    ID = 0,
+    NODES = 1,
+    DURATION = 2
+};
+
 /// Holds functionality to read puzzles from files
 //
 class PuzzleReader

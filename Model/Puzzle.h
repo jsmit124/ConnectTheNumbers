@@ -17,6 +17,7 @@ class Puzzle
         int id;
         int startLocation;
         vector<PuzzleNode> nodes;
+        int timeSpent;
 
         vector<PuzzleNode> getSurroundingNodes(int index);
         bool evaluateNode(int index);
@@ -38,6 +39,12 @@ class Puzzle
         void setStartLocation(int location);
         void add(PuzzleNode node);
         void replace(int value, int index);
+
+        int getTimeSpent() const;
+
+        void setTimeSpent(int timeSpent);
+        void incrementTimeSpent();
+
         bool evaluate();
 };
 

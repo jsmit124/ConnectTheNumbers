@@ -181,6 +181,21 @@ bool Puzzle::isOnRightSide(int index)
     return (((index + 1) % 8) == 0);
 }
 
+int Puzzle::getTimeSpent() const
+{
+    return this->timeSpent;
+}
+
+void Puzzle::setTimeSpent(int timeSpent)
+{
+    this->timeSpent = timeSpent;
+}
+
+void Puzzle::incrementTimeSpent()
+{
+    this->timeSpent++;
+}
+
 }
 
 
