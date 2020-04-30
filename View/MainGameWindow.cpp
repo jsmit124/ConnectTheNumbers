@@ -5,6 +5,8 @@ namespace view
 
 MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Window(width, height, title)
 {
+    this->initialize();
+
     begin();
 
     this->gameManager = new GameManager();
@@ -23,6 +25,20 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->callback(MainGameWindow::cbOnWindowClose, this);
 
     end();
+}
+
+/// Initializes the game and gives player opportunity to adjust settings
+//
+void MainGameWindow::initialize()
+{
+    InitialSettingsWindow settingsWindow;
+    settingsWindow.set_modal();
+    settingsWindow.show();
+
+    while (settingsWindow.shown())
+    {
+        Fl::wait();
+    }
 }
 
 ///Draws the puzzle number label

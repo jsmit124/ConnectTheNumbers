@@ -1,6 +1,6 @@
 #include <FL/Fl_Window.H>
 
-#include "MainGameWindow.h"
+#include "View/MainGameWindow.h"
 using namespace view;
 
 /// Program launch point.

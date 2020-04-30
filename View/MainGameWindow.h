@@ -4,6 +4,7 @@
 #include "../Controller/GameManager.h"
 
 #include "PuzzleGrid.h"
+#include "InitialSettingsWindow.h"
 
 #include <FL/Fl_Button.H>
 #include <Fl/Fl.H>
@@ -34,6 +35,8 @@ class MainGameWindow : public Fl_Window
         vector<Fl_Box*> highScoreLabels;
 
         string getPuzzleNumberOutput();
+        void initialize();
+
 
     public:
         MainGameWindow(int width, int height, const char* title);
