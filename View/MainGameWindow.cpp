@@ -84,6 +84,10 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
         window->getGameManager()->moveToNextPuzzle();
         window->updateBoardForNextPuzzle();
     }
+    else
+    {
+        fl_message("Uh oh.. the board is not correct. Try again!");
+    }
 }
 
 /// Callback for the reset button click
