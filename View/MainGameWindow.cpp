@@ -75,6 +75,29 @@ void MainGameWindow::drawHighScoresLabel()
     this->highScoresLabel = new Fl_Box(385, 10, 175, 30, "HIGH SCORES");
     this->highScoresLabel->box(FL_UP_BOX);
     this->highScoresLabel->labelsize(16);
+
+    for (int i = 0; i < MAXIMUM_HIGH_SCORE_ENTRIES; i++)
+    {
+        auto *box = new Fl_Box(385, 50 + (i * 40), 175, 30, nullptr);
+        box->labelcolor(FL_WHITE);
+        this->highScoreLabels.push_back(box);
+    }
+
+    this->updateHighScoreLabels();
+}
+
+void MainGameWindow::updateHighScoreLabels()
+{
+    vector<HighScoreEntry*> entries = this->gameManager->getTopTenScoresByDuration();
+
+    for (int i = 0; i < entries.size(); i++)
+    {
+        HighScoreEntry *entry = entries[i];
+        Fl_Box *label = this->highScoreLabels[i];
+        string formatted = entry->getName() + ", puzzle " + to_string(entry->getPuzzle()) + ", for " +
+                formatDurationHoursSeconds(entry->getDuration());
+        label->copy_label(formatted.c_str());
+    }
 }
 
 /// Adds the timer label to the window.
@@ -97,6 +120,7 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     if (successfullySolved && !isLastPuzzle)
     {
         window->getGameManager()->recordGameCompletion("user");
+        window->updateHighScoreLabels();
         window->getGameManager()->moveToNextPuzzle();
         window->refreshBoard();
     }

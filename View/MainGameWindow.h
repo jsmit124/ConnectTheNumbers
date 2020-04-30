@@ -2,7 +2,6 @@
 #define MAINGAMEWINDOW_H
 
 #include "../Controller/GameManager.h"
-using namespace controller;
 
 #include "PuzzleGrid.h"
 
@@ -12,7 +11,11 @@ using namespace controller;
 #include <FL/Fl_Group.H>
 #include <Fl/Fl_Window.H>
 #include <Fl/Fl_Export.H>
+#include <algorithm>
 #include <string>
+
+using namespace controller;
+using namespace std;
 
 namespace view
 {
@@ -28,6 +31,7 @@ class MainGameWindow : public Fl_Window
         Fl_Button* resetButton;
         Fl_Box* puzzleNumberLabel;
         Fl_Box* gameTimerLabel;
+        vector<Fl_Box*> highScoreLabels;
 
         string getPuzzleNumberOutput();
 
@@ -53,6 +57,8 @@ class MainGameWindow : public Fl_Window
         void drawTimerLabel();
 
         void refreshTimerLabel();
+
+    void updateHighScoreLabels();
 };
 
 }

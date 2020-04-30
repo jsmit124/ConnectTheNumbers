@@ -3,10 +3,9 @@
 namespace model
 {
 
-HighScoreEntry::HighScoreEntry(const std::string &name, int duration, int puzzle) : name(name), duration(duration),
-    puzzle(puzzle)
+HighScoreEntry::HighScoreEntry(std::string name, int duration, int puzzle): puzzle(puzzle), duration(duration)
 {
-
+    this->name = name;
 }
 
 const std::string &HighScoreEntry::getName() const {

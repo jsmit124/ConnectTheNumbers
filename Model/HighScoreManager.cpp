@@ -1,5 +1,7 @@
 #include "HighScoreManager.h"
 
+#include <utility>
+
 namespace model {
 
 HighScoreManager::HighScoreManager() {
@@ -11,7 +13,7 @@ HighScoreManager::~HighScoreManager() {
     this->scores = nullptr;
 }
 
-void HighScoreManager::add(const std::string &name, int duration, int puzzle) {
+void HighScoreManager::add(std::string name, int duration, int puzzle) {
     auto *entry = new HighScoreEntry(name, duration, puzzle);
     this->scores->push_back(entry);
 }
@@ -21,7 +23,7 @@ vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration() {
     sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second) {
         return first->getDuration() < second->getDuration();
     });
-    entriesCopy.erase(entriesCopy.cbegin() + MAXIMUM_HIGH_SCORE_ENTRIES, entriesCopy.cend());
+    entriesCopy.resize(min(entriesCopy.size(), (vector<HighScoreEntry*>::size_type) MAXIMUM_HIGH_SCORE_ENTRIES));
     return entriesCopy;
 }
 

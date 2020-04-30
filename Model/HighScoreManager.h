@@ -32,7 +32,7 @@ public:
      * @param duration the duration the player achieved
      * @param puzzle the puzzle the player solved
      */
-    void add(const std::string& name, int duration, int puzzle);
+    void add(std::string name, int duration, int puzzle);
 
     /**
      * Gets the top 10 entries on the high score, sorted by duration in

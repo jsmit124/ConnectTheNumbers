@@ -9,9 +9,11 @@ namespace io
 
     HighScoreReader::~HighScoreReader() = default;
 
-    void HighScoreReader::loadScores(HighScoreManager *target, const string &fileName) {
+    void HighScoreReader::loadScores(HighScoreManager *target, const string &fileName)
+    {
         ifstream stream(fileName);
-        if (!stream.good()) {
+        if (!stream.good())
+        {
             throw FileErrorException();
         }
 
@@ -28,9 +30,9 @@ namespace io
             throw FileErrorException();
         }
 
-        auto name = new string(nodes[0]);
+        auto name = nodes[0];
         int duration = toInt(nodes[1], "unable to convert duration into integer");
         int puzzleId = toInt(nodes[2], "unable to convert puzzle ID into integer");
-        scoreboard->add(*name, duration, puzzleId);
+        scoreboard->add(name, duration, puzzleId);
     }
 }

@@ -6,10 +6,11 @@ namespace model
 /// Constructor for a Puzzle
 //
 // @precondition: none
-// @postcondition: this->nodes.size() == 0
+// @postcondition: this->nodes.size() == 0 && this->timeSpent == 0
 //
 Puzzle::Puzzle()
 {
+    this->timeSpent = 0;
 }
 
 /// Puzzle destructor

@@ -17,7 +17,7 @@ class HighScoreEntry
          * @param duration the duration in which the person solved the puzzle
          * @param puzzle the puzzle on which the high score was achieved on
          */
-        HighScoreEntry(const std::string &name, int duration, int puzzle);
+        HighScoreEntry(std::string name, int duration, int puzzle);
 
         /**
          * Returns the name associated with this high score entry.
@@ -34,7 +34,7 @@ class HighScoreEntry
         int getPuzzle() const;
 
 private:
-        const std::string &name;
+        std::string name;
         const int duration;
         const int puzzle;
 };
