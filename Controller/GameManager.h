@@ -33,6 +33,7 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        void moveToNextPuzzle();
         bool evaluateCurrentPuzzle();
         int getPuzzleNodeValue(int index);
         bool isPuzzleNodeEditable(int index);

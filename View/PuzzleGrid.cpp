@@ -51,9 +51,29 @@ namespace view {
                 button->color(*buttonBackgroundColor);
                 button->labelcolor(*white);
                 button->damage(1);
+
+                this->gridButtons.push_back(button);
             }
         }
         this->gridGroup->end();
+    }
+
+    void PuzzleGrid::resetBoard(GameManager* gameManager)
+    {
+        for (int i = 0; i < this->gridButtons.size(); i++)
+        {
+            int value = gameManager->getPuzzleNodeValue(i);
+            bool isEditable = gameManager->isPuzzleNodeEditable(i);
+            auto* currButton = this->gridButtons.at(i);
+
+            // TODO duplicate code - refactor
+            currButton->copy_label(to_string(value).c_str());
+
+            if (!isEditable)
+            {
+                currButton->deactivate();
+            }
+        }
     }
 
     /// Handles the button click callback event

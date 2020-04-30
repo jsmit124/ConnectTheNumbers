@@ -30,6 +30,11 @@ void GameManager::initialize()
     this->loadPuzzles();
 }
 
+void GameManager::moveToNextPuzzle()
+{
+    this->puzzleManager->moveToNextPuzzle();
+}
+
 void GameManager::loadPuzzles()
 {
     vector<Puzzle> puzzles = this->reader.readAllPuzzles(DEFAULT_PUZZLE_COUNT);

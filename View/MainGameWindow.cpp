@@ -9,7 +9,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 
     this->gameManager = new GameManager();
 
-    this->grid = new PuzzleGrid (20, 0, this->gameManager);
+    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager);
     this->color(fl_darker(fl_darker(fl_darker(FL_DARK_BLUE))));
 
     this->addEvaluateButton();
@@ -25,11 +25,24 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 //
 void MainGameWindow::drawPuzzleNumberLabel()
 {
-    string* labelText = new string("Puzzle Number: " + to_string(this->gameManager->getCurrentPuzzleNumber()) + "/" + to_string(this->gameManager->DEFAULT_PUZZLE_COUNT));
+    string* labelText = this->getPuzzleNumberOutput();
 
     this->puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, labelText->c_str());
     this->puzzleNumberLabel->box(FL_UP_BOX);
     this->puzzleNumberLabel->labelsize(14);
+}
+
+string* MainGameWindow::getPuzzleNumberOutput()
+{
+    // TODO can maybe move this to view formatter class
+    string* labelText = new string("Puzzle Number: " + to_string(this->gameManager->getCurrentPuzzleNumber()) + "/" + to_string(this->gameManager->DEFAULT_PUZZLE_COUNT));
+    return labelText;
+}
+
+void MainGameWindow::updateBoardForNextPuzzle()
+{
+    string* labelText = this->getPuzzleNumberOutput();
+    this->puzzleNumberLabel->label(labelText->c_str());
 }
 
 ///Adds the submit button to the screen
@@ -63,6 +76,18 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
     bool evaluation = window->getGameManager()->evaluateCurrentPuzzle();
+
+    if (evaluation)
+    {
+        window->getGameManager()->moveToNextPuzzle();
+        window->getPuzzleGrid()->resetBoard(window->getGameManager());
+        window->updateBoardForNextPuzzle();
+    }
+}
+
+PuzzleGrid* MainGameWindow::getPuzzleGrid()
+{
+    return this->puzzleGrid;
 }
 
 /// Callback for the reset button click
@@ -80,7 +105,7 @@ GameManager* MainGameWindow::getGameManager()
 
 MainGameWindow::~MainGameWindow()
 {
-    delete this->grid;
+    delete this->puzzleGrid;
     delete this->gameManager;
 }
 

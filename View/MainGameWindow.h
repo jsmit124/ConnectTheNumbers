@@ -20,7 +20,7 @@ namespace view
 class MainGameWindow : public Fl_Window
 {
     private:
-        PuzzleGrid* grid;
+        PuzzleGrid* puzzleGrid;
         GameManager* gameManager;
 
         Fl_Box* highScoresLabel;
@@ -28,11 +28,16 @@ class MainGameWindow : public Fl_Window
         Fl_Button* resetButton;
         Fl_Box* puzzleNumberLabel;
 
+        string* getPuzzleNumberOutput();
+
     public:
         MainGameWindow(int width, int height, const char* title);
         virtual ~MainGameWindow();
 
+        PuzzleGrid* getPuzzleGrid();
         GameManager* getGameManager();
+
+        void updateBoardForNextPuzzle();
         void drawPuzzleNumberLabel();
         void addEvaluateButton();
         void addResetButton();

@@ -36,8 +36,11 @@ namespace view {
         PuzzleGrid(int x, int y, GameManager* gameManager);
         ~PuzzleGrid();
 
+        void resetBoard(GameManager* gameManager);
+
     private:
         Fl_Group *gridGroup;
+        vector<PuzzleGridButton*> gridButtons;
 
         void drawPuzzleGrid(int, int, GameManager*);
         static void cbButtonSelected(Fl_Widget*, void*);
