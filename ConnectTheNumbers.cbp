@@ -61,6 +61,8 @@
 		<Unit filename="Utils/Utils.h" />
 		<Unit filename="View/ButtonValueWindow.cpp" />
 		<Unit filename="View/ButtonValueWindow.h" />
+		<Unit filename="View/MainGameWindow.cpp" />
+		<Unit filename="View/MainGameWindow.h" />
 		<Unit filename="View/PuzzleGrid.cpp" />
 		<Unit filename="View/PuzzleGrid.h" />
 		<Unit filename="View/PuzzleGridButton.cpp" />

@@ -40,7 +40,15 @@ namespace view {
                 int value = gameManager->getPuzzleNodeValue(index);
                 bool isEditable = gameManager->isPuzzleNodeEditable(index);
 
-                button->copy_label(to_string(value).c_str());
+                if (value == 0)
+                {
+                    button->copy_label("");
+                }
+                else
+                {
+                    button->copy_label(to_string(value).c_str());
+                }
+
                 button->callback(cbButtonSelected, gameManager);
 
                 if (!isEditable)
