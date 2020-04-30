@@ -20,13 +20,21 @@ namespace view {
             for (int col = 0; col < PUZZLE_COLS; col++) {
                 int placedX = col * BUTTON_HEIGHT + BUTTON_PADDING;
                 int placedY = row * BUTTON_WIDTH + BUTTON_PADDING;
-                int number = row * PUZZLE_ROWS + col + 1;
+                int index = row * PUZZLE_ROWS + col;
 
-                auto *button = new PuzzleGridButton(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, number - 1);
-                button->copy_label(to_string(number).c_str());
+                auto *button = new PuzzleGridButton(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, index);
+
+                int value = this->gameManager.getPuzzleNodeValue(index);
+                bool isEditable = this->gameManager.isPuzzleNodeEditable(index);
+
+                button->copy_label(to_string(value).c_str());
                 button->callback(cbButtonSelected, this);
 
-                //button->deactivate(); //TODO check if puzzle node is editable, if not, then call deactivate
+                if (!isEditable)
+                {
+                    button->deactivate();
+                }
+
             }
         }
         this->gridGroup->end();
@@ -57,7 +65,7 @@ namespace view {
         if (buttonValueEntry.getValue() != 0)
         {
             auto * currButton = (PuzzleGridButton*)widget;
-            window->getGameManager().setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID()); // 1 needs to be an actual index
+            window->getGameManager().setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID());
             widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
         }
     }
