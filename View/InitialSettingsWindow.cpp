@@ -82,11 +82,32 @@ void InitialSettingsWindow::setCloseButtonLocation(int x, int y)
 void InitialSettingsWindow::setButtonColor(Fl_Color color)
 {
     this->chosenButtonColor = color;
+    this->setColorToAllButtons(color);
+
+}
+
+void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
+{
+    this->startButton->color(color);
+    this->closeButton->color(color);
+    this->chooseButtonColorButton->color(color);
+    this->chooseBackgroundColorButton->color(color);
+    this->chooseDifficultyButton->color(color);
+    this->lastSaveButton->color(color);
+
+    this->startButton->redraw();
+    this->closeButton->redraw();
+    this->chooseButtonColorButton->redraw();
+    this->chooseBackgroundColorButton->redraw();
+    this->chooseDifficultyButton->redraw();
+    this->lastSaveButton->redraw();
 }
 
 void InitialSettingsWindow::setBackgroundColor(Fl_Color color)
 {
     this->chosenBackgroundColor = color;
+    this->color(color);
+    this->redraw();
 }
 
 void InitialSettingsWindow::setDifficulty(Difficulty selection)

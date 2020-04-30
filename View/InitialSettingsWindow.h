@@ -64,6 +64,7 @@ class InitialSettingsWindow : public Fl_Window
         bool loadSavedPuzzle;
 
         WindowResult buttonInvoked;
+        void setColorToAllButtons(Fl_Color color);
 
         void setStartButtonLocation(int, int);
         void setCloseButtonLocation(int, int);
