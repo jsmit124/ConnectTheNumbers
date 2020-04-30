@@ -2,9 +2,7 @@
 #include <FL/Fl_Window.H>
 #include <Fl/Fl_Export.H>
 
-#include "./Controller/GameManager.h"
-using namespace controller;
-
+#include "MainGameWindow.h"
 #include "./View/PuzzleGrid.h"
 using namespace view;
 
@@ -12,15 +10,12 @@ using namespace view;
 //
 int main (int argc, char ** argv)
 {
-  Fl_Window *window;
-  PuzzleGrid *grid;
+  MainGameWindow *window;
 
-  window = new Fl_Window(600, 425, "Connect the Numbers by Smith, Williams, and Steinborn");
-  window->color(fl_darker(fl_darker(fl_darker(FL_DARK_BLUE))));
-  grid = new PuzzleGrid (20, 0);
+  window = new MainGameWindow(600, 425, "Connect the Numbers by Smith, Williams, and Steinborn");
+  //window->color(fl_darker(fl_darker(fl_darker(FL_DARK_BLUE))));
+  window->show();
 
-  window->end();
-  window->show (argc, argv);
-
-  return(Fl::run());
+  int exitCode = Fl::run();
+  return exitCode;
 }

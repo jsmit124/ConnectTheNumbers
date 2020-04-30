@@ -29,7 +29,7 @@ PuzzleNode::~PuzzleNode()
 // @postcondition: none
 // @return the value
 //
-unsigned int PuzzleNode::getValue()
+int PuzzleNode::getValue()
 {
     return this->value;
 }
@@ -51,7 +51,7 @@ bool PuzzleNode::getIsEditable()
 // @postcondition: this->value = valueToSet
 // @param valueToSet: the value to set
 //
-void PuzzleNode::setValue(unsigned int valueToSet)
+void PuzzleNode::setValue(int valueToSet)
 {
     this->value = valueToSet;
 }
@@ -65,6 +65,16 @@ void PuzzleNode::setValue(unsigned int valueToSet)
 void PuzzleNode::setIsEditable(bool condition)
 {
     this->isEditable = condition;
+}
+
+void PuzzleNode::setId(int idToSet)
+{
+    this->id = idToSet;
+}
+
+int PuzzleNode::getId()
+{
+    return this->id;
 }
 
 }

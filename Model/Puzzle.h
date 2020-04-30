@@ -18,6 +18,12 @@ class Puzzle
         int startLocation;
         vector<PuzzleNode> nodes;
 
+        vector<PuzzleNode> getSurroundingNodes(int index);
+        bool evaluateNode(int index);
+
+        bool isOnRightSide(int index);
+        bool isOnLeftSide(int index);
+
     public:
         Puzzle();
         virtual ~Puzzle();
@@ -31,7 +37,8 @@ class Puzzle
         void setId(int id);
         void setStartLocation(int location);
         void add(PuzzleNode node);
-        void replace(unsigned int value, int index);
+        void replace(int value, int index);
+        bool evaluate();
 };
 
 }

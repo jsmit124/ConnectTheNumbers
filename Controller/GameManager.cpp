@@ -74,4 +74,9 @@ void GameManager::setPuzzleNodeValue(int value, int index)
     this->puzzleManager->getCurrentPuzzle().replace(value, index);
 }
 
+bool GameManager::evaluateCurrentPuzzle()
+{
+    return this->puzzleManager->evaluateCurrentPuzzle();
+}
+
 }

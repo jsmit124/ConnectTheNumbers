@@ -103,10 +103,82 @@ void Puzzle::add(PuzzleNode node)
 // @param value: the value
 // @param index: the index to set the value to
 //
-void Puzzle::replace(unsigned int value, int index)
+void Puzzle::replace(int value, int index)
 {
-    PuzzleNode node = this->nodes.at(index);
+    PuzzleNode& node = this->nodes.at(index);
     node.setValue(value);
+}
+
+bool Puzzle::evaluate()
+{
+    return this->evaluateNode(this->startLocation);
+}
+
+bool Puzzle::evaluateNode(int index)
+{
+    int value = this->nodes.at(index).getValue();
+    vector<PuzzleNode> surroundingNodes = this->getSurroundingNodes(index);
+    bool isValid = false;
+
+    if (value == this->nodes.size())
+    {
+        return true;
+    }
+
+    for (auto currNode : surroundingNodes)
+    {
+        int currValue = currNode.getValue();
+        if ((currValue - 1) == value)
+        {
+            isValid = this->evaluateNode(currNode.getId());
+            break;
+        }
+    }
+
+    return isValid;
+}
+
+vector<PuzzleNode> Puzzle::getSurroundingNodes(int index)
+{
+    vector<PuzzleNode> nodes;
+    int maximum = this->nodes.size();
+    int minimum = 0;
+
+    bool onLeftSide = this->isOnLeftSide(index);
+    bool onRightSide = this->isOnRightSide(index);
+
+    if (index < maximum && !onRightSide)
+    {
+        PuzzleNode node = this->nodes.at(index + 1);
+        nodes.push_back(node);
+    }
+    if (index > minimum && !onLeftSide)
+    {
+        PuzzleNode node = this->nodes.at(index - 1);
+        nodes.push_back(node);
+    }
+    if ((index - 8) > minimum)
+    {
+        PuzzleNode node = this->nodes.at(index - 8);
+        nodes.push_back(node);
+    }
+    if ((index + 8) < maximum)
+    {
+        PuzzleNode node = this->nodes.at(index + 8);
+        nodes.push_back(node);
+    }
+
+    return nodes;
+}
+
+bool Puzzle::isOnLeftSide(int index)
+{
+    return (index % 8) == 0;
+}
+
+bool Puzzle::isOnRightSide(int index)
+{
+    return (((index + 1) % 8) == 0);
 }
 
 }

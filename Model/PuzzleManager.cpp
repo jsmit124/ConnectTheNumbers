@@ -60,7 +60,7 @@ void PuzzleManager::moveToNextPuzzle()
 // @precondition: none
 // @postcondition: none
 // @return the current puzzle
-Puzzle PuzzleManager::getCurrentPuzzle()
+Puzzle& PuzzleManager::getCurrentPuzzle()
 {
     return this->puzzles.at(this->currentPuzzleIndex);
 }
@@ -80,7 +80,8 @@ int PuzzleManager::getCurrentPuzzleNumber()
 //
 bool PuzzleManager::evaluateCurrentPuzzle()
 {
-    return false;
+    int currentIndex = this->currentPuzzleIndex;
+    return this->puzzles.at(currentIndex).evaluate();
 }
 
 }

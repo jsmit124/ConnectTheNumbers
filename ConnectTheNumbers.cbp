@@ -63,6 +63,8 @@
 		<Unit filename="View/ButtonValueWindow.h" />
 		<Unit filename="View/PuzzleGrid.cpp" />
 		<Unit filename="View/PuzzleGrid.h" />
+		<Unit filename="View/PuzzleGridButton.cpp" />
+		<Unit filename="View/PuzzleGridButton.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

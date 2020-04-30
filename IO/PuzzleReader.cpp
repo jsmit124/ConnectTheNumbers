@@ -81,6 +81,7 @@ void PuzzleReader::loadPuzzleNodes(Puzzle& puzzle, string& line)
     for (int i = 0; i < nodes.size(); i++)
     {
         PuzzleNode node = this->formatPuzzleNode(nodes[i]);
+        node.setId(i);
         puzzle.add(node);
 
         if (node.getValue() == PUZZLE_START_LOCATION)

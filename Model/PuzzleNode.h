@@ -9,17 +9,20 @@ namespace model
 class PuzzleNode
 {
     private:
-        unsigned int value;
+        int id;
+        int value;
         bool isEditable;
 
     public:
         PuzzleNode();
         virtual ~PuzzleNode();
 
-        unsigned int getValue();
+        int getId();
+        int getValue();
         bool getIsEditable();
 
-        void setValue(unsigned int valueToSet);
+        void setId(int idToSet);
+        void setValue(int valueToSet);
         void setIsEditable(bool condition);
 };
 

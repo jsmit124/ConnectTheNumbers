@@ -25,7 +25,7 @@ class PuzzleManager
         void setCurrentPuzzle(Puzzle puzzle);
         void add(const Puzzle puzzle);
         void moveToNextPuzzle();
-        Puzzle getCurrentPuzzle();
+        Puzzle& getCurrentPuzzle();
         int getCurrentPuzzleNumber();
         bool evaluateCurrentPuzzle();
 };

@@ -11,14 +11,9 @@ namespace view {
     // @param x the x-location to place the widget
     // @param y the y-location to place the widget
     //
-    PuzzleGrid::PuzzleGrid(int x, int y) {
-        this->drawPuzzleGrid(x, y);
-
-        this->addEvaluateButton();
-        this->addResetButton();
-
-        this->drawPuzzleNumberLabel();
-        this->drawHighScoresLabel();
+    PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager)
+    {
+        this->drawPuzzleGrid(x, y, manager);
     }
 
     /// Draws the puzzle grid
@@ -26,7 +21,7 @@ namespace view {
     // @param x the x-location to place the grid
     // @param y the y-location to place the grid
     //
-    void PuzzleGrid::drawPuzzleGrid(int x, int y)
+    void PuzzleGrid::drawPuzzleGrid(int x, int y, GameManager* gameManager)
     {
         Fl_Color* buttonBackgroundColor = new Fl_Color(FL_DARK3);
         Fl_Color* white = new Fl_Color(FL_WHITE);
@@ -42,11 +37,11 @@ namespace view {
 
                 auto *button = new PuzzleGridButton(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, index);
 
-                int value = this->gameManager.getPuzzleNodeValue(index);
-                bool isEditable = this->gameManager.isPuzzleNodeEditable(index);
+                int value = gameManager->getPuzzleNodeValue(index);
+                bool isEditable = gameManager->isPuzzleNodeEditable(index);
 
                 button->copy_label(to_string(value).c_str());
-                button->callback(cbButtonSelected, this);
+                button->callback(cbButtonSelected, gameManager);
 
                 if (!isEditable)
                 {
@@ -61,47 +56,11 @@ namespace view {
         this->gridGroup->end();
     }
 
-    ///Draws the puzzle number label
-    //
-    void PuzzleGrid::drawPuzzleNumberLabel()
-    {
-        string* labelText = new string("Puzzle Number: " + to_string(this->gameManager.getCurrentPuzzleNumber()) + "/" + to_string(this->gameManager.DEFAULT_PUZZLE_COUNT));
-
-        Fl_Box* puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, labelText->c_str());
-        puzzleNumberLabel->box(FL_UP_BOX);
-        puzzleNumberLabel->labelsize(14);
-    }
-
-    ///Adds the submit button to the screen
-    //
-    void PuzzleGrid::addEvaluateButton()
-    {
-        auto* submitButton = new Fl_Button(221, 340, 110, 30, "EVALUATE");
-        submitButton->callback(cbEvaluateButtonClicked, this);
-    }
-
-    ///Adds the reset button to the screen
-    //
-    void PuzzleGrid::addResetButton()
-    {
-        auto* resetButton = new Fl_Button(10, 340, 110, 30, "RESET");
-        resetButton->callback(cbResetButtonClicked, this);
-    }
-
-    ///Draws the high scores label
-    //
-    void PuzzleGrid::drawHighScoresLabel()
-    {
-        Fl_Box* highScoresLabel = new Fl_Box(385, 10, 175, 30, "HIGH SCORES");
-        highScoresLabel->box(FL_UP_BOX);
-        highScoresLabel->labelsize(16);
-    }
-
     /// Handles the button click callback event
     //
     void PuzzleGrid::cbButtonSelected(Fl_Widget* widget, void* data)
     {
-        PuzzleGrid* window = (PuzzleGrid*)data;
+        GameManager* manager = (GameManager*)data;
         ButtonValueWindow buttonValueEntry;
         buttonValueEntry.set_modal();
         buttonValueEntry.show();
@@ -114,35 +73,15 @@ namespace view {
         if (buttonValueEntry.getValue() != 0)
         {
             auto * currButton = (PuzzleGridButton*)widget;
-            window->getGameManager().setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID());
+            manager->setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID());
             widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
         }
     }
 
-    /// Callback for the evaulate button click
-    //
-    void PuzzleGrid::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
-    {
-        cout << "Evaulate button clicked" << endl;
-        //TODO call manager to evaluate button
-    }
-
-    /// Callback for the reset button click
-    //
-    void PuzzleGrid::cbResetButtonClicked(Fl_Widget* widget, void* data)
-    {
-        cout << "Reset button clicked" << endl;
-        //TODO call manager to reset the button values
-    }
-
     /// Destroys the widget, freeing all the child buttons and the grid.
     //
-    PuzzleGrid::~PuzzleGrid() {
-        delete this->gridGroup;
-    }
-
-    GameManager PuzzleGrid::getGameManager()
+    PuzzleGrid::~PuzzleGrid()
     {
-        return this->gameManager;
+        delete this->gridGroup;
     }
 }
