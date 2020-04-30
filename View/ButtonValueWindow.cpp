@@ -22,6 +22,9 @@ ButtonValueWindow::ButtonValueWindow() : Fl_Window(175, 100, "Value to set")
     this->okButton->callback(cbOk, this);
     this->cancelButton->callback(cbCancel, this);
 
+    this->valueInput->callback(cbOk, this);
+    this->okButton->when(FL_WHEN_ENTER_KEY);
+
     end();
 }
 
