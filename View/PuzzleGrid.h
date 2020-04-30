@@ -16,7 +16,7 @@
 #define BUTTON_HEIGHT 40
 #define BUTTON_PADDING 10
 
-#include "GameManager.h"
+#include "../Controller/GameManager.h"
 using namespace controller;
 
 #include "ButtonValueWindow.h"

@@ -26,10 +26,9 @@ PuzzleReader::~PuzzleReader()
 //
 Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
 {
-    ifstream inFile;
-    inFile.open(filename);
+    ifstream inFile(filename);
 
-    if (!inFile)
+    if (!inFile.good())
     {
         throw FileErrorException();
     }
