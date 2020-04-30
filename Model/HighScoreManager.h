@@ -2,9 +2,10 @@
 #define MOVIEPLAITER_HIGHSCOREMANAGER_H
 
 #include <algorithm>
-#include <unordered_map>
 #include <vector>
 #include "./HighScoreEntry.h"
+
+#define MAXIMUM_HIGH_SCORE_ENTRIES 10
 
 using namespace std;
 
@@ -32,10 +33,15 @@ public:
      * @param puzzle the puzzle the player solved
      */
     void add(const std::string& name, int duration, int puzzle);
-private:
-    vector<HighScoreEntry*>* getOrCreatePuzzleScoreboard(int puzzleId);
 
-    unordered_map<int, vector<HighScoreEntry*>*> *scoresByPuzzle;
+    /**
+     * Gets the top 10 entries on the high score, sorted by duration in
+     * ascending order.
+     * @return the 10 entries in ascending duration
+     */
+    vector<HighScoreEntry*> getTopTenByDuration();
+private:
+    vector<HighScoreEntry*> *scores;
 };
 
 }
