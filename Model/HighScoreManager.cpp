@@ -1,7 +1,5 @@
 #include "HighScoreManager.h"
 
-#include <utility>
-
 namespace model {
 
 HighScoreManager::HighScoreManager() {
@@ -9,8 +7,8 @@ HighScoreManager::HighScoreManager() {
 }
 
 HighScoreManager::~HighScoreManager() {
+    this->clearAndDeleteAllScores();
     delete this->scores;
-    this->scores = nullptr;
 }
 
 void HighScoreManager::add(std::string name, int duration, int puzzle) {
@@ -27,9 +25,19 @@ vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration() {
     return entriesCopy;
 }
 
-void HighScoreManager::clear() {
-    delete this->scores;
-    this->scores = new vector<HighScoreEntry*>();
+void HighScoreManager::clearAndDeleteAllScores()
+{
+    for (const auto &entry : *this->scores)
+    {
+        delete entry;
+    }
+
+    this->scores->clear();
+}
+
+void HighScoreManager::clear()
+{
+    this->clearAndDeleteAllScores();
 }
 
 vector<HighScoreEntry *> *HighScoreManager::getScores() const {

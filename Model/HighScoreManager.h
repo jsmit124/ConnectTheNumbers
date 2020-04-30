@@ -50,6 +50,8 @@ public:
 
 private:
     vector<HighScoreEntry*> *scores;
+
+    void clearAndDeleteAllScores();
 };
 
 }
