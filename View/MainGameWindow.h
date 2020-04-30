@@ -1,7 +1,7 @@
 #ifndef MAINGAMEWINDOW_H
 #define MAINGAMEWINDOW_H
 
-#include "GameManager.h"
+#include "../Controller/GameManager.h"
 using namespace controller;
 
 #include "PuzzleGrid.h"

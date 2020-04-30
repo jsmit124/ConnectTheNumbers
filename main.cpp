@@ -1,9 +1,6 @@
-#include <FL/Fl.H>
 #include <FL/Fl_Window.H>
-#include <Fl/Fl_Export.H>
 
 #include "MainGameWindow.h"
-#include "./View/PuzzleGrid.h"
 using namespace view;
 
 /// Program launch point.

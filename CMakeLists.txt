@@ -16,6 +16,7 @@ add_executable(ConnectTheNumbers
         IO/PuzzleReader.cpp IO/PuzzleReader.h IO/PuzzleWriter.cpp IO/PuzzleWriter.h
         Model/Puzzle.cpp Model/Puzzle.h Model/PuzzleManager.cpp Model/PuzzleManager.h Model/PuzzleNode.cpp Model/PuzzleNode.h
         Utils/Exceptions.h Utils/Utils.cpp Utils/Utils.h
+        View/MainGameWindow.cpp View/MainGameWindow.h
         View/PuzzleGrid.cpp View/PuzzleGrid.h
         View/ButtonValueWindow.cpp View/ButtonValueWindow.h
         View/PuzzleGridButton.cpp View/PuzzleGridButton.h

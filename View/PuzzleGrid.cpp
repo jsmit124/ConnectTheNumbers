@@ -2,7 +2,7 @@
 // @author Andrew, Justin, Nolan
 //
 
-#include "PuzzleGrid.h"
+#include "./PuzzleGrid.h"
 
 namespace view {
 
