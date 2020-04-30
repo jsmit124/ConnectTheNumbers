@@ -29,24 +29,25 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 //
 void MainGameWindow::drawPuzzleNumberLabel()
 {
-    string* labelText = this->getPuzzleNumberOutput();
+    string labelText = this->getPuzzleNumberOutput();
 
-    this->puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, labelText->c_str());
+    this->puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, nullptr);
+    this->puzzleNumberLabel->copy_label(labelText->c_str());
     this->puzzleNumberLabel->box(FL_UP_BOX);
     this->puzzleNumberLabel->labelsize(14);
 }
 
-string* MainGameWindow::getPuzzleNumberOutput()
+string MainGameWindow::getPuzzleNumberOutput()
 {
     // TODO can maybe move this to view formatter class
-    string* labelText = new string("Puzzle Number: " + to_string(this->gameManager->getCurrentPuzzleNumber()) + "/" + to_string(this->gameManager->DEFAULT_PUZZLE_COUNT));
-    return labelText;
+    return "Puzzle Number: " + to_string(this->gameManager->getCurrentPuzzleNumber()) +
+        "/" + to_string(this->gameManager->DEFAULT_PUZZLE_COUNT);
 }
 
 void MainGameWindow::refreshBoard()
 {
-    string* labelText = this->getPuzzleNumberOutput();
-    this->puzzleNumberLabel->label(labelText->c_str());
+    string labelText = this->getPuzzleNumberOutput();
+    this->puzzleNumberLabel->copy_label(labelText->c_str());
 
     this->puzzleGrid->resetBoard(this->gameManager);
 }
@@ -105,7 +106,7 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     }
     else
     {
-        fl_message("Uh oh.. the board is not correct. Try again!");
+        fl_message("Uh oh, looks like you missed something. Try again!");
     }
 }
 

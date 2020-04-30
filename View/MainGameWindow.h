@@ -29,7 +29,7 @@ class MainGameWindow : public Fl_Window
         Fl_Box* puzzleNumberLabel;
         Fl_Box* gameTimerLabel;
 
-        string* getPuzzleNumberOutput();
+        string getPuzzleNumberOutput();
 
     public:
         MainGameWindow(int width, int height, const char* title);
