@@ -4,11 +4,16 @@
 #include "Utils.h"
 #include "../Enum/Difficulty.h"
 
+#include "ColorSelectionWindow.h"
+using namespace view;
+
 #include <Fl/Fl_Input.H>
 #include <Fl/Fl_Window.H>
 #include <Fl/Fl_Button.H>
 #include <Fl/fl_ask.H>
 #include <cstdlib>
+#include <Fl/Fl.H>
+#include <stdlib.h>
 #include <sstream>
 #include <iostream>
 using namespace std;
@@ -34,10 +39,13 @@ class InitialSettingsWindow : public Fl_Window
         Fl_Color getSelectedBackgroundColor();
         Difficulty getSelectedDifficulty();
 
+        void setButtonColor(Fl_Color color);
+        void setBackgroundColor(Fl_Color color);
+        void setDifficulty(Difficulty selection);
+
     private:
         Fl_Button* startButton;
         Fl_Button* closeButton;
-
         Fl_Button* chooseButtonColorButton;
         Fl_Button* chooseBackgroundColorButton;
         Fl_Button* chooseDifficultyButton;

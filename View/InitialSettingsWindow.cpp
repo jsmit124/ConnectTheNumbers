@@ -68,6 +68,21 @@ void InitialSettingsWindow::setCloseButtonLocation(int x, int y)
     this->closeButton->position(x, y);
 }
 
+void InitialSettingsWindow::setButtonColor(Fl_Color color)
+{
+    this->chosenButtonColor = color;
+}
+
+void InitialSettingsWindow::setBackgroundColor(Fl_Color color)
+{
+    this->chosenBackgroundColor = color;
+}
+
+void InitialSettingsWindow::setDifficulty(Difficulty selection)
+{
+    this->chosenDifficulty = selection;
+}
+
 void InitialSettingsWindow::cbStart(Fl_Widget* widget, void* data)
 {
     cout << "Start clicked - in callback" << endl;
@@ -86,12 +101,39 @@ void InitialSettingsWindow::cbClose(Fl_Widget* widget, void* data)
 void InitialSettingsWindow::cbButtonColorButtonClick(Fl_Widget* widget, void* data)
 {
     InitialSettingsWindow* window = (InitialSettingsWindow*)data;
+
+    ColorSelectionWindow colorWindow;
+    colorWindow.set_modal();
+    colorWindow.show();
+
+    while (colorWindow.shown())
+    {
+        Fl::wait();
+    }
+    if (colorWindow.getColor() >= 0)
+    {
+        window->setButtonColor(colorWindow.getColor());
+    }
+
     cout << "Button color clicked" << endl;
 }
 
 void InitialSettingsWindow::cbBackgroundColorButtonClick(Fl_Widget* widget, void* data)
 {
     InitialSettingsWindow* window = (InitialSettingsWindow*)data;
+
+    ColorSelectionWindow colorWindow;
+    colorWindow.set_modal();
+    colorWindow.show();
+
+    while (colorWindow.shown())
+    {
+        Fl::wait();
+    }
+    if (colorWindow.getColor() >= 0)
+    {
+        window->setBackgroundColor(colorWindow.getColor());
+    }
     cout << "Background color clicked" << endl;
 }
 
