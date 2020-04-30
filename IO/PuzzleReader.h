@@ -37,6 +37,7 @@ class PuzzleReader
         PuzzleReader();
         virtual ~PuzzleReader();
 
+        Puzzle readPuzzleNumber(int puzzleNumber);
         Puzzle readSavedPuzzle();
         vector<Puzzle> readAllPuzzles(int puzzleCount);
 

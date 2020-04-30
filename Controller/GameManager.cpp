@@ -35,6 +35,12 @@ void GameManager::moveToNextPuzzle()
     this->puzzleManager->moveToNextPuzzle();
 }
 
+void GameManager::resetCurrentPuzzle()
+{
+    Puzzle puzzle = this->reader.readPuzzleNumber(this->puzzleManager->getCurrentPuzzleNumber());
+    this->puzzleManager->setCurrentPuzzle(puzzle);
+}
+
 void GameManager::loadPuzzles()
 {
     vector<Puzzle> puzzles = this->reader.readAllPuzzles(DEFAULT_PUZZLE_COUNT);

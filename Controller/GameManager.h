@@ -33,6 +33,7 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        void resetCurrentPuzzle();
         void moveToNextPuzzle();
         bool evaluateCurrentPuzzle();
         int getPuzzleNodeValue(int index);

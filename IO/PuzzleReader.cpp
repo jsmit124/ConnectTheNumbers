@@ -53,6 +53,12 @@ Puzzle PuzzleReader::readPuzzleFromFile(const string& filename)
     return puzzle;
 }
 
+Puzzle PuzzleReader::readPuzzleNumber(int puzzleNumber)
+{
+    string filePath = PUZZLES_DIRECTORY + PUZZLE_INDICATOR + to_string(puzzleNumber);
+    return this->readPuzzleFromFile(filePath);
+}
+
 Puzzle PuzzleReader::readSavedPuzzle()
 {
     string filePath = PUZZLES_DIRECTORY + PUZZLE_INDICATOR + SAVED_PUZZLE;
@@ -66,9 +72,7 @@ vector<Puzzle> PuzzleReader::readAllPuzzles(int puzzleCount)
 
     for (int i = 1; i <= puzzleCount; i++)
     {
-        string filePath = PUZZLES_DIRECTORY + PUZZLE_INDICATOR + to_string(i);
-        Puzzle puzzle = this->readPuzzleFromFile(filePath);
-        puzzles.push_back(puzzle);
+        puzzles.push_back(this->readPuzzleNumber(i));
     }
 
     return puzzles;

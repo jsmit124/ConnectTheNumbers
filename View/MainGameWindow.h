@@ -34,7 +34,6 @@ class MainGameWindow : public Fl_Window
         MainGameWindow(int width, int height, const char* title);
         virtual ~MainGameWindow();
 
-        PuzzleGrid* getPuzzleGrid();
         GameManager* getGameManager();
 
         void updateBoardForNextPuzzle();

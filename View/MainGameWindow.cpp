@@ -43,6 +43,8 @@ void MainGameWindow::updateBoardForNextPuzzle()
 {
     string* labelText = this->getPuzzleNumberOutput();
     this->puzzleNumberLabel->label(labelText->c_str());
+
+    this->puzzleGrid->resetBoard(this->gameManager);
 }
 
 ///Adds the submit button to the screen
@@ -80,22 +82,17 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     if (evaluation)
     {
         window->getGameManager()->moveToNextPuzzle();
-        window->getPuzzleGrid()->resetBoard(window->getGameManager());
         window->updateBoardForNextPuzzle();
     }
-}
-
-PuzzleGrid* MainGameWindow::getPuzzleGrid()
-{
-    return this->puzzleGrid;
 }
 
 /// Callback for the reset button click
 //
 void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
 {
-    cout << "Reset button clicked" << endl;
-    //TODO call manager to reset the button values
+    MainGameWindow* window = (MainGameWindow*)data;
+    window->getGameManager()->resetCurrentPuzzle();
+    window->updateBoardForNextPuzzle();
 }
 
 GameManager* MainGameWindow::getGameManager()
