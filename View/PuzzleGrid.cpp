@@ -31,11 +31,9 @@ namespace view {
         }
         this->gridGroup->end();
 
-//    string labelText = strcat("Puzzle Number: ", "TODO");
-//    int labelLength = labelText.length();
-//    char char_array[labelLength + 1];
-//    strcpy(char_array, labelText.c_str());
-        Fl_Box* puzzleNumberLabel = new Fl_Box(15, 350, 150, 25, "Puzzle Number: "); // TODO add puzzle number here!!
+        string* labelText = new string("Puzzle Number: " + to_string(this->gameManager.getCurrentPuzzleNumber()));
+
+        Fl_Box* puzzleNumberLabel = new Fl_Box(15, 350, 150, 25, labelText->c_str());
         puzzleNumberLabel->box(FL_UP_BOX);
         puzzleNumberLabel->labelsize(14);
     }

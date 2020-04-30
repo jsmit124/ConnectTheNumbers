@@ -14,8 +14,6 @@ class PuzzleGridButton : public Fl_Button
 
         int getID();
 
-    protected:
-
     private:
         int ID;
 };
