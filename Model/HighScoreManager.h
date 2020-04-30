@@ -39,9 +39,14 @@ public:
      * ascending order.
      * @return the 10 entries in ascending duration
      */
-    vector<HighScoreEntry*> getTopTenByDuration();
+    vector<HighScoreEntry> getTopTenByDuration();
+
+    /**
+     * Clears the scoreboard completely.
+     */
+    void clear();
 private:
-    vector<HighScoreEntry*> *scores;
+    vector<HighScoreEntry> scores;
 };
 
 }
