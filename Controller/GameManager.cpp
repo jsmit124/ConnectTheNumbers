@@ -20,8 +20,6 @@ GameManager::GameManager()
 //
 GameManager::~GameManager()
 {
-    delete this->puzzleManager;
-    this->puzzleManager = nullptr;
 }
 
 void GameManager::initialize()
