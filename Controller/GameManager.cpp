@@ -28,8 +28,13 @@ GameManager::~GameManager()
 void GameManager::initialize()
 {
     this->loadPuzzles();
-    this->loadSavedPuzzle();
     this->loadHighScores();
+    this->doesSavedFileExist = checkFileExists(SAVED_PUZZLE_PATH);
+}
+
+bool GameManager::getDoesSavedFileExist()
+{
+    return this->doesSavedFileExist;
 }
 
 bool GameManager::isLastPuzzle()

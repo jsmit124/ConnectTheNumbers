@@ -30,10 +30,13 @@ class GameManager
         PuzzleReader reader;
         PuzzleWriter writer;
 
+        bool doesSavedFileExist;
+
     public:
         GameManager();
         virtual ~GameManager();
 
+        bool getDoesSavedFileExist();
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         int getCurrentPuzzleStartIndex();
         bool isLastPuzzle();

@@ -33,6 +33,7 @@ class MainGameWindow : public Fl_Window
         PuzzleGrid* puzzleGrid;
         GameManager* gameManager;
         PlayerSettings* playerSettings;
+        InitialSettingsWindow* settingsWindow;
 
         Fl_Box* highScoresLabel;
         Fl_Button* evaluateButton;

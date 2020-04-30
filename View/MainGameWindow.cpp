@@ -5,13 +5,10 @@ namespace view
 
 MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Window(width, height, title)
 {
+    this->gameManager = new GameManager();
     this->initialize();
 
-    cout << this->playerSettings->getDifficulty() << " : " << this->playerSettings->getButtonColor() << " : " << this->playerSettings->getBackgroundColor() << endl;
-
     begin();
-
-    this->gameManager = new GameManager();
 
     this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, this->playerSettings->getButtonColor());
     this->color(this->playerSettings->getBackgroundColor());
@@ -35,18 +32,24 @@ void MainGameWindow::initialize()
 {
     this->playerSettings = new PlayerSettings();
 
-    InitialSettingsWindow settingsWindow;
-    settingsWindow.set_modal();
-    settingsWindow.show();
+    this->settingsWindow = new InitialSettingsWindow();
+    this->settingsWindow->set_modal();
+    this->settingsWindow->show();
+    this->settingsWindow->setSavedButtonState(this->gameManager->getDoesSavedFileExist());
 
-    while (settingsWindow.shown())
+    while (this->settingsWindow->shown())
     {
         Fl::wait();
     }
 
-    this->playerSettings->setButtonColor(settingsWindow.getSelectedButtonColor());
-    this->playerSettings->setBackgroundColor(settingsWindow.getSelectedBackgroundColor());
-    this->playerSettings->setDifficulty(settingsWindow.getSelectedDifficulty());
+    if (this->settingsWindow->getLoadSavedPuzzle())
+    {
+        this->gameManager->loadSavedPuzzle();
+    }
+
+    this->playerSettings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
+    this->playerSettings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());
+    this->playerSettings->setDifficulty(this->settingsWindow->getSelectedDifficulty());
 }
 
 ///Draws the puzzle number label

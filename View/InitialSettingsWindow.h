@@ -4,6 +4,9 @@
 #include "Utils.h"
 #include "../Enum/Difficulty.h"
 
+#include "GameManager.h"
+using namespace controller;
+
 #include "ColorSelectionWindow.h"
 using namespace view;
 
@@ -38,7 +41,10 @@ class InitialSettingsWindow : public Fl_Window
         Fl_Color getSelectedButtonColor();
         Fl_Color getSelectedBackgroundColor();
         Difficulty getSelectedDifficulty();
+        bool getLoadSavedPuzzle();
 
+        void setLoadSavedPuzzle(bool condition);
+        void setSavedButtonState(bool condition);
         void setButtonColor(Fl_Color color);
         void setBackgroundColor(Fl_Color color);
         void setDifficulty(Difficulty selection);
@@ -49,16 +55,19 @@ class InitialSettingsWindow : public Fl_Window
         Fl_Button* chooseButtonColorButton;
         Fl_Button* chooseBackgroundColorButton;
         Fl_Button* chooseDifficultyButton;
+        Fl_Button* lastSaveButton;
 
         Difficulty chosenDifficulty;
         Fl_Color chosenButtonColor;
         Fl_Color chosenBackgroundColor;
         int value;
+        bool loadSavedPuzzle;
 
         WindowResult buttonInvoked;
 
         void setStartButtonLocation(int, int);
         void setCloseButtonLocation(int, int);
+        void setLastSavedButtonLocation(int, int);
         void setButtonColorButtonLocation(int, int);
         void setBackgroundColorButtonLocation(int, int);
         void setDifficultySelectionButtonLocation(int, int);
@@ -68,6 +77,7 @@ class InitialSettingsWindow : public Fl_Window
         static void cbButtonColorButtonClick(Fl_Widget*, void*);
         static void cbBackgroundColorButtonClick(Fl_Widget*, void*);
         static void cbDifficultyButtonClick(Fl_Widget*, void*);
+        static void cbLoadSave(Fl_Widget*, void*);
 };
 
 }
