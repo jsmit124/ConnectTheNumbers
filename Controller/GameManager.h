@@ -34,6 +34,8 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
+        int getCurrentPuzzleStartIndex();
         bool isLastPuzzle();
         void resetCurrentPuzzle();
         void moveToNextPuzzle();

@@ -16,8 +16,6 @@
 					<Add directory="Controller" />
 					<Add directory="IO" />
 					<Add directory="Utils" />
-					<Add directory="Settings" />
-					<Add directory="Enum" />
 					<Add directory="View" />
 				</Compiler>
 			</Target>
@@ -32,8 +30,6 @@
 					<Add directory="Controller" />
 					<Add directory="IO" />
 					<Add directory="Utils" />
-					<Add directory="Settings" />
-					<Add directory="Enum" />
 					<Add directory="View" />
 				</Compiler>
 			</Target>
@@ -46,11 +42,6 @@
 		</Linker>
 		<Unit filename="Controller/GameManager.cpp" />
 		<Unit filename="Controller/GameManager.h" />
-		<Unit filename="Enum/Difficulty.h" />
-		<Unit filename="IO/HighScoreReader.cpp" />
-		<Unit filename="IO/HighScoreReader.h" />
-		<Unit filename="IO/HighScoreWriter.cpp" />
-		<Unit filename="IO/HighScoreWriter.h" />
 		<Unit filename="IO/PuzzleReader.cpp" />
 		<Unit filename="IO/PuzzleReader.h" />
 		<Unit filename="IO/PuzzleWriter.cpp" />
@@ -65,8 +56,6 @@
 		<Unit filename="Model/PuzzleManager.h" />
 		<Unit filename="Model/PuzzleNode.cpp" />
 		<Unit filename="Model/PuzzleNode.h" />
-		<Unit filename="Settings/PlayerSettings.cpp" />
-		<Unit filename="Settings/PlayerSettings.h" />
 		<Unit filename="Utils/Exceptions.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -74,10 +63,6 @@
 		<Unit filename="Utils/Utils.h" />
 		<Unit filename="View/ButtonValueWindow.cpp" />
 		<Unit filename="View/ButtonValueWindow.h" />
-		<Unit filename="View/ColorSelectionWindow.cpp" />
-		<Unit filename="View/ColorSelectionWindow.h" />
-		<Unit filename="View/InitialSettingsWindow.cpp" />
-		<Unit filename="View/InitialSettingsWindow.h" />
 		<Unit filename="View/MainGameWindow.cpp" />
 		<Unit filename="View/MainGameWindow.h" />
 		<Unit filename="View/PuzzleGrid.cpp" />

@@ -23,6 +23,10 @@ using namespace controller;
 #include "PuzzleGridButton.h"
 using namespace view;
 
+#include <unistd.h>
+#include <stdlib.h>
+#include <thread>
+#include <chrono>
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -36,12 +40,21 @@ namespace view {
         PuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color);
         ~PuzzleGrid();
 
+        void resetColors(GameManager* gameManager);
         void resetBoard(GameManager* gameManager);
+        void colorEvaluationPath(GameManager* gameManager);
 
     private:
         Fl_Group *gridGroup;
         vector<PuzzleGridButton*> gridButtons;
 
+        Fl_Color* validNodeColor;
+        Fl_Color* invalidNodeColor;
+        Fl_Color* defaultBackgroundColor;
+        Fl_Color* defaultLabelColor;
+
+        void updatePuzzleNode(int index, GameManager* gameManager);
+        void evaluate(int prevIndex, GameManager* gameManager);
         void drawPuzzleGrid(int, int, GameManager*, Fl_Color);
         static void cbButtonSelected(Fl_Widget*, void*);
     };

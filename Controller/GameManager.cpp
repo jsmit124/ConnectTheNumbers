@@ -87,6 +87,16 @@ int GameManager::getPuzzleNodeValue(int index)
     return this->puzzleManager->getCurrentPuzzle().getPuzzleNodeValue(index);
 }
 
+int GameManager::getNextNodeIndexOfCurrentPuzzle(int prevIndex)
+{
+    return this->puzzleManager->getNextNodeIndexOfCurrentPuzzle(prevIndex);
+}
+
+int GameManager::getCurrentPuzzleStartIndex()
+{
+    return this->puzzleManager->getCurrentPuzzle().getStartLocation();
+}
+
 bool GameManager::isPuzzleNodeEditable(int index)
 {
     return this->puzzleManager->getCurrentPuzzle().isPuzzleNodeEditable(index);

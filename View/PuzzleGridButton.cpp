@@ -13,9 +13,15 @@ int PuzzleGridButton::getID()
     return this->ID;
 }
 
+void PuzzleGridButton::setColors(Fl_Color* background, Fl_Color* label)
+{
+    this->labelcolor(*label);
+    this->color(*background);
+    this->redraw();
+}
+
 PuzzleGridButton::~PuzzleGridButton()
 {
-
 }
 
 }

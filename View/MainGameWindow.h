@@ -14,8 +14,11 @@
 #include <Fl/Fl_Export.H>
 #include <algorithm>
 #include <string>
+#include <thread>
+#include <chrono>
+using namespace std;
 
-#include "PlayerSettings.h"
+#include "../Settings/PlayerSettings.h"
 
 using namespace settings;
 using namespace controller;
@@ -39,8 +42,9 @@ class MainGameWindow : public Fl_Window
         vector<Fl_Box*> highScoreLabels;
 
         string getPuzzleNumberOutput();
+        void colorEvaluationPath();
+        void refreshColors();
         void initialize();
-
 
     public:
         MainGameWindow(int width, int height, const char* title);

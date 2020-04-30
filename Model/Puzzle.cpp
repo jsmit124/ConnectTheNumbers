@@ -110,6 +110,11 @@ void Puzzle::replace(int value, int index)
     node.setValue(value);
 }
 
+int Puzzle::getStartLocation()
+{
+    return this->startLocation;
+}
+
 bool Puzzle::evaluate()
 {
     return this->evaluateNode(this->startLocation);
@@ -118,7 +123,6 @@ bool Puzzle::evaluate()
 bool Puzzle::evaluateNode(int index)
 {
     int value = this->nodes.at(index).getValue();
-    vector<PuzzleNode> surroundingNodes = this->getSurroundingNodes(index);
     bool isValid = false;
 
     if (value == this->nodes.size())
@@ -126,50 +130,66 @@ bool Puzzle::evaluateNode(int index)
         return true;
     }
 
-    for (auto currNode : surroundingNodes)
+    int nextIndex = this->getNextNodeIndex(index);
+
+    if (nextIndex > -1)
     {
-        int currValue = currNode.getValue();
-        if ((currValue - 1) == value)
-        {
-            isValid = this->evaluateNode(currNode.getId());
-            break;
-        }
+        isValid = this->evaluateNode(this->nodes.at(nextIndex).getId());
     }
 
     return isValid;
 }
 
-vector<PuzzleNode> Puzzle::getSurroundingNodes(int index)
+int Puzzle::getNextNodeIndex(int prevIndex)
 {
-    vector<PuzzleNode> nodes;
+    int nextNodeIndex = -1;
+
     int maximum = this->nodes.size();
     int minimum = 0;
 
-    bool onLeftSide = this->isOnLeftSide(index);
-    bool onRightSide = this->isOnRightSide(index);
+    bool onLeftSide = this->isOnLeftSide(prevIndex);
+    bool onRightSide = this->isOnRightSide(prevIndex);
 
-    if (index < maximum && !onRightSide)
+    if (prevIndex < maximum && !onRightSide)
     {
-        PuzzleNode node = this->nodes.at(index + 1);
-        nodes.push_back(node);
+        int rightIndex = prevIndex + 1;
+        this->checkIfNextNode(prevIndex, rightIndex, nextNodeIndex);
     }
-    if (index > minimum && !onLeftSide)
+    if (prevIndex > minimum && !onLeftSide)
     {
-        PuzzleNode node = this->nodes.at(index - 1);
-        nodes.push_back(node);
+        int leftIndex = prevIndex - 1;
+        this->checkIfNextNode(prevIndex, leftIndex, nextNodeIndex);
     }
-    if ((index - 8) > minimum)
+    if ((prevIndex - 8) > minimum)
     {
-        PuzzleNode node = this->nodes.at(index - 8);
-        nodes.push_back(node);
+        int topIndex = prevIndex - 8;
+        this->checkIfNextNode(prevIndex, topIndex, nextNodeIndex);
     }
-    if ((index + 8) < maximum)
+    if ((prevIndex + 8) < maximum)
     {
-        PuzzleNode node = this->nodes.at(index + 8);
-        nodes.push_back(node);
+        int bottomIndex = prevIndex + 8;
+        this->checkIfNextNode(prevIndex, bottomIndex, nextNodeIndex);
     }
 
-    return nodes;
+    return nextNodeIndex;
+}
+
+void Puzzle::checkIfNextNode(int prevIndex, int nextIndex, int& nextNodeIndex)
+{
+    bool isValid = this->isNextNodeValid(prevIndex, nextIndex);
+
+    if (isValid)
+    {
+        nextNodeIndex = nextIndex;
+    }
+}
+
+bool Puzzle::isNextNodeValid(int prevIndex, int nextIndex)
+{
+    int prevValue = this->nodes.at(prevIndex).getValue();
+    int nextValue = this->nodes.at(nextIndex).getValue();
+
+    return (nextValue - 1) == prevValue;
 }
 
 bool Puzzle::isOnLeftSide(int index)

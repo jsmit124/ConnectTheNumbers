@@ -12,6 +12,7 @@ class PuzzleGridButton : public Fl_Button
         PuzzleGridButton(int x, int y, int width, int height, int inputID);
         virtual ~PuzzleGridButton();
 
+        void setColors(Fl_Color* background, Fl_Color* label);
         int getID();
 
     private:

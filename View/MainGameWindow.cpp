@@ -74,6 +74,12 @@ void MainGameWindow::refreshBoard()
     this->puzzleNumberLabel->copy_label(labelText.c_str());
 
     this->puzzleGrid->resetBoard(this->gameManager);
+    this->puzzleGrid->resetColors(this->gameManager);
+}
+
+void MainGameWindow::refreshColors()
+{
+    this->puzzleGrid->resetColors(this->gameManager);
 }
 
 ///Adds the submit button to the screen
@@ -140,6 +146,7 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     MainGameWindow* window = (MainGameWindow*)data;
     bool successfullySolved = window->getGameManager()->evaluateCurrentPuzzle();
     bool isLastPuzzle = window->getGameManager()->isLastPuzzle();
+    window->colorEvaluationPath();
 
     if (successfullySolved && !isLastPuzzle)
     {
@@ -154,8 +161,14 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     }
     else
     {
-        fl_message("Uh oh, looks like you missed something. Try again!");
+        fl_message("Uh oh.. the board is not correct. Try again!");
+        window->refreshColors();
     }
+}
+
+void MainGameWindow::colorEvaluationPath()
+{
+    this->puzzleGrid->colorEvaluationPath(this->gameManager);
 }
 
 /// Callback for the reset button click

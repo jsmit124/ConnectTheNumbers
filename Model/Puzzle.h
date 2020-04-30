@@ -19,7 +19,6 @@ class Puzzle
         vector<PuzzleNode> nodes;
         int timeSpent;
 
-        vector<PuzzleNode> getSurroundingNodes(int index);
         bool evaluateNode(int index);
 
         bool isOnRightSide(int index);
@@ -33,10 +32,17 @@ class Puzzle
         vector<PuzzleNode>& getNodes();
         int getId();
 
+        void checkIfNextNode(int prevIndex, int nextIndex, int& nextNodeIndex);
+        bool isNextNodeValid(int prevIndex, int nextIndex);
+        int getNextNodeIndex(int prevIndex);
+
         int getPuzzleNodeValue(int index);
         bool isPuzzleNodeEditable(int index);
+        int getStartLocation();
+
         void setId(int id);
         void setStartLocation(int location);
+
         void add(PuzzleNode node);
         void replace(int value, int index);
 

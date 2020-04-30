@@ -77,6 +77,11 @@ int PuzzleManager::getCurrentPuzzleNumber()
     return this->currentPuzzleIndex + 1;
 }
 
+int PuzzleManager::getNextNodeIndexOfCurrentPuzzle(int prevIndex)
+{
+    return this->getCurrentPuzzle().getNextNodeIndex(prevIndex);
+}
+
 /// TODO
 //
 bool PuzzleManager::evaluateCurrentPuzzle()

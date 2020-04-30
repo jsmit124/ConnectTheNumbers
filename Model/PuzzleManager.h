@@ -22,6 +22,7 @@ class PuzzleManager
         PuzzleManager(int puzzleCount);
         virtual ~PuzzleManager();
 
+        int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         void setCurrentPuzzle(Puzzle puzzle);
         void add(const Puzzle puzzle);
         void moveToNextPuzzle();
