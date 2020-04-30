@@ -11,6 +11,7 @@ namespace controller
 GameManager::GameManager()
 {
     this->puzzleManager = new PuzzleManager(DEFAULT_PUZZLE_COUNT);
+    this->highScoreManager = new HighScoreManager();
     this->initialize();
 }
 
@@ -20,6 +21,8 @@ GameManager::GameManager()
 //
 GameManager::~GameManager()
 {
+    delete this->puzzleManager;
+    delete this->highScoreManager;
 }
 
 void GameManager::initialize()

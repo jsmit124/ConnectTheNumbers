@@ -2,17 +2,22 @@
 
 namespace model {
 
-HighScoreManager::HighScoreManager() = default;
-
-HighScoreManager::~HighScoreManager() = default;
-
-void HighScoreManager::add(const std::string &name, int duration, int puzzle) {
-    HighScoreEntry entry(name, duration, puzzle);
-    this->scores.push_back(entry);
+HighScoreManager::HighScoreManager() {
+    this->scores = new vector<HighScoreEntry*>();
 }
 
-vector<HighScoreEntry> HighScoreManager::getTopTenByDuration() {
-    vector<HighScoreEntry> entriesCopy(this->scores);
+HighScoreManager::~HighScoreManager() {
+    delete this->scores;
+    this->scores = nullptr;
+}
+
+void HighScoreManager::add(const std::string &name, int duration, int puzzle) {
+    auto *entry = new HighScoreEntry(name, duration, puzzle);
+    this->scores->push_back(entry);
+}
+
+vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration() {
+    vector<HighScoreEntry*> entriesCopy(*this->scores);
     sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second) {
         return first->getDuration() < second->getDuration();
     });
@@ -21,7 +26,8 @@ vector<HighScoreEntry> HighScoreManager::getTopTenByDuration() {
 }
 
 void HighScoreManager::clear() {
-    this->scores.erase(this->scores.cbegin(), this->scores.cend());
+    delete this->scores;
+    this->scores = new vector<HighScoreEntry*>();
 }
 
 }

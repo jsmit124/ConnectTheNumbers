@@ -6,6 +6,7 @@
 using namespace io;
 
 #include "../Model/PuzzleManager.h"
+#include "../Model/HighScoreManager.h"
 using namespace model;
 
 #include "../Utils/Utils.h"
@@ -24,6 +25,7 @@ class GameManager
 
     private:
         PuzzleManager* puzzleManager;
+        HighScoreManager* highScoreManager;
         PuzzleReader reader;
         PuzzleWriter writer;
 
