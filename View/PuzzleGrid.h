@@ -6,6 +6,7 @@
 #include <Fl/Fl_Box.H>
 #include <FL/Fl_Group.H>
 #include <Fl/Fl_Window.H>
+#include <Fl/Fl_Export.H>
 #include <string>
 
 #define PUZZLE_ROWS 8

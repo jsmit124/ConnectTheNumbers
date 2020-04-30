@@ -12,6 +12,8 @@ namespace view {
     // @param y the y-location to place the widget
     //
     PuzzleGrid::PuzzleGrid(int x, int y) {
+        Fl_Color* buttonBackgroundColor = new Fl_Color(FL_DARK3);
+        Fl_Color* white = new Fl_Color(FL_WHITE);
 
         this->gridGroup = new Fl_Group(x, y, PUZZLE_ROWS * BUTTON_WIDTH + BUTTON_PADDING,
                 PUZZLE_COLS * BUTTON_HEIGHT + BUTTON_PADDING, nullptr);
@@ -34,7 +36,9 @@ namespace view {
                 {
                     button->deactivate();
                 }
-
+                button->color(*buttonBackgroundColor);
+                button->labelcolor(*white);
+                button->damage(1);
             }
         }
         this->gridGroup->end();

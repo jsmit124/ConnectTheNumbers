@@ -1,5 +1,6 @@
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
+#include <Fl/Fl_Export.H>
 
 #include "./Controller/GameManager.h"
 using namespace controller;
@@ -15,6 +16,7 @@ int main (int argc, char ** argv)
   PuzzleGrid *grid;
 
   window = new Fl_Window (500, 400, "Connect the Numbers by Smith, Williams, and Steinborn");
+  window->color(fl_darker(fl_darker(fl_darker(FL_DARK_BLUE))));
   grid = new PuzzleGrid (20, 40);
 
   window->end();
