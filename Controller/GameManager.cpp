@@ -65,7 +65,7 @@ void GameManager::loadSavedPuzzle()
     }
 }
 
-void GameManager::saveCurrentPuzzle(const string& filename)
+void GameManager::saveCurrentPuzzle()
 {
     Puzzle puzzle = this->puzzleManager->getCurrentPuzzle();
     this->writer.savePuzzleToFile(puzzle, this->timeSpentOnPuzzle);
@@ -104,6 +104,16 @@ bool GameManager::evaluateCurrentPuzzle()
 int GameManager::getTimeSpentOnPuzzle() const
 {
     return this->timeSpentOnPuzzle;
+}
+
+vector<HighScoreEntry *> GameManager::getTopTenScoresByDuration()
+{
+    return this->highScoreManager->getTopTenByDuration();
+}
+
+void GameManager::recordGameCompletion(const string& name)
+{
+    this->highScoreManager->add(name, this->timeSpentOnPuzzle, this->puzzleManager->getCurrentPuzzleNumber());
 }
 
 }

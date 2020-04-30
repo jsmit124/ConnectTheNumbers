@@ -45,6 +45,9 @@ public:
      * Clears the scoreboard completely.
      */
     void clear();
+
+    vector<HighScoreEntry *> *getScores() const;
+
 private:
     vector<HighScoreEntry*> *scores;
 };

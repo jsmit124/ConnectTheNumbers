@@ -45,13 +45,14 @@ class MainGameWindow : public Fl_Window
 
         static void cbEvaluateButtonClicked(Fl_Widget*, void*);
         static void cbResetButtonClicked(Fl_Widget*, void*);
+        static void cbOnWindowClose(Fl_Widget*, void*);
 
         void startGameTimer();
         static void onTimerTick(void *data);
 
-    void drawTimerLabel();
+        void drawTimerLabel();
 
-    void refreshTimerLabel();
+        void refreshTimerLabel();
 };
 
 }

@@ -3,6 +3,8 @@
 
 #include "../Model/Puzzle.h"
 #include "../Model/PuzzleNode.h"
+#include "./PuzzleReader.h"
+
 using namespace model;
 
 #include <string>

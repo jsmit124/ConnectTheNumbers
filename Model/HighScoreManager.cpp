@@ -30,4 +30,8 @@ void HighScoreManager::clear() {
     this->scores = new vector<HighScoreEntry*>();
 }
 
+vector<HighScoreEntry *> *HighScoreManager::getScores() const {
+    return this->scores;
+}
+
 }

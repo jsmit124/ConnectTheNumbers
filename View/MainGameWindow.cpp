@@ -20,6 +20,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->drawTimerLabel();
 
     this->startGameTimer();
+    this->callback(this->cbOnWindowClose, this);
 
     end();
 }
@@ -94,6 +95,7 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 
     if (successfullySolved && !isLastPuzzle)
     {
+        window->getGameManager()->recordGameCompletion("user");
         window->getGameManager()->moveToNextPuzzle();
         window->refreshBoard();
     }
@@ -145,6 +147,15 @@ void MainGameWindow::refreshTimerLabel()
 {
     string formattedTimeSpent = "Time: " + formatDurationHoursSeconds(this->gameManager->getTimeSpentOnPuzzle());
     this->gameTimerLabel->copy_label(formattedTimeSpent.c_str());
+}
+
+void MainGameWindow::cbOnWindowClose(Fl_Widget *, void *data)
+{
+    auto *window = (MainGameWindow*) data;
+    window->gameManager->saveCurrentPuzzle();
+
+    // Now hide the window to close the app
+    window->hide();
 }
 
 }

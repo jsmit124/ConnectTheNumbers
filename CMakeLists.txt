@@ -21,6 +21,6 @@ add_executable(ConnectTheNumbers
         View/ButtonValueWindow.cpp View/ButtonValueWindow.h
         View/PuzzleGridButton.cpp View/PuzzleGridButton.h
         Model/HighScoreManager.cpp Model/HighScoreManager.h
-        Model/HighScoreEntry.cpp Model/HighScoreEntry.h)
+        Model/HighScoreEntry.cpp Model/HighScoreEntry.h IO/HighScoreReader.cpp IO/HighScoreReader.h IO/HighScoreWriter.cpp IO/HighScoreWriter.h)
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${FLTK_LIBRARIES})
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${OPENGL_LIBRARIES})

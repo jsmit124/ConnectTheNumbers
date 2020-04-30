@@ -26,7 +26,7 @@ PuzzleWriter::~PuzzleWriter()
 //
 void PuzzleWriter::savePuzzleToFile(Puzzle& puzzle, int timeSpent)
 {
-    this->writePuzzleToFile(SAVE_PUZZLE_FILENAME, puzzle, timeSpent);
+    this->writePuzzleToFile(PUZZLES_DIRECTORY + SAVE_PUZZLE_FILENAME, puzzle, timeSpent);
 }
 
 void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle, int timeSpent)
@@ -39,7 +39,7 @@ void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle, int
     {
         outFile << this->formatNode(nodes[i]);
     }
-    outFile << timeSpent << endl;
+    outFile << endl << timeSpent << endl;
 
     outFile.close();
 }

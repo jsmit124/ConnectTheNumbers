@@ -12,6 +12,9 @@ using namespace model;
 #include <iostream>
 #include <sstream>
 #include <fstream>
+
+#define PUZZLES_DIRECTORY "Puzzles/"
+
 using namespace std;
 
 namespace io
@@ -21,7 +24,6 @@ namespace io
 //
 class PuzzleReader
 {
-    const string PUZZLES_DIRECTORY = "Puzzles/";
     const string PUZZLE_INDICATOR = "puzzle_";
     const string SAVED_PUZZLE = "saved";
     const string EDITABLE_INDICATOR = "x";
@@ -40,7 +42,6 @@ class PuzzleReader
         Puzzle readPuzzleNumber(int puzzleNumber);
         Puzzle readSavedPuzzle();
         vector<Puzzle> readAllPuzzles(int puzzleCount);
-
 };
 
 }

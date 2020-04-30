@@ -45,11 +45,13 @@ class GameManager
         int getCurrentPuzzleNumber();
         void loadPuzzles();
         void loadSavedPuzzle();
-        void saveCurrentPuzzle(const string& filename);
+        void saveCurrentPuzzle();
+        vector<HighScoreEntry*> getTopTenScoresByDuration();
+        void recordGameCompletion(const string& name);
 
-    int getTimeSpentOnPuzzle() const;
+        int getTimeSpentOnPuzzle() const;
 
-    const int DEFAULT_PUZZLE_COUNT = 2;
+        const int DEFAULT_PUZZLE_COUNT = 2;
 
         void onTimerTick();
 };
