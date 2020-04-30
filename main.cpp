@@ -15,7 +15,7 @@ int main (int argc, char ** argv)
   Fl_Window *window;
   PuzzleGrid *grid;
 
-  window = new Fl_Window(600, 400, "Connect the Numbers by Smith, Williams, and Steinborn");
+  window = new Fl_Window(600, 425, "Connect the Numbers by Smith, Williams, and Steinborn");
   window->color(fl_darker(fl_darker(fl_darker(FL_DARK_BLUE))));
   grid = new PuzzleGrid (20, 0);
 

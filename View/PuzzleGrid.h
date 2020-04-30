@@ -44,10 +44,12 @@ namespace view {
         void drawPuzzleGrid(int, int);
         void drawPuzzleNumberLabel();
         void addEvaluateButton();
+        void addResetButton();
         void drawHighScoresLabel();
 
         static void cbButtonSelected(Fl_Widget*, void*);
         static void cbEvaluateButtonClicked(Fl_Widget*, void*);
+        static void cbResetButtonClicked(Fl_Widget*, void*);
     };
 }
 

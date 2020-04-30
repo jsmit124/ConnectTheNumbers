@@ -13,8 +13,11 @@ namespace view {
     //
     PuzzleGrid::PuzzleGrid(int x, int y) {
         this->drawPuzzleGrid(x, y);
-        this->drawPuzzleNumberLabel();
+
         this->addEvaluateButton();
+        this->addResetButton();
+
+        this->drawPuzzleNumberLabel();
         this->drawHighScoresLabel();
     }
 
@@ -64,7 +67,7 @@ namespace view {
     {
         string* labelText = new string("Puzzle Number: " + to_string(this->gameManager.getCurrentPuzzleNumber()) + "/" + to_string(this->gameManager.DEFAULT_PUZZLE_COUNT));
 
-        Fl_Box* puzzleNumberLabel = new Fl_Box(10, 340, 175, 30, labelText->c_str());
+        Fl_Box* puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, labelText->c_str());
         puzzleNumberLabel->box(FL_UP_BOX);
         puzzleNumberLabel->labelsize(14);
     }
@@ -75,6 +78,14 @@ namespace view {
     {
         auto* submitButton = new Fl_Button(221, 340, 110, 30, "EVALUATE");
         submitButton->callback(cbEvaluateButtonClicked, this);
+    }
+
+    ///Adds the reset button to the screen
+    //
+    void PuzzleGrid::addResetButton()
+    {
+        auto* resetButton = new Fl_Button(10, 340, 110, 30, "RESET");
+        resetButton->callback(cbResetButtonClicked, this);
     }
 
     ///Draws the high scores label
@@ -114,6 +125,14 @@ namespace view {
     {
         cout << "Evaulate button clicked" << endl;
         //TODO call manager to evaluate button
+    }
+
+    /// Callback for the reset button click
+    //
+    void PuzzleGrid::cbResetButtonClicked(Fl_Widget* widget, void* data)
+    {
+        cout << "Reset button clicked" << endl;
+        //TODO call manager to reset the button values
     }
 
     /// Destroys the widget, freeing all the child buttons and the grid.
