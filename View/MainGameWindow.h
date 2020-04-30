@@ -36,7 +36,7 @@ class MainGameWindow : public Fl_Window
 
         GameManager* getGameManager();
 
-        void updateBoardForNextPuzzle();
+        void refreshBoard();
         void drawPuzzleNumberLabel();
         void addEvaluateButton();
         void addResetButton();

@@ -28,6 +28,7 @@ class PuzzleManager
         Puzzle& getCurrentPuzzle();
         int getCurrentPuzzleNumber();
         bool evaluateCurrentPuzzle();
+        bool isLastPuzzle();
 };
 
 }

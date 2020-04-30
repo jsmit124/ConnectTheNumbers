@@ -30,6 +30,11 @@ void GameManager::initialize()
     this->loadPuzzles();
 }
 
+bool GameManager::isLastPuzzle()
+{
+    return this->puzzleManager->isLastPuzzle();
+}
+
 void GameManager::moveToNextPuzzle()
 {
     this->puzzleManager->moveToNextPuzzle();

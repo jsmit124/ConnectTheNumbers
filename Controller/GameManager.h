@@ -33,6 +33,7 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        bool isLastPuzzle();
         void resetCurrentPuzzle();
         void moveToNextPuzzle();
         bool evaluateCurrentPuzzle();
@@ -44,7 +45,7 @@ class GameManager
         void loadPuzzles();
         void loadSavedPuzzle();
         void saveCurrentPuzzle(const string& filename);
-        const int DEFAULT_PUZZLE_COUNT = 12;
+        const int DEFAULT_PUZZLE_COUNT = 2;
 };
 
 }

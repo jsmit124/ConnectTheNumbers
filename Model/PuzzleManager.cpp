@@ -84,4 +84,9 @@ bool PuzzleManager::evaluateCurrentPuzzle()
     return this->puzzles.at(currentIndex).evaluate();
 }
 
+bool PuzzleManager::isLastPuzzle()
+{
+    return this->getCurrentPuzzleNumber() == this->puzzles.size();
+}
+
 }

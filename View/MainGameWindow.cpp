@@ -39,7 +39,7 @@ string* MainGameWindow::getPuzzleNumberOutput()
     return labelText;
 }
 
-void MainGameWindow::updateBoardForNextPuzzle()
+void MainGameWindow::refreshBoard()
 {
     string* labelText = this->getPuzzleNumberOutput();
     this->puzzleNumberLabel->label(labelText->c_str());
@@ -78,11 +78,16 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
     bool evaluation = window->getGameManager()->evaluateCurrentPuzzle();
+    bool isLastPuzzle = window->getGameManager()->isLastPuzzle();
 
-    if (evaluation)
+    if (evaluation && !isLastPuzzle)
     {
         window->getGameManager()->moveToNextPuzzle();
-        window->updateBoardForNextPuzzle();
+        window->refreshBoard();
+    }
+    else if (evaluation && isLastPuzzle)
+    {
+        fl_message("You have mastered all the puzzles... Congrats!");
     }
     else
     {
@@ -96,7 +101,7 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
     window->getGameManager()->resetCurrentPuzzle();
-    window->updateBoardForNextPuzzle();
+    window->refreshBoard();
 }
 
 GameManager* MainGameWindow::getGameManager()
