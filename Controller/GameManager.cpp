@@ -28,6 +28,8 @@ GameManager::~GameManager()
 void GameManager::initialize()
 {
     this->loadPuzzles();
+    this->loadSavedPuzzle();
+    this->loadHighScores();
 }
 
 bool GameManager::isLastPuzzle()
@@ -114,6 +116,23 @@ vector<HighScoreEntry *> GameManager::getTopTenScoresByDuration()
 void GameManager::recordGameCompletion(const string& name)
 {
     this->highScoreManager->add(name, this->timeSpentOnPuzzle, this->puzzleManager->getCurrentPuzzleNumber());
+}
+
+void GameManager::loadHighScores()
+{
+    if (checkFileExists(SAVED_SCOREBOARD_PATH))
+    {
+        cout << "loading high scores" << endl;
+        HighScoreReader scoreReader;
+        scoreReader.loadScores(this->highScoreManager, SAVED_SCOREBOARD_PATH);
+        cout << this->highScoreManager->getScores()->size() << endl;
+    }
+}
+
+void GameManager::saveHighScores()
+{
+    HighScoreWriter scoreWriter;
+    scoreWriter.writeHighScores(this->highScoreManager, SAVED_SCOREBOARD_PATH);
 }
 
 }

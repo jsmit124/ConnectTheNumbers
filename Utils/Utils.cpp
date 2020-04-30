@@ -29,18 +29,13 @@ vector<string> split(string stringToSplit, string delimeter)
     return splittedString;
 }
 
-bool checkFileExists(string filename)
+bool checkFileExists(const string& filename)
 {
-    ifstream inFile;
-    inFile.open(filename);
-
-    if (!inFile)
-    {
-        return false;
-    }
-
+    ifstream inFile(filename);
+    bool good = inFile.good();
     inFile.close();
-    return true;
+
+    return good;
 }
 
 string filterNumbers(string input)

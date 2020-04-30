@@ -3,6 +3,8 @@
 
 #include "../Model/HighScoreEntry.h"
 #include "../Model/HighScoreManager.h"
+#include <Exceptions.h>
+#include "../Utils/Utils.h"
 
 #include <string>
 #include <fstream>
@@ -13,7 +15,14 @@ using namespace model;
 
 namespace io {
     class HighScoreReader {
+    public:
+        HighScoreReader();
+        virtual ~HighScoreReader();
 
+        void loadScores(HighScoreManager *target, const string &fileName);
+
+    private:
+        void readAndAddEntry(HighScoreManager *scoreboard, string line);
     };
 }
 

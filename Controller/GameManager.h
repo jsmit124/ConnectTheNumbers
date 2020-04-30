@@ -1,18 +1,18 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
+#include "../IO/HighScoreReader.h"
+#include "../IO/HighScoreWriter.h"
 #include "../IO/PuzzleReader.h"
 #include "../IO/PuzzleWriter.h"
-using namespace io;
-
 #include "../Model/PuzzleManager.h"
 #include "../Model/HighScoreManager.h"
-using namespace model;
-
 #include "../Utils/Utils.h"
-
 #include <string>
+
+using namespace model;
 using namespace std;
+using namespace io;
 
 namespace controller
 {
@@ -22,6 +22,7 @@ namespace controller
 class GameManager
 {
     const string SAVED_PUZZLE_PATH = "Puzzles/puzzle_saved";
+    const string SAVED_SCOREBOARD_PATH = "high_scores.csv";
 
     private:
         int timeSpentOnPuzzle;
@@ -48,12 +49,15 @@ class GameManager
         void saveCurrentPuzzle();
         vector<HighScoreEntry*> getTopTenScoresByDuration();
         void recordGameCompletion(const string& name);
+        void saveHighScores();
 
         int getTimeSpentOnPuzzle() const;
 
         const int DEFAULT_PUZZLE_COUNT = 2;
 
         void onTimerTick();
+
+    void loadHighScores();
 };
 
 }

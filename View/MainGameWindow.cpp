@@ -153,6 +153,7 @@ void MainGameWindow::cbOnWindowClose(Fl_Widget *, void *data)
 {
     auto *window = (MainGameWindow*) data;
     window->gameManager->saveCurrentPuzzle();
+    window->gameManager->saveHighScores();
 
     // Now hide the window to close the app
     window->hide();

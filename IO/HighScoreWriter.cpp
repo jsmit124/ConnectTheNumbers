@@ -15,6 +15,9 @@ void HighScoreWriter::writeHighScores(HighScoreManager *manager, const string &f
     {
         this->writeScore(&stream, entry);
     }
+
+    stream.flush();
+    stream.close();
 }
 
 void HighScoreWriter::writeScore(ofstream *stream, HighScoreEntry *entry)

@@ -14,7 +14,7 @@ using namespace std;
 
 vector<string> split(string stringToSplit, string delimeter);
 string filterNumbers(string input);
-bool checkFileExists(string filename);
+bool checkFileExists(const string& filename);
 int toInt(const string&, const char*);
 string formatDurationHoursSeconds(int totalSeconds);
 
