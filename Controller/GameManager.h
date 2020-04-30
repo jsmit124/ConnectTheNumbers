@@ -21,7 +21,6 @@ namespace controller
 class GameManager
 {
     const string SAVED_PUZZLE_PATH = "Puzzles/puzzle_saved";
-    const int DEFAULT_PUZZLE_COUNT = 12;
 
     private:
         PuzzleManager* puzzleManager;
@@ -40,6 +39,7 @@ class GameManager
         void loadPuzzles();
         void loadSavedPuzzle();
         void saveCurrentPuzzle(const string& filename);
+        const int DEFAULT_PUZZLE_COUNT = 12;
 };
 
 }

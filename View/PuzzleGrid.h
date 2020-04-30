@@ -39,8 +39,15 @@ namespace view {
 
     private:
         Fl_Group *gridGroup;
-        static void cbButtonSelected(Fl_Widget*, void*);
         GameManager gameManager;
+
+        void drawPuzzleGrid(int, int);
+        void drawPuzzleNumberLabel();
+        void addEvaluateButton();
+        void drawHighScoresLabel();
+
+        static void cbButtonSelected(Fl_Widget*, void*);
+        static void cbEvaluateButtonClicked(Fl_Widget*, void*);
     };
 }
 

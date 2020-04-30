@@ -12,6 +12,19 @@ namespace view {
     // @param y the y-location to place the widget
     //
     PuzzleGrid::PuzzleGrid(int x, int y) {
+        this->drawPuzzleGrid(x, y);
+        this->drawPuzzleNumberLabel();
+        this->addEvaluateButton();
+        this->drawHighScoresLabel();
+    }
+
+    /// Draws the puzzle grid
+    //
+    // @param x the x-location to place the grid
+    // @param y the y-location to place the grid
+    //
+    void PuzzleGrid::drawPuzzleGrid(int x, int y)
+    {
         Fl_Color* buttonBackgroundColor = new Fl_Color(FL_DARK3);
         Fl_Color* white = new Fl_Color(FL_WHITE);
 
@@ -36,21 +49,42 @@ namespace view {
                 {
                     button->deactivate();
                 }
+
                 button->color(*buttonBackgroundColor);
                 button->labelcolor(*white);
                 button->damage(1);
             }
         }
         this->gridGroup->end();
+    }
 
-        string* labelText = new string("Puzzle Number: " + to_string(this->gameManager.getCurrentPuzzleNumber()));
+    ///Draws the puzzle number label
+    //
+    void PuzzleGrid::drawPuzzleNumberLabel()
+    {
+        string* labelText = new string("Puzzle Number: " + to_string(this->gameManager.getCurrentPuzzleNumber()) + "/" + to_string(this->gameManager.DEFAULT_PUZZLE_COUNT));
 
-        Fl_Box* puzzleNumberLabel = new Fl_Box(15, 350, 150, 25, labelText->c_str());
+        Fl_Box* puzzleNumberLabel = new Fl_Box(10, 340, 175, 30, labelText->c_str());
         puzzleNumberLabel->box(FL_UP_BOX);
         puzzleNumberLabel->labelsize(14);
     }
 
+    ///Adds the submit button to the screen
+    //
+    void PuzzleGrid::addEvaluateButton()
+    {
+        auto* submitButton = new Fl_Button(221, 340, 110, 30, "EVALUATE");
+        submitButton->callback(cbEvaluateButtonClicked, this);
+    }
 
+    ///Draws the high scores label
+    //
+    void PuzzleGrid::drawHighScoresLabel()
+    {
+        Fl_Box* highScoresLabel = new Fl_Box(385, 10, 175, 30, "HIGH SCORES");
+        highScoresLabel->box(FL_UP_BOX);
+        highScoresLabel->labelsize(16);
+    }
 
     /// Handles the button click callback event
     //
@@ -72,6 +106,14 @@ namespace view {
             window->getGameManager().setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID());
             widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
         }
+    }
+
+    /// Callback for the evaulate button click
+    //
+    void PuzzleGrid::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
+    {
+        cout << "Evaulate button clicked" << endl;
+        //TODO call manager to evaluate button
     }
 
     /// Destroys the widget, freeing all the child buttons and the grid.
