@@ -18,9 +18,11 @@ class PlayerSettings
 
         void setButtonColor(Fl_Color color);
         void setBackgroundColor(Fl_Color color);
+        void setDifficulty(Difficulty selection);
 
         Fl_Color getButtonColor();
         Fl_Color getBackgroundColor();
+        Difficulty getDifficulty();
 
     private:
         Difficulty chosenDifficulty;

@@ -29,12 +29,15 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 300, "Welcome to
     this->chooseBackgroundColorButton->callback(cbBackgroundColorButtonClick, this);
     this->chooseDifficultyButton->callback(cbDifficultyButtonClick, this);
 
+    this->chosenBackgroundColor = fl_darker(fl_darker(fl_darker(FL_DARK_BLUE)));
+    this->chosenButtonColor = FL_DARK3;
+    this->chosenDifficulty = Difficulty::EASY;
+
     end();
 }
 
 void InitialSettingsWindow::startHandler()
 {
-    cout << "Start clicked - in handler" << endl;
     this->hide();
 }
 
@@ -85,7 +88,6 @@ void InitialSettingsWindow::setDifficulty(Difficulty selection)
 
 void InitialSettingsWindow::cbStart(Fl_Widget* widget, void* data)
 {
-    cout << "Start clicked - in callback" << endl;
     InitialSettingsWindow* window = (InitialSettingsWindow*)data;
     window->setWindowResult(InitialSettingsWindow::START);
     window->startHandler();
@@ -114,8 +116,6 @@ void InitialSettingsWindow::cbButtonColorButtonClick(Fl_Widget* widget, void* da
     {
         window->setButtonColor(colorWindow.getColor());
     }
-
-    cout << "Button color clicked" << endl;
 }
 
 void InitialSettingsWindow::cbBackgroundColorButtonClick(Fl_Widget* widget, void* data)
@@ -134,7 +134,6 @@ void InitialSettingsWindow::cbBackgroundColorButtonClick(Fl_Widget* widget, void
     {
         window->setBackgroundColor(colorWindow.getColor());
     }
-    cout << "Background color clicked" << endl;
 }
 
 void InitialSettingsWindow::cbDifficultyButtonClick(Fl_Widget* widget, void* data)

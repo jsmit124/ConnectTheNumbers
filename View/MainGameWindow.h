@@ -15,6 +15,9 @@
 #include <algorithm>
 #include <string>
 
+#include "PlayerSettings.h"
+
+using namespace settings;
 using namespace controller;
 using namespace std;
 
@@ -26,6 +29,7 @@ class MainGameWindow : public Fl_Window
     private:
         PuzzleGrid* puzzleGrid;
         GameManager* gameManager;
+        PlayerSettings* playerSettings;
 
         Fl_Box* highScoresLabel;
         Fl_Button* evaluateButton;

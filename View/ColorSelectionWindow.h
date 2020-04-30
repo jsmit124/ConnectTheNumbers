@@ -21,24 +21,24 @@ class ColorSelectionWindow : public Fl_Window
         Fl_Color selectedColor;
 
         Fl_Button* blueButton;
-        Fl_Button* greenButton;
-        Fl_Button* redButton;
+        Fl_Button* darkButton;
+        Fl_Button* lightBlueButton;
         Fl_Button* yellowButton;
         Fl_Button* cyanButton;
         Fl_Button* magentaButton;
         Fl_Button* cancelButton;
 
         void setBlueButtonLocation(int, int);
-        void setGreenButtonLocation(int, int);
-        void setRedButtonLocation(int, int);
+        void setDarkButtonLocation(int, int);
+        void setLightBlueButtonLocation(int, int);
         void setYellowButtonLocation(int, int);
         void setCyanButtonLocation(int, int);
         void setMagentaButtonLocation(int, int);
         void setCancelButtonLocation(int, int);
 
         static void cbBlue(Fl_Widget*, void*);
-        static void cbGreen(Fl_Widget*, void*);
-        static void cbRed(Fl_Widget*, void*);
+        static void cbDark(Fl_Widget*, void*);
+        static void cbLightBlue(Fl_Widget*, void*);
         static void cbYellow(Fl_Widget*, void*);
         static void cbCyan(Fl_Widget*, void*);
         static void cbMagenta(Fl_Widget*, void*);

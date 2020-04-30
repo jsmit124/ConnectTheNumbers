@@ -11,9 +11,9 @@ namespace view {
     // @param x the x-location to place the widget
     // @param y the y-location to place the widget
     //
-    PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager)
+    PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager, Fl_Color color)
     {
-        this->drawPuzzleGrid(x, y, manager);
+        this->drawPuzzleGrid(x, y, manager, color);
     }
 
     /// Draws the puzzle grid
@@ -21,9 +21,8 @@ namespace view {
     // @param x the x-location to place the grid
     // @param y the y-location to place the grid
     //
-    void PuzzleGrid::drawPuzzleGrid(int x, int y, GameManager* gameManager)
+    void PuzzleGrid::drawPuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color color)
     {
-        Fl_Color* buttonBackgroundColor = new Fl_Color(FL_DARK3);
         Fl_Color* white = new Fl_Color(FL_WHITE);
 
         this->gridGroup = new Fl_Group(x, y, PUZZLE_ROWS * BUTTON_WIDTH + BUTTON_PADDING,
@@ -56,7 +55,7 @@ namespace view {
                     button->deactivate();
                 }
 
-                button->color(*buttonBackgroundColor);
+                button->color(color);
                 button->labelcolor(*white);
                 button->damage(1);
 

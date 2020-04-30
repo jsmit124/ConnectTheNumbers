@@ -5,19 +5,14 @@ namespace settings
 
 /// Instantiates a new PlayerSettings object with default values
 //
-// @pre this->buttonColor = FL_DARK3
-//      AND this->backgroundColor = FL_DARK_BLUE
-//      AND this->chosenDifficulty = Difficulty::EASY
 PlayerSettings::PlayerSettings()
 {
-    this->backgroundColor = FL_DARK_BLUE;
-    this->buttonColor = FL_DARK3;
-    this->chosenDifficulty = Difficulty::EASY;
+    //ctor
 }
 
 PlayerSettings::~PlayerSettings()
 {
-        //ctor
+    //dtor
 }
 
 /// Sets the desired button color
@@ -38,6 +33,11 @@ void PlayerSettings::setBackgroundColor(Fl_Color color)
     this->backgroundColor = color;
 }
 
+void PlayerSettings::setDifficulty(Difficulty selection)
+{
+    this->chosenDifficulty = selection;
+}
+
 /// Returns the Fl_Color chosen to be the button color
 //
 //  @return this->buttonColor
@@ -54,6 +54,11 @@ Fl_Color PlayerSettings::getButtonColor()
 Fl_Color PlayerSettings::getBackgroundColor()
 {
     return this->backgroundColor;
+}
+
+Difficulty PlayerSettings::getDifficulty()
+{
+    return this->chosenDifficulty;
 }
 
 }

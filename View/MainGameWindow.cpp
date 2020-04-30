@@ -7,12 +7,14 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 {
     this->initialize();
 
+    cout << this->playerSettings->getDifficulty() << " : " << this->playerSettings->getButtonColor() << " : " << this->playerSettings->getBackgroundColor() << endl;
+
     begin();
 
     this->gameManager = new GameManager();
 
-    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager);
-    this->color(fl_darker(fl_darker(fl_darker(FL_DARK_BLUE))));
+    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, this->playerSettings->getButtonColor());
+    this->color(this->playerSettings->getBackgroundColor());
 
     this->addEvaluateButton();
     this->addResetButton();
@@ -31,6 +33,8 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 //
 void MainGameWindow::initialize()
 {
+    this->playerSettings = new PlayerSettings();
+
     InitialSettingsWindow settingsWindow;
     settingsWindow.set_modal();
     settingsWindow.show();
@@ -39,6 +43,10 @@ void MainGameWindow::initialize()
     {
         Fl::wait();
     }
+
+    this->playerSettings->setButtonColor(settingsWindow.getSelectedButtonColor());
+    this->playerSettings->setBackgroundColor(settingsWindow.getSelectedBackgroundColor());
+    this->playerSettings->setDifficulty(settingsWindow.getSelectedDifficulty());
 }
 
 ///Draws the puzzle number label

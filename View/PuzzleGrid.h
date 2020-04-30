@@ -33,7 +33,7 @@ namespace view {
     //
     class PuzzleGrid {
     public:
-        PuzzleGrid(int x, int y, GameManager* gameManager);
+        PuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color);
         ~PuzzleGrid();
 
         void resetBoard(GameManager* gameManager);
@@ -42,7 +42,7 @@ namespace view {
         Fl_Group *gridGroup;
         vector<PuzzleGridButton*> gridButtons;
 
-        void drawPuzzleGrid(int, int, GameManager*);
+        void drawPuzzleGrid(int, int, GameManager*, Fl_Color);
         static void cbButtonSelected(Fl_Widget*, void*);
     };
 }
