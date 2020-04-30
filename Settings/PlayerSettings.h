@@ -1,7 +1,7 @@
 #ifndef PLAYERSETTINGS_H
 #define PLAYERSETTINGS_H
 
-#include "Difficulty.h"
+#include "../Enum/Difficulty.h"
 
 #include <Fl/Fl_Export.H>
 #include <Fl/Fl.H>

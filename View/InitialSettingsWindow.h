@@ -2,13 +2,13 @@
 #define INITIALSETTINGSWINDOW_H
 
 #include "Utils.h"
-#include "Difficulty.h"
+#include "../Enum/Difficulty.h"
 
 #include <Fl/Fl_Input.H>
 #include <Fl/Fl_Window.H>
 #include <Fl/Fl_Button.H>
 #include <Fl/fl_ask.H>
-#include <stdlib.h>
+#include <cstdlib>
 #include <sstream>
 #include <iostream>
 using namespace std;
