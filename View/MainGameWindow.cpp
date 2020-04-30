@@ -32,7 +32,7 @@ void MainGameWindow::drawPuzzleNumberLabel()
     string labelText = this->getPuzzleNumberOutput();
 
     this->puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, nullptr);
-    this->puzzleNumberLabel->copy_label(labelText->c_str());
+    this->puzzleNumberLabel->copy_label(labelText.c_str());
     this->puzzleNumberLabel->box(FL_UP_BOX);
     this->puzzleNumberLabel->labelsize(14);
 }
@@ -47,7 +47,7 @@ string MainGameWindow::getPuzzleNumberOutput()
 void MainGameWindow::refreshBoard()
 {
     string labelText = this->getPuzzleNumberOutput();
-    this->puzzleNumberLabel->copy_label(labelText->c_str());
+    this->puzzleNumberLabel->copy_label(labelText.c_str());
 
     this->puzzleGrid->resetBoard(this->gameManager);
 }
