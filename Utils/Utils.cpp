@@ -59,3 +59,15 @@ int toInt(const string& text, const char* errorMessage)
 
     return value;
 }
+
+string formatDurationHoursSeconds(int totalSeconds)
+{
+    int minutes = totalSeconds / SECONDS_IN_A_MINUTE;
+    int seconds = totalSeconds % SECONDS_IN_A_MINUTE;
+
+    ostringstream durationOutput;
+    durationOutput << setw(2) << setfill('0') << minutes;
+    durationOutput << ":";
+    durationOutput << setw(2) << setfill('0') << seconds;
+    return durationOutput.str();
+}

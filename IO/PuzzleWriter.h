@@ -23,13 +23,13 @@ class PuzzleWriter
 
     private:
         const string formatNode(PuzzleNode& node);
-        void writePuzzleToFile(const string& filename, Puzzle& puzzle);
+        void writePuzzleToFile(const string& filename, Puzzle& puzzle, int timeSpent);
 
     public:
         PuzzleWriter();
         virtual ~PuzzleWriter();
 
-        void savePuzzleToFile(Puzzle& puzzle);
+        void savePuzzleToFile(Puzzle& puzzle, int timeSpent);
 };
 
 }

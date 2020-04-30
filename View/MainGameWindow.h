@@ -27,6 +27,7 @@ class MainGameWindow : public Fl_Window
         Fl_Button* evaluateButton;
         Fl_Button* resetButton;
         Fl_Box* puzzleNumberLabel;
+        Fl_Box* gameTimerLabel;
 
         string* getPuzzleNumberOutput();
 
@@ -44,6 +45,13 @@ class MainGameWindow : public Fl_Window
 
         static void cbEvaluateButtonClicked(Fl_Widget*, void*);
         static void cbResetButtonClicked(Fl_Widget*, void*);
+
+        void startGameTimer();
+        static void onTimerTick(void *data);
+
+    void drawTimerLabel();
+
+    void refreshTimerLabel();
 };
 
 }

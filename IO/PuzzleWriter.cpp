@@ -18,17 +18,18 @@ PuzzleWriter::~PuzzleWriter()
 /// Writes the [puzzle] to the specified [SAVE_PUZZLE_FILENAME] in a specific format
 /// Line 1 = id
 /// Line 2 = list of puzzle nodes separated by [DELIMETER]
+/// Line 3 = the seconds spent solving the puzzle so far
 //
 // @precondition: none
 // @postcondition: none
 // @param puzzle: the puzzle to write out
 //
-void PuzzleWriter::savePuzzleToFile(Puzzle& puzzle)
+void PuzzleWriter::savePuzzleToFile(Puzzle& puzzle, int timeSpent)
 {
-    this->writePuzzleToFile(SAVE_PUZZLE_FILENAME, puzzle);
+    this->writePuzzleToFile(SAVE_PUZZLE_FILENAME, puzzle, timeSpent);
 }
 
-void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle)
+void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle, int timeSpent)
 {
     ofstream outFile(filename);
     vector<PuzzleNode> nodes = puzzle.getNodes();
@@ -38,6 +39,7 @@ void PuzzleWriter::writePuzzleToFile(const string& filename, Puzzle& puzzle)
     {
         outFile << this->formatNode(nodes[i]);
     }
+    outFile << timeSpent << endl;
 
     outFile.close();
 }

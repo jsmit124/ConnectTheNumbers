@@ -24,6 +24,7 @@ class GameManager
     const string SAVED_PUZZLE_PATH = "Puzzles/puzzle_saved";
 
     private:
+        int timeSpentOnPuzzle;
         PuzzleManager* puzzleManager;
         HighScoreManager* highScoreManager;
         PuzzleReader reader;
@@ -45,7 +46,12 @@ class GameManager
         void loadPuzzles();
         void loadSavedPuzzle();
         void saveCurrentPuzzle(const string& filename);
-        const int DEFAULT_PUZZLE_COUNT = 2;
+
+    int getTimeSpentOnPuzzle() const;
+
+    const int DEFAULT_PUZZLE_COUNT = 2;
+
+        void onTimerTick();
 };
 
 }

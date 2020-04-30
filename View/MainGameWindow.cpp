@@ -17,6 +17,9 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 
     this->drawPuzzleNumberLabel();
     this->drawHighScoresLabel();
+    this->drawTimerLabel();
+
+    this->startGameTimer();
 
     end();
 }
@@ -72,20 +75,29 @@ void MainGameWindow::drawHighScoresLabel()
     this->highScoresLabel->labelsize(16);
 }
 
+/// Adds the timer label to the window.
+void MainGameWindow::drawTimerLabel()
+{
+    this->gameTimerLabel = new Fl_Box(385, 300, 175, 30, nullptr);
+    this->gameTimerLabel->box(FL_UP_BOX);
+    this->gameTimerLabel->labelsize(16);
+    this->refreshTimerLabel();
+}
+
 /// Callback for the evaulate button click
 //
 void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
-    bool evaluation = window->getGameManager()->evaluateCurrentPuzzle();
+    bool successfullySolved = window->getGameManager()->evaluateCurrentPuzzle();
     bool isLastPuzzle = window->getGameManager()->isLastPuzzle();
 
-    if (evaluation && !isLastPuzzle)
+    if (successfullySolved && !isLastPuzzle)
     {
         window->getGameManager()->moveToNextPuzzle();
         window->refreshBoard();
     }
-    else if (evaluation && isLastPuzzle)
+    else if (successfullySolved && isLastPuzzle)
     {
         fl_message("You have mastered all the puzzles... Congrats!");
     }
@@ -113,6 +125,26 @@ MainGameWindow::~MainGameWindow()
 {
     delete this->puzzleGrid;
     delete this->gameManager;
+}
+
+void MainGameWindow::startGameTimer()
+{
+    Fl::add_timeout(1.0, MainGameWindow::onTimerTick, this);
+}
+
+void MainGameWindow::onTimerTick(void *data)
+{
+    auto *window = (MainGameWindow*) data;
+    window->gameManager->onTimerTick();
+    window->refreshTimerLabel();
+
+    Fl::repeat_timeout(1.0, MainGameWindow::onTimerTick, window);
+}
+
+void MainGameWindow::refreshTimerLabel()
+{
+    string formattedTimeSpent = "Time: " + formatDurationHoursSeconds(this->gameManager->getTimeSpentOnPuzzle());
+    this->gameTimerLabel->copy_label(formattedTimeSpent.c_str());
 }
 
 }

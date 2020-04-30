@@ -44,6 +44,7 @@ void GameManager::resetCurrentPuzzle()
 {
     Puzzle puzzle = this->reader.readPuzzleNumber(this->puzzleManager->getCurrentPuzzleNumber());
     this->puzzleManager->setCurrentPuzzle(puzzle);
+    this->timeSpentOnPuzzle = 0;
 }
 
 void GameManager::loadPuzzles()
@@ -67,7 +68,12 @@ void GameManager::loadSavedPuzzle()
 void GameManager::saveCurrentPuzzle(const string& filename)
 {
     Puzzle puzzle = this->puzzleManager->getCurrentPuzzle();
-    this->writer.savePuzzleToFile(puzzle);
+    this->writer.savePuzzleToFile(puzzle, this->timeSpentOnPuzzle);
+}
+
+void GameManager::onTimerTick()
+{
+    this->timeSpentOnPuzzle++;
 }
 
 int GameManager::getCurrentPuzzleNumber()
@@ -93,6 +99,11 @@ void GameManager::setPuzzleNodeValue(int value, int index)
 bool GameManager::evaluateCurrentPuzzle()
 {
     return this->puzzleManager->evaluateCurrentPuzzle();
+}
+
+int GameManager::getTimeSpentOnPuzzle() const
+{
+    return this->timeSpentOnPuzzle;
 }
 
 }
