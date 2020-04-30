@@ -117,6 +117,7 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
     MainGameWindow* window = (MainGameWindow*)data;
     window->getGameManager()->resetCurrentPuzzle();
     window->refreshBoard();
+    window->refreshTimerLabel();
 }
 
 GameManager* MainGameWindow::getGameManager()

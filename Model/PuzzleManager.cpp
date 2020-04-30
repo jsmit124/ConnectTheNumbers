@@ -31,7 +31,9 @@ PuzzleManager::~PuzzleManager()
 //
 void PuzzleManager::setCurrentPuzzle(Puzzle puzzle)
 {
+    puzzle.setTimeSpent(0);
     this->getCurrentPuzzle().setTimeSpent(0);
+
     this->currentPuzzleIndex = puzzle.getId() - 1;
     this->puzzles.at(this->currentPuzzleIndex) = puzzle;
 }
