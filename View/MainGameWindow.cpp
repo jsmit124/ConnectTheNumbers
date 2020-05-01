@@ -271,7 +271,6 @@ void MainGameWindow::cbOnWindowClose(Fl_Widget *, void *data)
 {
     auto *window = (MainGameWindow*) data;
 
-    // TODO move this to single save state function
     window->gameManager->saveCurrentPuzzle();
     window->gameManager->saveHighScores();
     window->gameManager->saveSettings();

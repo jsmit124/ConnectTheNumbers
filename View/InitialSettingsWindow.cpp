@@ -9,23 +9,14 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 350, "Connect th
 
     this->value = 0;
 
-    this->startButton = new Fl_Button(0, 0, 200, 30, "Start");
-    this->closeButton = new Fl_Button(0, 0, 200, 30, "Close");
-    this->chooseButtonColorButton = new Fl_Button(0, 0, 200, 30, "Choose button color");
-    this->chooseBackgroundColorButton = new Fl_Button(0, 0, 200, 30, "Choose background color");
-    this->chooseDifficultyButton = new Fl_Button(0, 0, 200, 30, "Choose difficulty");
-    this->lastSaveButton = new Fl_Button(0, 0, 200, 30, "Continue game");
-    this->chooseLevelButton = new Fl_Button(0, 0, 200, 30, "Select Puzzle");
-    this->chooseTextColorButton = new Fl_Button(0, 0, 200, 30, "Choose text color");
-
-    this->setStartButtonLocation(25, 65);
-    this->setCloseButtonLocation(25, 305);
-    this->setButtonColorButtonLocation(25, 225);
-    this->setBackgroundColorButtonLocation(25, 185);
-    this->setDifficultySelectionButtonLocation(25, 145);
-    this->setLastSavedButtonLocation(25, 25);
-    this->setChoosePuzzleButtonLocation(25, 105);
-    this->setChooseTextColorButtonLocation(25, 265);
+    this->lastSaveButton = new Fl_Button(25, 25, 200, 30, "Continue game");
+    this->startButton = new Fl_Button(25, 65, 200, 30, "Start");
+    this->chooseLevelButton = new Fl_Button(25, 105, 200, 30, "Select Puzzle");
+    this->chooseDifficultyButton = new Fl_Button(25, 145, 200, 30, "Choose difficulty");
+    this->chooseBackgroundColorButton = new Fl_Button(25, 185, 200, 30, "Choose background color");
+    this->chooseButtonColorButton = new Fl_Button(25, 225, 200, 30, "Choose button color");
+    this->chooseTextColorButton = new Fl_Button(25, 265, 200, 30, "Choose text color");
+    this->closeButton = new Fl_Button(25, 305, 200, 30, "Close");
 
     this->startButton->callback(cbStart, this);
     this->closeButton->callback(cbClose, this);
@@ -58,46 +49,6 @@ void InitialSettingsWindow::startHandler()
 void InitialSettingsWindow::closeHandler()
 {
     exit(EXIT_FAILURE);
-}
-
-void InitialSettingsWindow::setLastSavedButtonLocation(int x, int y)
-{
-    this->lastSaveButton->position(x, y);
-}
-
-void InitialSettingsWindow::setStartButtonLocation(int x, int y)
-{
-    this->startButton->position(x, y);
-}
-
-void InitialSettingsWindow::setButtonColorButtonLocation(int x, int y)
-{
-    this->chooseButtonColorButton->position(x, y);
-}
-
-void InitialSettingsWindow::setBackgroundColorButtonLocation(int x, int y)
-{
-    this->chooseBackgroundColorButton->position(x, y);
-}
-
-void InitialSettingsWindow::setDifficultySelectionButtonLocation(int x, int y)
-{
-    this->chooseDifficultyButton->position(x, y);
-}
-
-void InitialSettingsWindow::setCloseButtonLocation(int x, int y)
-{
-    this->closeButton->position(x, y);
-}
-
-void InitialSettingsWindow::setChoosePuzzleButtonLocation(int x, int y)
-{
-    this->chooseLevelButton->position(x, y);
-}
-
-void InitialSettingsWindow::setChooseTextColorButtonLocation(int x, int y)
-{
-    this->chooseTextColorButton->position(x, y);
 }
 
 void InitialSettingsWindow::setButtonColor(Fl_Color color)
@@ -332,7 +283,11 @@ InitialSettingsWindow::~InitialSettingsWindow()
     delete this->startButton;
     delete this->closeButton;
     delete this->chooseButtonColorButton;
-    //TODO finish deleting buttons
+    delete this->chooseBackgroundColorButton;
+    delete this->chooseDifficultyButton;
+    delete this->lastSaveButton;
+    delete this->chooseLevelButton;
+    delete this->chooseTextColorButton;
 }
 
 }

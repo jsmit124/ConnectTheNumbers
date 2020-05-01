@@ -21,7 +21,6 @@ using namespace view;
 #include <Fl/Fl.H>
 #include <stdlib.h>
 #include <sstream>
-#include <iostream>
 using namespace std;
 
 namespace view
@@ -30,7 +29,6 @@ namespace view
 class InitialSettingsWindow : public Fl_Window
 {
     public:
-
         InitialSettingsWindow();
         virtual ~InitialSettingsWindow();
 
@@ -44,16 +42,16 @@ class InitialSettingsWindow : public Fl_Window
         int getSelectedPuzzle();
         Fl_Color getSelectedTextColor();
 
-        void setLoadSavedPuzzle(bool condition);
-        void setSavedButtonState(bool condition);
-        void setButtonColor(Fl_Color color);
-        void setBackgroundColor(Fl_Color color);
-        void setDifficulty(Difficulty selection);
-        void setSelectedPuzzle(int puzzleNumber);
-        void setTextColor(Fl_Color color);
+        void setLoadSavedPuzzle(bool);
+        void setSavedButtonState(bool);
+        void setButtonColor(Fl_Color);
+        void setBackgroundColor(Fl_Color);
+        void setDifficulty(Difficulty);
+        void setSelectedPuzzle(int);
+        void setTextColor(Fl_Color);
 
-        void setColorToAllButtons(Fl_Color color);
-        void setTextColorToAllButtons(Fl_Color color);
+        void setColorToAllButtons(Fl_Color);
+        void setTextColorToAllButtons(Fl_Color);
 
     private:
         static const int MAX_PUZZLE_COUNT = 12;
@@ -74,15 +72,6 @@ class InitialSettingsWindow : public Fl_Window
         int chosenPuzzleNumber;
         int value;
         bool loadSavedPuzzle;
-
-        void setStartButtonLocation(int, int);
-        void setCloseButtonLocation(int, int);
-        void setLastSavedButtonLocation(int, int);
-        void setButtonColorButtonLocation(int, int);
-        void setBackgroundColorButtonLocation(int, int);
-        void setDifficultySelectionButtonLocation(int, int);
-        void setChoosePuzzleButtonLocation(int, int);
-        void setChooseTextColorButtonLocation(int, int);
 
         static void cbStart(Fl_Widget*, void*);
         static void cbClose(Fl_Widget*, void*);
