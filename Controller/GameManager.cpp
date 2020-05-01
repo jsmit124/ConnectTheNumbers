@@ -201,4 +201,9 @@ void GameManager::saveHighScores()
     scoreWriter.writeHighScores(this->highScoreManager, SAVED_SCOREBOARD_PATH);
 }
 
+void GameManager::clearHighScores()
+{
+    this->highScoreManager->clear();
+}
+
 }

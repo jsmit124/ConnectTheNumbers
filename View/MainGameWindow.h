@@ -5,6 +5,7 @@
 
 #include "PuzzleGrid.h"
 #include "InitialSettingsWindow.h"
+#include "HighScoreboardTable.h"
 
 #include <FL/Fl_Button.H>
 #include <Fl/Fl.H>
@@ -42,7 +43,7 @@ class MainGameWindow : public Fl_Window
         Fl_Box* pausePuzzleOverlay;
         Fl_Box* puzzleNumberLabel;
         Fl_Box* gameTimerLabel;
-        vector<Fl_Box*> highScoreLabels;
+        HighScoreboardTable* highScoreTable;
 
         string getPuzzleNumberOutput();
         void colorEvaluationPath();

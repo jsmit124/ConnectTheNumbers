@@ -79,7 +79,9 @@ class GameManager
 
         int getTimeSpentOnPuzzle() const;
 
-    void moveToPuzzle(int puzzleId);
+        void moveToPuzzle(int puzzleId);
+
+        void clearHighScores();
 };
 
 }

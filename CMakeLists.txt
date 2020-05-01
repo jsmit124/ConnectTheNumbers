@@ -14,9 +14,11 @@ add_executable(ConnectTheNumbers
         main.cpp
         Controller/GameManager.cpp Controller/GameManager.h
         IO/PuzzleReader.cpp IO/PuzzleReader.h IO/PuzzleWriter.cpp IO/PuzzleWriter.h
+        IO/SettingsReader.cpp IO/SettingsReader.h IO/SettingsWriter.cpp IO/SettingsWriter.h
         Model/Puzzle.cpp Model/Puzzle.h Model/PuzzleManager.cpp Model/PuzzleManager.h Model/PuzzleNode.cpp Model/PuzzleNode.h
         Utils/Exceptions.h Utils/Utils.cpp Utils/Utils.h
         Enum/Difficulty.h
+        View/PuzzleSelectionWindow.cpp View/PuzzleSelectionWindow.h
         View/ColorSelectionWindow.cpp View/ColorSelectionWindow.h
         View/MainGameWindow.cpp View/MainGameWindow.h
         View/PuzzleGrid.cpp View/PuzzleGrid.h
@@ -25,6 +27,6 @@ add_executable(ConnectTheNumbers
         Model/HighScoreManager.cpp Model/HighScoreManager.h
         Model/HighScoreEntry.cpp Model/HighScoreEntry.h IO/HighScoreReader.cpp IO/HighScoreReader.h IO/HighScoreWriter.cpp IO/HighScoreWriter.h
         Settings/PlayerSettings.cpp Settings/PlayerSettings.h
-        View/InitialSettingsWindow.cpp View/InitialSettingsWindow.h)
+        View/InitialSettingsWindow.cpp View/InitialSettingsWindow.h View/HighScoreboardTable.cpp View/HighScoreboardTable.h)
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${FLTK_LIBRARIES})
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${OPENGL_LIBRARIES})

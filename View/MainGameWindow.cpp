@@ -141,28 +141,14 @@ void MainGameWindow::drawHighScoresLabel()
     this->highScoresLabel->box(FL_UP_BOX);
     this->highScoresLabel->labelsize(16);
 
-    for (int i = 0; i < MAXIMUM_HIGH_SCORE_ENTRIES; i++)
-    {
-        auto *box = new Fl_Box(385, 50 + (i * 40), 175, 30, nullptr);
-        box->labelcolor(FL_WHITE);
-        this->highScoreLabels.push_back(box);
-    }
+    this->highScoreTable = new HighScoreboardTable(385, 50, 200, 175, this->gameManager->getTopTenScoresByDuration());
 
     this->updateHighScoreLabels();
 }
 
 void MainGameWindow::updateHighScoreLabels()
 {
-    vector<HighScoreEntry*> entries = this->gameManager->getTopTenScoresByDuration();
-
-    for (int i = 0; i < entries.size(); i++)
-    {
-        HighScoreEntry *entry = entries[i];
-        Fl_Box *label = this->highScoreLabels[i];
-        string formatted = entry->getName() + ", puzzle " + to_string(entry->getPuzzle()) + ", for " +
-                formatDurationHoursSeconds(entry->getDuration());
-        label->copy_label(formatted.c_str());
-    }
+    this->highScoreTable->refresh(this->gameManager->getTopTenScoresByDuration());
 }
 
 /// Adds the timer label to the window.
@@ -219,7 +205,8 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
 void MainGameWindow::cbClearScoresClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
-    cout << "clearScoresButton clicked" << endl;
+    window->gameManager->clearHighScores();
+    window->updateHighScoreLabels();
 }
 
 void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
