@@ -38,6 +38,7 @@ class MainGameWindow : public Fl_Window
         Fl_Button* evaluateButton;
         Fl_Button* resetButton;
         Fl_Button* pauseButton;
+        Fl_Button* clearScoresButton;
         Fl_Box* pausePuzzleOverlay;
         Fl_Box* puzzleNumberLabel;
         Fl_Box* gameTimerLabel;
@@ -59,6 +60,7 @@ class MainGameWindow : public Fl_Window
         void addEvaluateButton();
         void addResetButton();
         void addPauseButton();
+        void addClearScoresButton();
         void drawHighScoresLabel();
 
         void togglePuzzleOverlay(bool condition);
@@ -69,6 +71,7 @@ class MainGameWindow : public Fl_Window
         static void cbResetButtonClicked(Fl_Widget*, void*);
         static void cbOnWindowClose(Fl_Widget*, void*);
         static void cbPauseButtonClicked(Fl_Widget* widget, void* data);
+        static void cbClearScoresClicked(Fl_Widget*, void*);
 
         void startGameTimer();
         static void onTimerTick(void *data);

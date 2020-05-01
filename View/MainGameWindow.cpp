@@ -17,6 +17,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->addEvaluateButton();
     this->addResetButton();
     this->addPauseButton();
+    this->addClearScoresButton();
 
     this->drawPuzzleNumberLabel();
     this->drawHighScoresLabel();
@@ -125,6 +126,13 @@ void MainGameWindow::addResetButton()
     this->resetButton->callback(cbResetButtonClicked, this);
 }
 
+void MainGameWindow::addClearScoresButton()
+{
+    this->clearScoresButton = new Fl_Button(420, 350, 110, 30, "CLEAR");
+    this->clearScoresButton->callback(cbClearScoresClicked, this);
+
+}
+
 ///Draws the high scores label
 //
 void MainGameWindow::drawHighScoresLabel()
@@ -160,7 +168,7 @@ void MainGameWindow::updateHighScoreLabels()
 /// Adds the timer label to the window.
 void MainGameWindow::drawTimerLabel()
 {
-    this->gameTimerLabel = new Fl_Box(385, 300, 175, 30, nullptr);
+    this->gameTimerLabel = new Fl_Box(385, 385, 175, 30, nullptr);
     this->gameTimerLabel->box(FL_UP_BOX);
     this->gameTimerLabel->labelsize(16);
     this->refreshTimerLabel();
@@ -206,6 +214,12 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
     window->getGameManager()->resetCurrentPuzzle();
     window->refreshBoard();
     window->refreshTimerLabel();
+}
+
+void MainGameWindow::cbClearScoresClicked(Fl_Widget* widget, void* data)
+{
+    MainGameWindow* window = (MainGameWindow*)data;
+    cout << "clearScoresButton clicked" << endl;
 }
 
 void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
