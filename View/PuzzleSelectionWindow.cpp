@@ -8,16 +8,12 @@ namespace view
 
 PuzzleSelectionWindow::PuzzleSelectionWindow() : Fl_Window(220, 90, "Puzzle Selection")
 {
-    this->puzzleSelectionChoice = new Fl_Choice(0, 0, 100, 30, "Puzzle Number");
-    this->okButton = new Fl_Button(0, 0, 70, 30, "OK");
-    this->cancelButton = new Fl_Button(0, 0, 70, 30, "Cancel");
+    this->puzzleSelectionChoice = new Fl_Choice(115, 5, 100, 30, "Puzzle Number");
+    this->okButton = new Fl_Button(40, 50, 70, 30, "OK");
+    this->cancelButton = new Fl_Button(120, 50, 70, 30, "Cancel");
 
     this->okButton->callback(cbOk, this);
     this->cancelButton->callback(cbCancel, this);
-
-    this->setCancelButtonLocation(120, 50);
-    this->setOkButtonLocation(40, 50);
-    this->setPuzzleSelectionLocation(115, 5);
 
     this->addSelectionOptions();
 
@@ -40,21 +36,6 @@ int PuzzleSelectionWindow::getPuzzleSelectionValue()
 void PuzzleSelectionWindow::setPuzzleSelectionValue(int puzzleNumber)
 {
     this->puzzleSelectionValue = puzzleNumber;
-}
-
-void PuzzleSelectionWindow::setPuzzleSelectionLocation(int x, int y)
-{
-    this->puzzleSelectionChoice->position(x, y);
-}
-
-void PuzzleSelectionWindow::setOkButtonLocation(int x, int y)
-{
-    this->okButton->position(x, y);
-}
-
-void PuzzleSelectionWindow::setCancelButtonLocation(int x, int y)
-{
-    this->cancelButton->position(x, y);
 }
 
 void PuzzleSelectionWindow::cbOk(Fl_Widget* widget, void* data)
