@@ -9,6 +9,9 @@
 #include <string>
 using namespace std;
 
+namespace view
+{
+
 class PuzzleSelectionWindow : public Fl_Window
 {
     public:
@@ -38,5 +41,7 @@ class PuzzleSelectionWindow : public Fl_Window
         static void cbCancel(Fl_Widget*, void*);
 
 };
+
+}
 
 #endif // PUZZLESELECTIONWINDOW_H

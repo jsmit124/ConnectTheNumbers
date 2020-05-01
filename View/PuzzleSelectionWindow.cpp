@@ -3,6 +3,9 @@
 #include <iostream>
 using namespace std;
 
+namespace view
+{
+
 PuzzleSelectionWindow::PuzzleSelectionWindow() : Fl_Window(220, 90, "Puzzle Selection")
 {
     this->puzzleSelectionChoice = new Fl_Choice(0, 0, 100, 30, "Puzzle Number");
@@ -89,4 +92,6 @@ PuzzleSelectionWindow::~PuzzleSelectionWindow()
     delete this->okButton;
     delete this->cancelButton;
     delete this->puzzleSelectionChoice;
+}
+
 }

@@ -226,7 +226,20 @@ void InitialSettingsWindow::cbBackgroundColorButtonClick(Fl_Widget* widget, void
 void InitialSettingsWindow::cbDifficultyButtonClick(Fl_Widget* widget, void* data)
 {
     InitialSettingsWindow* window = (InitialSettingsWindow*)data;
-    cout << "Difficulty clicked" << endl;
+
+    DifficultySelectionWindow difficultyWindow;
+    difficultyWindow.set_modal();
+    difficultyWindow.show();
+
+    while (difficultyWindow.shown())
+    {
+        Fl::wait();
+    }
+
+    if (difficultyWindow.getDifficultyValue() >= 0)
+    {
+        window->setDifficulty(difficultyWindow.getDifficultyValue());
+    }
 }
 
 void InitialSettingsWindow::cbSelectPuzzle(Fl_Widget* widget, void* data)
