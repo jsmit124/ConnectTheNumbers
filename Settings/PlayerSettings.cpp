@@ -24,6 +24,16 @@ void PlayerSettings::setButtonColor(Fl_Color color)
     this->buttonColor = color;
 }
 
+void PlayerSettings::setTextColor(Fl_Color color)
+{
+    this->textColor = color;
+}
+
+Fl_Color PlayerSettings::getTextColor()
+{
+    return this->textColor;
+}
+
 /// Sets the desired background color
 //
 // @param color the color to be set as the background color

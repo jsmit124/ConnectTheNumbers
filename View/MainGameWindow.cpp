@@ -10,7 +10,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 
     begin();
 
-    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, this->playerSettings->getButtonColor());
+    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, this->playerSettings->getButtonColor(), this->playerSettings->getTextColor());
     this->color(this->playerSettings->getBackgroundColor());
 
     this->addEvaluateButton();
@@ -50,6 +50,7 @@ void MainGameWindow::initialize()
     this->playerSettings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
     this->playerSettings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());
     this->playerSettings->setDifficulty(this->settingsWindow->getSelectedDifficulty());
+    this->playerSettings->setTextColor(this->settingsWindow->getSelectedTextColor());
 }
 
 ///Draws the puzzle number label

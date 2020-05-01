@@ -37,7 +37,7 @@ namespace view {
     //
     class PuzzleGrid {
     public:
-        PuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color);
+        PuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color, Fl_Color);
         ~PuzzleGrid();
 
         void resetColors(GameManager* gameManager);
@@ -50,12 +50,13 @@ namespace view {
 
         Fl_Color* validNodeColor;
         Fl_Color* invalidNodeColor;
-        Fl_Color* defaultBackgroundColor;
-        Fl_Color* defaultLabelColor;
+        Fl_Color* defaultEvaluationTextColor;
+        Fl_Color defaultBackgroundColor;
+        Fl_Color defaultLabelColor;
 
         void updatePuzzleNode(int index, GameManager* gameManager);
         void evaluate(int prevIndex, GameManager* gameManager);
-        void drawPuzzleGrid(int, int, GameManager*, Fl_Color);
+        void drawPuzzleGrid(int, int, GameManager*, Fl_Color, Fl_Color);
         static void cbButtonSelected(Fl_Widget*, void*);
     };
 }

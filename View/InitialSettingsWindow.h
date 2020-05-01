@@ -27,7 +27,6 @@ namespace view
 class InitialSettingsWindow : public Fl_Window
 {
     public:
-        enum WindowResult {START, CLOSE, NONE};
 
         InitialSettingsWindow();
         virtual ~InitialSettingsWindow();
@@ -35,14 +34,12 @@ class InitialSettingsWindow : public Fl_Window
         void startHandler();
         void closeHandler();
 
-        InitialSettingsWindow::WindowResult setWindowResult(InitialSettingsWindow::WindowResult);
-        InitialSettingsWindow::WindowResult getWindowResult(InitialSettingsWindow::WindowResult);
-
         Fl_Color getSelectedButtonColor();
         Fl_Color getSelectedBackgroundColor();
         Difficulty getSelectedDifficulty();
         bool getLoadSavedPuzzle();
         int getSelectedPuzzle();
+        Fl_Color getSelectedTextColor();
 
         void setLoadSavedPuzzle(bool condition);
         void setSavedButtonState(bool condition);
@@ -50,6 +47,7 @@ class InitialSettingsWindow : public Fl_Window
         void setBackgroundColor(Fl_Color color);
         void setDifficulty(Difficulty selection);
         void setSelectedPuzzle(int puzzleNumber);
+        void setTextColor(Fl_Color color);
 
     private:
         Fl_Button* startButton;
@@ -59,16 +57,18 @@ class InitialSettingsWindow : public Fl_Window
         Fl_Button* chooseDifficultyButton;
         Fl_Button* lastSaveButton;
         Fl_Button* chooseLevelButton;
+        Fl_Button* chooseTextColorButton;
 
         Difficulty chosenDifficulty;
         Fl_Color chosenButtonColor;
         Fl_Color chosenBackgroundColor;
+        Fl_Color chosenTextColor;
         int chosenPuzzleNumber;
         int value;
         bool loadSavedPuzzle;
 
-        WindowResult buttonInvoked;
         void setColorToAllButtons(Fl_Color color);
+        void setTextColorToAllButtons(Fl_Color color);
 
         void setStartButtonLocation(int, int);
         void setCloseButtonLocation(int, int);
@@ -77,6 +77,7 @@ class InitialSettingsWindow : public Fl_Window
         void setBackgroundColorButtonLocation(int, int);
         void setDifficultySelectionButtonLocation(int, int);
         void setChoosePuzzleButtonLocation(int, int);
+        void setChooseTextColorButtonLocation(int, int);
 
         static void cbStart(Fl_Widget*, void*);
         static void cbClose(Fl_Widget*, void*);
@@ -85,6 +86,7 @@ class InitialSettingsWindow : public Fl_Window
         static void cbDifficultyButtonClick(Fl_Widget*, void*);
         static void cbLoadSave(Fl_Widget*, void*);
         static void cbSelectPuzzle(Fl_Widget*, void*);
+        static void cbChooseTextColor(Fl_Widget*, void*);
 };
 
 }

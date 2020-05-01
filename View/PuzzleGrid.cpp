@@ -11,14 +11,15 @@ namespace view {
     // @param x the x-location to place the widget
     // @param y the y-location to place the widget
     //
-    PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager, Fl_Color buttonBackgroundColor)
+    PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager, Fl_Color buttonBackgroundColor, Fl_Color buttonTextColor)
     {
         this->validNodeColor = new Fl_Color(FL_DARK_GREEN);
+        this->defaultEvaluationTextColor = new Fl_Color(FL_WHITE);
         this->invalidNodeColor = new Fl_Color(FL_RED);
-        this->defaultBackgroundColor = new Fl_Color(FL_DARK3);
-        this->defaultLabelColor = new Fl_Color(FL_WHITE);
+        this->defaultBackgroundColor = buttonBackgroundColor;
+        this->defaultLabelColor = buttonTextColor;
 
-        this->drawPuzzleGrid(x, y, manager, buttonBackgroundColor);
+        this->drawPuzzleGrid(x, y, manager, buttonBackgroundColor, buttonTextColor);
     }
 
     /// Draws the puzzle grid
@@ -26,7 +27,7 @@ namespace view {
     // @param x the x-location to place the grid
     // @param y the y-location to place the grid
     //
-    void PuzzleGrid::drawPuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color buttonBackgroundColor)
+    void PuzzleGrid::drawPuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color buttonBackgroundColor, Fl_Color textColor)
     {
         this->gridGroup = new Fl_Group(x, y, PUZZLE_ROWS * BUTTON_WIDTH + BUTTON_PADDING,
                 PUZZLE_COLS * BUTTON_HEIGHT + BUTTON_PADDING, nullptr);
@@ -40,6 +41,7 @@ namespace view {
                 PuzzleGridButton *button = new PuzzleGridButton(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, index);
                 button->callback(cbButtonSelected, gameManager);
                 button->color(buttonBackgroundColor);
+                button->labelcolor(textColor);
 
                 this->gridButtons.push_back(button);
                 this->updatePuzzleNode(index, gameManager);
@@ -85,7 +87,8 @@ namespace view {
     {
         for (int i = 0; i < this->gridButtons.size(); i++)
         {
-            this->gridButtons.at(i)->setColors(this->defaultBackgroundColor, this->defaultLabelColor);
+            this->gridButtons.at(i)->color(this->defaultBackgroundColor);
+            this->gridButtons.at(i)->labelcolor(this->defaultLabelColor);
         }
     }
 
@@ -94,7 +97,7 @@ namespace view {
         int startIndex = gameManager->getCurrentPuzzleStartIndex();
 
         PuzzleGridButton* startButton = this->gridButtons.at(startIndex);
-        startButton->setColors(this->validNodeColor, this->defaultLabelColor);
+        startButton->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
 
         this->evaluate(startIndex, gameManager);
     }
@@ -107,16 +110,16 @@ namespace view {
 
         if (nextIndex > -1)
         {
-            this->gridButtons.at(nextIndex)->setColors(this->validNodeColor, this->defaultLabelColor);
+            this->gridButtons.at(nextIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
             this->evaluate(nextIndex, gameManager);
         }
         else if (buttonValue == this->gridButtons.size())
         {
-            prevButton->setColors(this->validNodeColor, this->defaultLabelColor);
+            prevButton->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
         }
         else
         {
-            this->gridButtons.at(prevIndex)->setColors(this->invalidNodeColor, this->defaultLabelColor);
+            this->gridButtons.at(prevIndex)->setColors(this->invalidNodeColor, this->defaultEvaluationTextColor);
         }
     }
 
