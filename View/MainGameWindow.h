@@ -32,7 +32,6 @@ class MainGameWindow : public Fl_Window
     private:
         PuzzleGrid* puzzleGrid;
         GameManager* gameManager;
-        PlayerSettings* playerSettings;
         InitialSettingsWindow* settingsWindow;
 
         Fl_Box* highScoresLabel;

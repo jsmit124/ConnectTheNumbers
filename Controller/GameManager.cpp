@@ -12,7 +12,9 @@ GameManager::GameManager()
 {
     this->puzzleManager = new PuzzleManager(MAX_PUZZLE_COUNT);
     this->highScoreManager = new HighScoreManager();
+    this->playerSettings = new PlayerSettings();
     this->doesSavedFileExist = checkFileExists(SAVED_PUZZLE_PATH);
+    this->readPreviousSettings();
     this->initialize();
 }
 
@@ -32,6 +34,21 @@ void GameManager::initialize()
     this->loadHighScores();
 }
 
+void GameManager::readPreviousSettings()
+{
+    *this->playerSettings = this->settingsReader.readSettingsFile(SAVED_SETTINGS_PATH);
+}
+
+void GameManager::saveSettings()
+{
+    this->settingsWriter.writeSettingsToFile(SAVED_SETTINGS_PATH, *this->playerSettings);
+}
+
+PlayerSettings* GameManager::getSettings()
+{
+    return this->playerSettings;
+}
+
 bool GameManager::getDoesSavedFileExist()
 {
     return this->doesSavedFileExist;
@@ -39,12 +56,12 @@ bool GameManager::getDoesSavedFileExist()
 
 int GameManager::getTotalPuzzlesCount()
 {
-    return this->difficulty;
+    return this->playerSettings->getDifficulty();
 }
 
 void GameManager::setDifficulty(Difficulty difficulty)
 {
-    this->difficulty = difficulty;
+    this->playerSettings->setDifficulty(difficulty);
 }
 
 bool GameManager::isLastPuzzle()
@@ -54,7 +71,7 @@ bool GameManager::isLastPuzzle()
 
 void GameManager::moveToPuzzle(int puzzleId)
 {
-    Puzzle puzzle = this->reader.readPuzzleNumber(puzzleId);
+    Puzzle puzzle = this->puzzleReader.readPuzzleNumber(puzzleId);
     this->puzzleManager->setCurrentPuzzle(puzzle);
 }
 
@@ -70,7 +87,7 @@ void GameManager::resetCurrentPuzzle()
 
 void GameManager::loadPuzzles()
 {
-    vector<Puzzle> puzzles = this->reader.readAllPuzzles(MAX_PUZZLE_COUNT);
+    vector<Puzzle> puzzles = this->puzzleReader.readAllPuzzles(MAX_PUZZLE_COUNT);
     for (auto currPuzzle : puzzles)
     {
         this->puzzleManager->add(currPuzzle);
@@ -81,7 +98,7 @@ void GameManager::loadSavedPuzzle()
 {
     if (checkFileExists(SAVED_PUZZLE_PATH))
     {
-        Puzzle puzzle = this->reader.readSavedPuzzle();
+        Puzzle puzzle = this->puzzleReader.readSavedPuzzle();
         this->puzzleManager->setCurrentPuzzle(puzzle);
     }
 }
@@ -89,7 +106,7 @@ void GameManager::loadSavedPuzzle()
 void GameManager::saveCurrentPuzzle()
 {
     Puzzle puzzle = this->puzzleManager->getCurrentPuzzle();
-    this->writer.savePuzzleToFile(puzzle);
+    this->puzzleWriter.savePuzzleToFile(puzzle);
 }
 
 void GameManager::onTimerTick()

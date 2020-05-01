@@ -40,7 +40,8 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 350, "Connect th
     this->chosenButtonColor = FL_DARK3;
     this->chosenTextColor = FL_WHITE;
     this->chosenDifficulty = Difficulty::EASY;
-    this->chosenPuzzleNumber = 1;
+    this->chosenPuzzleNumber = 0;
+    this->loadSavedPuzzle = false;
 
     this->color(this->chosenBackgroundColor);
     this->setColorToAllButtons(this->chosenButtonColor);

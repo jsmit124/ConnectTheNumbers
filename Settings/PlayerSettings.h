@@ -20,13 +20,16 @@ class PlayerSettings
         void setTextColor(Fl_Color color);
         void setBackgroundColor(Fl_Color color);
         void setDifficulty(Difficulty selection);
+        void setLastSavedDifficulty(Difficulty difficulty);
 
         Fl_Color getButtonColor();
         Fl_Color getBackgroundColor();
         Difficulty getDifficulty();
+        Difficulty getLastSavedDifficulty();
         Fl_Color getTextColor();
 
     private:
+        Difficulty lastSavedDifficulty;
         Difficulty chosenDifficulty;
         Fl_Color buttonColor;
         Fl_Color backgroundColor;

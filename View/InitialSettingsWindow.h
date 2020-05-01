@@ -50,6 +50,9 @@ class InitialSettingsWindow : public Fl_Window
         void setSelectedPuzzle(int puzzleNumber);
         void setTextColor(Fl_Color color);
 
+        void setColorToAllButtons(Fl_Color color);
+        void setTextColorToAllButtons(Fl_Color color);
+
     private:
         static const int MAX_PUZZLE_COUNT = 12;
 
@@ -69,9 +72,6 @@ class InitialSettingsWindow : public Fl_Window
         int chosenPuzzleNumber;
         int value;
         bool loadSavedPuzzle;
-
-        void setColorToAllButtons(Fl_Color color);
-        void setTextColorToAllButtons(Fl_Color color);
 
         void setStartButtonLocation(int, int);
         void setCloseButtonLocation(int, int);

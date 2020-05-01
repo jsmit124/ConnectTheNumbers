@@ -10,8 +10,9 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 
     begin();
 
-    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, this->playerSettings->getButtonColor(), this->playerSettings->getTextColor());
-    this->color(this->playerSettings->getBackgroundColor());
+    PlayerSettings* settings = this->gameManager->getSettings();
+    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, settings->getButtonColor(), settings->getTextColor());
+    this->color(settings->getBackgroundColor());
 
     this->addEvaluateButton();
     this->addResetButton();
@@ -30,9 +31,13 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 //
 void MainGameWindow::initialize()
 {
-    this->playerSettings = new PlayerSettings();
-
+    PlayerSettings* settings = this->gameManager->getSettings();
     this->settingsWindow = new InitialSettingsWindow();
+
+    this->settingsWindow->setColorToAllButtons(settings->getButtonColor());
+    this->settingsWindow->setBackgroundColor(settings->getBackgroundColor());
+    this->settingsWindow->setTextColorToAllButtons(settings->getTextColor());
+
     this->settingsWindow->set_modal();
     this->settingsWindow->show();
     this->settingsWindow->setSavedButtonState(this->gameManager->getDoesSavedFileExist());
@@ -42,18 +47,16 @@ void MainGameWindow::initialize()
         Fl::wait();
     }
 
-    this->playerSettings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
-    this->playerSettings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());
-    this->playerSettings->setDifficulty(this->settingsWindow->getSelectedDifficulty());
-    this->playerSettings->setTextColor(this->settingsWindow->getSelectedTextColor());
+    settings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
+    settings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());
+    settings->setDifficulty(this->settingsWindow->getSelectedDifficulty());
+    settings->setTextColor(this->settingsWindow->getSelectedTextColor());
 
-    this->gameManager->setDifficulty(this->playerSettings->getDifficulty());
+    this->gameManager->setDifficulty(settings->getDifficulty());
 
     if (this->settingsWindow->getLoadSavedPuzzle())
     {
-        // TODO write out last saved difficulty
-        // this->gameManager->setDifficulty(this->playerSettings->getLastSavedDifficulty());
-        this->gameManager->setDifficulty(Difficulty::HARD);
+        this->gameManager->setDifficulty(settings->getLastSavedDifficulty());
         this->gameManager->loadSavedPuzzle();
     }
     else if (this->settingsWindow->getSelectedPuzzle() > 0)
@@ -228,10 +231,12 @@ void MainGameWindow::refreshTimerLabel()
 void MainGameWindow::cbOnWindowClose(Fl_Widget *, void *data)
 {
     auto *window = (MainGameWindow*) data;
+
+    // TODO move this to single save state function
     window->gameManager->saveCurrentPuzzle();
     window->gameManager->saveHighScores();
+    window->gameManager->saveSettings();
 
-    // Now hide the window to close the app
     window->hide();
 }
 

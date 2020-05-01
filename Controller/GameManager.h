@@ -10,7 +10,11 @@
 #include "../Utils/Utils.h"
 #include <string>
 #include "../Enum/Difficulty.h"
+#include "../Settings/PlayerSettings.h"
+#include "../IO/SettingsReader.h"
+#include "../IO/SettingsWriter.h"
 
+using namespace settings;
 using namespace model;
 using namespace std;
 using namespace io;
@@ -23,22 +27,28 @@ namespace controller
 class GameManager
 {
     const string SAVED_PUZZLE_PATH = "Puzzles/puzzle_saved";
-    const string SAVED_SCOREBOARD_PATH = "high_scores.csv";
+    const string SAVED_SCOREBOARD_PATH = "Storage/high_scores.csv";
+    const string SAVED_SETTINGS_PATH = "Storage/prev_settings";
     const int MAX_PUZZLE_COUNT = 12;
 
     private:
         PuzzleManager* puzzleManager;
         HighScoreManager* highScoreManager;
-        PuzzleReader reader;
-        PuzzleWriter writer;
-        Difficulty difficulty;
+        PuzzleReader puzzleReader;
+        PuzzleWriter puzzleWriter;
+        SettingsWriter settingsWriter;
+        SettingsReader settingsReader;
+        PlayerSettings* playerSettings;
 
+        void readPreviousSettings();
         bool doesSavedFileExist;
 
     public:
         GameManager();
         virtual ~GameManager();
 
+        void saveSettings();
+        PlayerSettings* getSettings();
         int getTotalPuzzlesCount();
         void setDifficulty(Difficulty difficulty);
         bool getDoesSavedFileExist();

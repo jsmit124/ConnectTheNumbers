@@ -48,6 +48,11 @@ void PlayerSettings::setDifficulty(Difficulty selection)
     this->chosenDifficulty = selection;
 }
 
+void PlayerSettings::setLastSavedDifficulty(Difficulty difficulty)
+{
+    this->lastSavedDifficulty = difficulty;
+}
+
 /// Returns the Fl_Color chosen to be the button color
 //
 //  @return this->buttonColor
@@ -69,6 +74,11 @@ Fl_Color PlayerSettings::getBackgroundColor()
 Difficulty PlayerSettings::getDifficulty()
 {
     return this->chosenDifficulty;
+}
+
+Difficulty PlayerSettings::getLastSavedDifficulty()
+{
+    return this->lastSavedDifficulty;
 }
 
 }
