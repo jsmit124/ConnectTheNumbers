@@ -74,6 +74,11 @@ bool GameManager::isLastPuzzle()
 
 void GameManager::moveToPuzzle(int puzzleId)
 {
+    if (puzzleId > this->playerSettings->getDifficulty())
+    {
+        this->playerSettings->setDifficulty(Difficulty::HARD);
+    }
+
     Puzzle puzzle = this->puzzleReader.readPuzzleNumber(puzzleId);
     this->puzzleManager->setCurrentPuzzle(puzzle);
 }

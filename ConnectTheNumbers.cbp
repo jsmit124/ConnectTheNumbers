@@ -17,6 +17,7 @@
 					<Add directory="IO" />
 					<Add directory="Utils" />
 					<Add directory="View" />
+					<Add directory="Settings" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -31,6 +32,7 @@
 					<Add directory="IO" />
 					<Add directory="Utils" />
 					<Add directory="View" />
+					<Add directory="Settings" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -84,8 +86,6 @@
 		<Unit filename="View/PuzzleGrid.h" />
 		<Unit filename="View/PuzzleGridButton.cpp" />
 		<Unit filename="View/PuzzleGridButton.h" />
-		<Unit filename="View/PuzzleSelectionWindow.cpp" />
-		<Unit filename="View/PuzzleSelectionWindow.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

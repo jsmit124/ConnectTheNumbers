@@ -2,84 +2,29 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Settings/PlayerSettings.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Model/PuzzleNode.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="171" topLine="2" />
+			<Cursor1 position="348" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="View/MainGameWindow.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="View/ButtonValueWindow.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="897" topLine="24" />
+			<Cursor1 position="1010" topLine="23" />
 		</Cursor>
 	</File>
-	<File name="View/ButtonValueWindow.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="View/MainGameWindow.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="196" topLine="9" />
+			<Cursor1 position="2141" topLine="34" />
 		</Cursor>
 	</File>
-	<File name="Controller/GameManager.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Settings/PlayerSettings.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3053" topLine="34" />
+			<Cursor1 position="517" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="View/PuzzleGrid.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Utils/Exceptions.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1267" topLine="29" />
-		</Cursor>
-	</File>
-	<File name="Model/Puzzle.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="292" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="View/ButtonValueWindow.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="329" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Model/PuzzleManager.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="301" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="IO/PuzzleReader.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="486" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="View/InitialSettingsWindow.cpp" open="1" top="1" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2005" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="Model/PuzzleManager.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="312" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="View/PuzzleGridButton.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="249" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="IO/PuzzleWriter.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="303" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Model/Puzzle.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2082" topLine="82" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="353" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Settings/PlayerSettings.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="555" topLine="0" />
+			<Cursor1 position="287" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Model/PuzzleNode.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,44 +32,139 @@
 			<Cursor1 position="205" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="IO/PuzzleReader.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="IO/PuzzleReader.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="174" topLine="0" />
+			<Cursor1 position="332" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="Model/HighScoreManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1147" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="IO/HighScoreReader.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="520" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="Model/HighScoreManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="420" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Controller/GameManager.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1641" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="Settings/PlayerSettings.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1327" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="IO/SettingsReader.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="515" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="View/InitialSettingsWindow.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="53" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="IO/SettingsWriter.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="249" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="IO/PuzzleWriter.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="174" topLine="0" />
+			<Cursor1 position="703" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="Controller/GameManager.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Controller/GameManager.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="545" topLine="0" />
+			<Cursor1 position="1294" topLine="34" />
 		</Cursor>
 	</File>
-	<File name="Model/PuzzleNode.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="IO/SettingsReader.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="348" topLine="0" />
+			<Cursor1 position="117" topLine="9" />
 		</Cursor>
 	</File>
-	<File name="View/InitialSettingsWindow.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Model/Puzzle.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2659" topLine="59" />
+			<Cursor1 position="2067" topLine="3" />
 		</Cursor>
 	</File>
-	<File name="View/PuzzleGrid.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4214" topLine="0" />
+			<Cursor1 position="428" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="View/MainGameWindow.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="View/PuzzleGridButton.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="238" topLine="18" />
+			<Cursor1 position="290" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="View/PuzzleSelectionWindow.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Enum/Difficulty.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1900" topLine="12" />
+			<Cursor1 position="152" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="View/MainGameWindow.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1563" topLine="41" />
+		</Cursor>
+	</File>
+	<File name="View/PuzzleGrid.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="753" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Model/PuzzleManager.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="245" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="View/PuzzleGrid.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1061" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="View/InitialSettingsWindow.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1998" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="Model/PuzzleManager.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="324" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="IO/PuzzleReader.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="692" topLine="78" />
+		</Cursor>
+	</File>
+	<File name="Model/Puzzle.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="201" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="IO/SettingsWriter.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="247" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="View/PuzzleGridButton.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="284" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="IO/PuzzleWriter.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="161" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -225,6 +225,7 @@ void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
 
 void MainGameWindow::stopGame()
 {
+    this->pauseButton->label("@>");
     this->pausePuzzleOverlay->show();
     this->gameManager->setIsGamePaused(true);
     this->resetButton->deactivate();
@@ -233,6 +234,7 @@ void MainGameWindow::stopGame()
 
 void MainGameWindow::startGame()
 {
+    this->pauseButton->label("@||");
     this->pausePuzzleOverlay->hide();
     this->gameManager->setIsGamePaused(false);
     this->resetButton->activate();
