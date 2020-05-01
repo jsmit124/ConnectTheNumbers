@@ -232,9 +232,8 @@ void InitialSettingsWindow::cbDifficultyButtonClick(Fl_Widget* widget, void* dat
 void InitialSettingsWindow::cbSelectPuzzle(Fl_Widget* widget, void* data)
 {
     InitialSettingsWindow* window = (InitialSettingsWindow*)data;
-    cout << "Select puzzle clicked" << endl;
 
-    ButtonValueWindow puzzleSelector(1, MAX_PUZZLE_COUNT);
+    PuzzleSelectionWindow puzzleSelector;
     puzzleSelector.set_modal();
     puzzleSelector.show();
     while (puzzleSelector.shown())
@@ -242,10 +241,8 @@ void InitialSettingsWindow::cbSelectPuzzle(Fl_Widget* widget, void* data)
         Fl::wait();
     }
 
-    if (puzzleSelector.getWindowResult() == ButtonValueWindow::OK)
-    {
-        window->setSelectedPuzzle(puzzleSelector.getValue());
-    }
+    window->setSelectedPuzzle(puzzleSelector.getPuzzleSelectionValue());
+
 }
 
 void InitialSettingsWindow::cbChooseTextColor(Fl_Widget* widget, void* data)

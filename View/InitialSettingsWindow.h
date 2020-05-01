@@ -9,6 +9,7 @@ using namespace controller;
 
 #include "ColorSelectionWindow.h"
 #include "ButtonValueWindow.h"
+#include "PuzzleSelectionWindow.h"
 using namespace view;
 
 #include <Fl/Fl_Input.H>
