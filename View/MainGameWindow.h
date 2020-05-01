@@ -37,6 +37,8 @@ class MainGameWindow : public Fl_Window
         Fl_Box* highScoresLabel;
         Fl_Button* evaluateButton;
         Fl_Button* resetButton;
+        Fl_Button* pauseButton;
+        Fl_Box* pausePuzzleOverlay;
         Fl_Box* puzzleNumberLabel;
         Fl_Box* gameTimerLabel;
         vector<Fl_Box*> highScoreLabels;
@@ -56,11 +58,17 @@ class MainGameWindow : public Fl_Window
         void drawPuzzleNumberLabel();
         void addEvaluateButton();
         void addResetButton();
+        void addPauseButton();
         void drawHighScoresLabel();
+
+        void togglePuzzleOverlay(bool condition);
+        void startGame();
+        void stopGame();
 
         static void cbEvaluateButtonClicked(Fl_Widget*, void*);
         static void cbResetButtonClicked(Fl_Widget*, void*);
         static void cbOnWindowClose(Fl_Widget*, void*);
+        static void cbPauseButtonClicked(Fl_Widget* widget, void* data);
 
         void startGameTimer();
         static void onTimerTick(void *data);
@@ -69,7 +77,7 @@ class MainGameWindow : public Fl_Window
 
         void refreshTimerLabel();
 
-    void updateHighScoreLabels();
+        void updateHighScoreLabels();
 };
 
 }

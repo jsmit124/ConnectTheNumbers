@@ -16,6 +16,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
 
     this->addEvaluateButton();
     this->addResetButton();
+    this->addPauseButton();
 
     this->drawPuzzleNumberLabel();
     this->drawHighScoresLabel();
@@ -104,6 +105,16 @@ void MainGameWindow::addEvaluateButton()
 {
     this->evaluateButton = new Fl_Button(221, 340, 110, 30, "EVALUATE");
     this->evaluateButton->callback(cbEvaluateButtonClicked, this);
+}
+
+void MainGameWindow::addPauseButton()
+{
+    this->pauseButton = new Fl_Button(300, 380, 40, 40, "@||");
+    this->pausePuzzleOverlay = new Fl_Box(20, 20, 300, 300, "This is not the puzzle you are looking for...");
+    this->pausePuzzleOverlay->hide();
+    this->pausePuzzleOverlay->color(this->gameManager->getSettings()->getButtonColor());
+    this->pausePuzzleOverlay->box(FL_UP_BOX);
+    this->pauseButton->callback(cbPauseButtonClicked, this);
 }
 
 ///Adds the reset button to the screen
@@ -197,15 +208,40 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
     window->refreshTimerLabel();
 }
 
+void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
+{
+    MainGameWindow* window = (MainGameWindow*)data;
+    bool isGamePaused = window->gameManager->getIsGamePaused();
+
+    if (isGamePaused)
+    {
+        window->startGame();
+    }
+    else
+    {
+        window->stopGame();
+    }
+}
+
+void MainGameWindow::stopGame()
+{
+    this->pausePuzzleOverlay->show();
+    this->gameManager->setIsGamePaused(true);
+    this->resetButton->deactivate();
+    this->evaluateButton->deactivate();
+}
+
+void MainGameWindow::startGame()
+{
+    this->pausePuzzleOverlay->hide();
+    this->gameManager->setIsGamePaused(false);
+    this->resetButton->activate();
+    this->evaluateButton->activate();
+}
+
 GameManager* MainGameWindow::getGameManager()
 {
     return this->gameManager;
-}
-
-MainGameWindow::~MainGameWindow()
-{
-    delete this->puzzleGrid;
-    delete this->gameManager;
 }
 
 void MainGameWindow::startGameTimer()
@@ -238,6 +274,12 @@ void MainGameWindow::cbOnWindowClose(Fl_Widget *, void *data)
     window->gameManager->saveSettings();
 
     window->hide();
+}
+
+MainGameWindow::~MainGameWindow()
+{
+    delete this->puzzleGrid;
+    delete this->gameManager;
 }
 
 }

@@ -13,7 +13,10 @@ GameManager::GameManager()
     this->puzzleManager = new PuzzleManager(MAX_PUZZLE_COUNT);
     this->highScoreManager = new HighScoreManager();
     this->playerSettings = new PlayerSettings();
+
     this->doesSavedFileExist = checkFileExists(SAVED_PUZZLE_PATH);
+    this->isGamePaused = false;
+
     this->readPreviousSettings();
     this->initialize();
 }
@@ -111,7 +114,20 @@ void GameManager::saveCurrentPuzzle()
 
 void GameManager::onTimerTick()
 {
-    this->puzzleManager->getCurrentPuzzle().incrementTimeSpent();
+    if (!this->isGamePaused)
+    {
+        this->puzzleManager->getCurrentPuzzle().incrementTimeSpent();
+    }
+}
+
+bool GameManager::getIsGamePaused()
+{
+    return this->isGamePaused;
+}
+
+void GameManager::setIsGamePaused(bool condition)
+{
+    this->isGamePaused = condition;
 }
 
 int GameManager::getCurrentPuzzleNumber()

@@ -42,11 +42,14 @@ class GameManager
 
         void readPreviousSettings();
         bool doesSavedFileExist;
+        bool isGamePaused;
 
     public:
         GameManager();
         virtual ~GameManager();
 
+        bool getIsGamePaused();
+        void setIsGamePaused(bool condition);
         void saveSettings();
         PlayerSettings* getSettings();
         int getTotalPuzzlesCount();
