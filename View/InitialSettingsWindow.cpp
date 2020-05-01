@@ -163,6 +163,7 @@ void InitialSettingsWindow::setSavedButtonState(bool condition)
 
 void InitialSettingsWindow::setSelectedPuzzle(int puzzleNumber)
 {
+    this->loadSavedPuzzle = false;
     this->chosenPuzzleNumber = puzzleNumber;
 }
 
@@ -231,6 +232,19 @@ void InitialSettingsWindow::cbSelectPuzzle(Fl_Widget* widget, void* data)
 {
     InitialSettingsWindow* window = (InitialSettingsWindow*)data;
     cout << "Select puzzle clicked" << endl;
+
+    ButtonValueWindow puzzleSelector(1, MAX_PUZZLE_COUNT);
+    puzzleSelector.set_modal();
+    puzzleSelector.show();
+    while (puzzleSelector.shown())
+    {
+        Fl::wait();
+    }
+
+    if (puzzleSelector.getWindowResult() == ButtonValueWindow::OK)
+    {
+        window->setSelectedPuzzle(puzzleSelector.getValue());
+    }
 }
 
 void InitialSettingsWindow::cbChooseTextColor(Fl_Widget* widget, void* data)

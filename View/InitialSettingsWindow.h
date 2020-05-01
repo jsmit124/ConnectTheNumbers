@@ -8,6 +8,7 @@
 using namespace controller;
 
 #include "ColorSelectionWindow.h"
+#include "ButtonValueWindow.h"
 using namespace view;
 
 #include <Fl/Fl_Input.H>
@@ -50,6 +51,8 @@ class InitialSettingsWindow : public Fl_Window
         void setTextColor(Fl_Color color);
 
     private:
+        static const int MAX_PUZZLE_COUNT = 12;
+
         Fl_Button* startButton;
         Fl_Button* closeButton;
         Fl_Button* chooseButtonColorButton;

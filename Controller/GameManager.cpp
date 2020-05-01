@@ -52,6 +52,12 @@ bool GameManager::isLastPuzzle()
     return this->puzzleManager->isLastPuzzle();
 }
 
+void GameManager::moveToPuzzle(int puzzleId)
+{
+    Puzzle puzzle = this->reader.readPuzzleNumber(puzzleId);
+    this->puzzleManager->setCurrentPuzzle(puzzle);
+}
+
 void GameManager::moveToNextPuzzle()
 {
     this->puzzleManager->moveToNextPuzzle();
@@ -59,8 +65,7 @@ void GameManager::moveToNextPuzzle()
 
 void GameManager::resetCurrentPuzzle()
 {
-    Puzzle puzzle = this->reader.readPuzzleNumber(this->puzzleManager->getCurrentPuzzleNumber());
-    this->puzzleManager->setCurrentPuzzle(puzzle);
+    this->moveToPuzzle(this->puzzleManager->getCurrentPuzzleNumber());
 }
 
 void GameManager::loadPuzzles()

@@ -56,6 +56,10 @@ void MainGameWindow::initialize()
         this->gameManager->setDifficulty(Difficulty::HARD);
         this->gameManager->loadSavedPuzzle();
     }
+    else if (this->settingsWindow->getSelectedPuzzle() > 0)
+    {
+        this->gameManager->moveToPuzzle(this->settingsWindow->getSelectedPuzzle());
+    }
 }
 
 ///Draws the puzzle number label

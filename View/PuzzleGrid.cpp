@@ -129,7 +129,7 @@ namespace view {
     void PuzzleGrid::cbButtonSelected(Fl_Widget* widget, void* data)
     {
         GameManager* manager = (GameManager*)data;
-        ButtonValueWindow buttonValueEntry;
+        ButtonValueWindow buttonValueEntry(1, 64);
         buttonValueEntry.set_modal();
         buttonValueEntry.show();
 

@@ -3,12 +3,14 @@
 namespace view
 {
 
-ButtonValueWindow::ButtonValueWindow() : Fl_Window(175, 100, "Value to set")
+ButtonValueWindow::ButtonValueWindow(int min, int max) : Fl_Window(175, 100, "Value to set")
 {
     this->buttonInvoked = WindowResult::NONE;
 
     begin();
 
+    this->minimumNumber = min;
+    this->maximumNumber = max;
     this->value = 0;
 
     this->valueInput = new Fl_Input(80, 10, 60, 25, "Value:");
@@ -80,7 +82,7 @@ int ButtonValueWindow::determineIfValidValueEntered()
     string value = this->valueInput->value();
     int intValue = toInt(value, "Error converting value to an integer.");
 
-    if (intValue <= 0 || intValue > 64)
+    if (intValue < this->minimumNumber || intValue > this->maximumNumber)
     {
         throw "Please enter a value between 1 and 64.";
     }
@@ -93,7 +95,7 @@ ButtonValueWindow::WindowResult ButtonValueWindow::setWindowResult(ButtonValueWi
     this->buttonInvoked = result;
 }
 
-ButtonValueWindow::WindowResult ButtonValueWindow::getWindowResult(ButtonValueWindow::WindowResult)
+ButtonValueWindow::WindowResult ButtonValueWindow::getWindowResult()
 {
     return this->buttonInvoked;
 }

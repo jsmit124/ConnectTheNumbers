@@ -65,6 +65,8 @@ class GameManager
         void loadHighScores();
 
         int getTimeSpentOnPuzzle() const;
+
+    void moveToPuzzle(int puzzleId);
 };
 
 }

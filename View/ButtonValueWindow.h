@@ -17,19 +17,21 @@ class ButtonValueWindow : public Fl_Window
 {
     public:
         enum WindowResult {OK, CANCEL, NONE};
-        ButtonValueWindow();
+        ButtonValueWindow(int min = 1, int max = 64);
         virtual ~ButtonValueWindow();
         void okHandler();
         void cancelHandler();
         int getValue() const;
         ButtonValueWindow::WindowResult setWindowResult(ButtonValueWindow::WindowResult);
-        ButtonValueWindow::WindowResult getWindowResult(ButtonValueWindow::WindowResult);
+        ButtonValueWindow::WindowResult getWindowResult();
 
     private:
         Fl_Button* okButton;
         Fl_Button* cancelButton;
         Fl_Input* valueInput;
         WindowResult buttonInvoked;
+        int minimumNumber;
+        int maximumNumber;
         int value;
         void setOKLocation(int, int);
         void setCancelLocation(int, int);
