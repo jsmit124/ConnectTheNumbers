@@ -5,7 +5,7 @@
 
 #include "PuzzleGrid.h"
 #include "InitialSettingsWindow.h"
-#include "HighScoreboardTable.h"
+#include "HighScoresWindow.h"
 
 #include <FL/Fl_Button.H>
 #include <Fl/Fl.H>
@@ -39,11 +39,10 @@ class MainGameWindow : public Fl_Window
         Fl_Button* evaluateButton;
         Fl_Button* resetButton;
         Fl_Button* pauseButton;
-        Fl_Button* clearScoresButton;
+        Fl_Button* viewHighScoresButton;
         Fl_Box* pausePuzzleOverlay;
         Fl_Box* puzzleNumberLabel;
         Fl_Box* gameTimerLabel;
-        HighScoreboardTable* highScoreTable;
 
         string getPuzzleNumberOutput();
         void colorEvaluationPath();
@@ -61,8 +60,7 @@ class MainGameWindow : public Fl_Window
         void addEvaluateButton();
         void addResetButton();
         void addPauseButton();
-        void addClearScoresButton();
-        void drawHighScoresLabel();
+        void addViewHighScoresButton();
 
         void togglePuzzleOverlay(bool condition);
         void startGame();
@@ -72,7 +70,7 @@ class MainGameWindow : public Fl_Window
         static void cbResetButtonClicked(Fl_Widget*, void*);
         static void cbOnWindowClose(Fl_Widget*, void*);
         static void cbPauseButtonClicked(Fl_Widget* widget, void* data);
-        static void cbClearScoresClicked(Fl_Widget*, void*);
+        static void cbViewHighScoresClicked(Fl_Widget *widget, void *data);
 
         void startGameTimer();
         static void onTimerTick(void *data);
@@ -80,8 +78,6 @@ class MainGameWindow : public Fl_Window
         void drawTimerLabel();
 
         void refreshTimerLabel();
-
-        void updateHighScoreLabels();
 };
 
 }

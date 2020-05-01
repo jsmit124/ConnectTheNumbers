@@ -15,7 +15,7 @@ namespace view
         this->row_height_all(20);
         this->cols(HIGH_SCORE_COLS);
         this->col_header(1);
-        this->col_width_all(80);
+        this->col_width_all(this->h() / HIGH_SCORE_COLS);
 
         this->redraw();
     }

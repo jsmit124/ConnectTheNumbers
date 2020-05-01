@@ -17,10 +17,9 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->addEvaluateButton();
     this->addResetButton();
     this->addPauseButton();
-    this->addClearScoresButton();
+    this->addViewHighScoresButton();
 
     this->drawPuzzleNumberLabel();
-    this->drawHighScoresLabel();
     this->drawTimerLabel();
 
     this->startGameTimer();
@@ -126,29 +125,10 @@ void MainGameWindow::addResetButton()
     this->resetButton->callback(cbResetButtonClicked, this);
 }
 
-void MainGameWindow::addClearScoresButton()
+void MainGameWindow::addViewHighScoresButton()
 {
-    this->clearScoresButton = new Fl_Button(420, 350, 110, 30, "CLEAR");
-    this->clearScoresButton->callback(cbClearScoresClicked, this);
-
-}
-
-///Draws the high scores label
-//
-void MainGameWindow::drawHighScoresLabel()
-{
-    this->highScoresLabel = new Fl_Box(385, 10, 175, 30, "HIGH SCORES");
-    this->highScoresLabel->box(FL_UP_BOX);
-    this->highScoresLabel->labelsize(16);
-
-    this->highScoreTable = new HighScoreboardTable(385, 50, 200, 175, this->gameManager->getTopTenScoresByDuration());
-
-    this->updateHighScoreLabels();
-}
-
-void MainGameWindow::updateHighScoreLabels()
-{
-    this->highScoreTable->refresh(this->gameManager->getTopTenScoresByDuration());
+    this->viewHighScoresButton = new Fl_Button(420, 350, 110, 30, "HIGH SCORES");
+    this->viewHighScoresButton->callback(cbViewHighScoresClicked, this);
 }
 
 /// Adds the timer label to the window.
@@ -172,7 +152,6 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     if (successfullySolved && !isLastPuzzle)
     {
         window->getGameManager()->recordGameCompletion("user");
-        window->updateHighScoreLabels();
         window->getGameManager()->moveToNextPuzzle();
         window->refreshBoard();
     }
@@ -202,11 +181,16 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
     window->refreshTimerLabel();
 }
 
-void MainGameWindow::cbClearScoresClicked(Fl_Widget* widget, void* data)
+void MainGameWindow::cbViewHighScoresClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
-    window->gameManager->clearHighScores();
-    window->updateHighScoreLabels();
+    HighScoresWindow highScoresWindow(window->gameManager);
+    highScoresWindow.show();
+
+    while (highScoresWindow.shown())
+    {
+        Fl::wait();
+    }
 }
 
 void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
