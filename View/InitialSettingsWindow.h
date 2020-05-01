@@ -42,12 +42,14 @@ class InitialSettingsWindow : public Fl_Window
         Fl_Color getSelectedBackgroundColor();
         Difficulty getSelectedDifficulty();
         bool getLoadSavedPuzzle();
+        int getSelectedPuzzle();
 
         void setLoadSavedPuzzle(bool condition);
         void setSavedButtonState(bool condition);
         void setButtonColor(Fl_Color color);
         void setBackgroundColor(Fl_Color color);
         void setDifficulty(Difficulty selection);
+        void setSelectedPuzzle(int puzzleNumber);
 
     private:
         Fl_Button* startButton;
@@ -56,10 +58,12 @@ class InitialSettingsWindow : public Fl_Window
         Fl_Button* chooseBackgroundColorButton;
         Fl_Button* chooseDifficultyButton;
         Fl_Button* lastSaveButton;
+        Fl_Button* chooseLevelButton;
 
         Difficulty chosenDifficulty;
         Fl_Color chosenButtonColor;
         Fl_Color chosenBackgroundColor;
+        int chosenPuzzleNumber;
         int value;
         bool loadSavedPuzzle;
 
@@ -72,6 +76,7 @@ class InitialSettingsWindow : public Fl_Window
         void setButtonColorButtonLocation(int, int);
         void setBackgroundColorButtonLocation(int, int);
         void setDifficultySelectionButtonLocation(int, int);
+        void setChoosePuzzleButtonLocation(int, int);
 
         static void cbStart(Fl_Widget*, void*);
         static void cbClose(Fl_Widget*, void*);
@@ -79,6 +84,7 @@ class InitialSettingsWindow : public Fl_Window
         static void cbBackgroundColorButtonClick(Fl_Widget*, void*);
         static void cbDifficultyButtonClick(Fl_Widget*, void*);
         static void cbLoadSave(Fl_Widget*, void*);
+        static void cbSelectPuzzle(Fl_Widget*, void*);
 };
 
 }

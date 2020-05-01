@@ -3,7 +3,7 @@
 namespace view
 {
 
-InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 300, "Welcome to Connect the Numbers!")
+InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 300, "Connect the Numbers")
 {
     this->buttonInvoked = WindowResult::NONE;
 
@@ -16,14 +16,16 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 300, "Welcome to
     this->chooseButtonColorButton = new Fl_Button(0, 0, 200, 30, "Choose button color");
     this->chooseBackgroundColorButton = new Fl_Button(0, 0, 200, 30, "Choose background color");
     this->chooseDifficultyButton = new Fl_Button(0, 0, 200, 30, "Choose difficulty");
-    this->lastSaveButton = new Fl_Button(0, 0, 200, 30, "Load Saved Puzzle");
+    this->lastSaveButton = new Fl_Button(0, 0, 200, 30, "Continue game");
+    this->chooseLevelButton = new Fl_Button(0, 0, 200, 30, "Select Puzzle");
 
     this->setStartButtonLocation(25, 65);
-    this->setCloseButtonLocation(25, 225);
-    this->setButtonColorButtonLocation(25, 185);
-    this->setBackgroundColorButtonLocation(25, 145);
-    this->setDifficultySelectionButtonLocation(25, 105);
+    this->setCloseButtonLocation(25, 265);
+    this->setButtonColorButtonLocation(25, 225);
+    this->setBackgroundColorButtonLocation(25, 185);
+    this->setDifficultySelectionButtonLocation(25, 145);
     this->setLastSavedButtonLocation(25, 25);
+    this->setChoosePuzzleButtonLocation(25, 105);
 
     this->startButton->callback(cbStart, this);
     this->closeButton->callback(cbClose, this);
@@ -31,10 +33,12 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 300, "Welcome to
     this->chooseBackgroundColorButton->callback(cbBackgroundColorButtonClick, this);
     this->chooseDifficultyButton->callback(cbDifficultyButtonClick, this);
     this->lastSaveButton->callback(cbLoadSave, this);
+    this->chooseLevelButton->callback(cbSelectPuzzle, this);
 
     this->chosenBackgroundColor = fl_darker(fl_darker(fl_darker(FL_DARK_BLUE)));
     this->chosenButtonColor = FL_DARK3;
     this->chosenDifficulty = Difficulty::EASY;
+    this->chosenPuzzleNumber = 1;
 
     end();
 }
@@ -79,11 +83,15 @@ void InitialSettingsWindow::setCloseButtonLocation(int x, int y)
     this->closeButton->position(x, y);
 }
 
+void InitialSettingsWindow::setChoosePuzzleButtonLocation(int x, int y)
+{
+    this->chooseLevelButton->position(x, y);
+}
+
 void InitialSettingsWindow::setButtonColor(Fl_Color color)
 {
     this->chosenButtonColor = color;
     this->setColorToAllButtons(color);
-
 }
 
 void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
@@ -94,6 +102,7 @@ void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
     this->chooseBackgroundColorButton->color(color);
     this->chooseDifficultyButton->color(color);
     this->lastSaveButton->color(color);
+    this->chooseLevelButton->color(color);
 
     this->startButton->redraw();
     this->closeButton->redraw();
@@ -101,6 +110,7 @@ void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
     this->chooseBackgroundColorButton->redraw();
     this->chooseDifficultyButton->redraw();
     this->lastSaveButton->redraw();
+    this->chooseLevelButton->redraw();
 }
 
 void InitialSettingsWindow::setBackgroundColor(Fl_Color color)
@@ -130,6 +140,11 @@ void InitialSettingsWindow::setSavedButtonState(bool condition)
     {
         this->lastSaveButton->deactivate();
     }
+}
+
+void InitialSettingsWindow::setSelectedPuzzle(int puzzleNumber)
+{
+    this->chosenPuzzleNumber = puzzleNumber;
 }
 
 void InitialSettingsWindow::cbStart(Fl_Widget* widget, void* data)
@@ -195,6 +210,12 @@ void InitialSettingsWindow::cbDifficultyButtonClick(Fl_Widget* widget, void* dat
     cout << "Difficulty clicked" << endl;
 }
 
+void InitialSettingsWindow::cbSelectPuzzle(Fl_Widget* widget, void* data)
+{
+    InitialSettingsWindow* window = (InitialSettingsWindow*)data;
+    cout << "Select puzzle clicked" << endl;
+}
+
 Fl_Color InitialSettingsWindow::getSelectedButtonColor()
 {
     return this->chosenButtonColor;
@@ -213,6 +234,11 @@ Fl_Color InitialSettingsWindow::getSelectedBackgroundColor()
 Difficulty InitialSettingsWindow::getSelectedDifficulty()
 {
     return this->chosenDifficulty;
+}
+
+int InitialSettingsWindow::getSelectedPuzzle()
+{
+    return this->chosenPuzzleNumber;
 }
 
 InitialSettingsWindow::WindowResult InitialSettingsWindow::setWindowResult(InitialSettingsWindow::WindowResult result)
