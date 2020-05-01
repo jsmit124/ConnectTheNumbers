@@ -9,6 +9,7 @@
 #include "../Model/HighScoreManager.h"
 #include "../Utils/Utils.h"
 #include <string>
+#include "../Enum/Difficulty.h"
 
 using namespace model;
 using namespace std;
@@ -23,12 +24,14 @@ class GameManager
 {
     const string SAVED_PUZZLE_PATH = "Puzzles/puzzle_saved";
     const string SAVED_SCOREBOARD_PATH = "high_scores.csv";
+    const int MAX_PUZZLE_COUNT = 12;
 
     private:
         PuzzleManager* puzzleManager;
         HighScoreManager* highScoreManager;
         PuzzleReader reader;
         PuzzleWriter writer;
+        Difficulty difficulty;
 
         bool doesSavedFileExist;
 
@@ -36,6 +39,8 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        int getTotalPuzzlesCount();
+        void setDifficulty(Difficulty difficulty);
         bool getDoesSavedFileExist();
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         int getCurrentPuzzleStartIndex();
@@ -54,8 +59,6 @@ class GameManager
         vector<HighScoreEntry*> getTopTenScoresByDuration();
         void recordGameCompletion(const string& name);
         void saveHighScores();
-
-        const int DEFAULT_PUZZLE_COUNT = 2;
 
         void onTimerTick();
 

@@ -89,6 +89,7 @@ namespace view {
         {
             this->gridButtons.at(i)->color(this->defaultBackgroundColor);
             this->gridButtons.at(i)->labelcolor(this->defaultLabelColor);
+            this->gridButtons.at(i)->redraw();
         }
     }
 

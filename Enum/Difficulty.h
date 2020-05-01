@@ -3,6 +3,6 @@
 
 ///Defines the difficulties that can be selected by the user
 //
-enum Difficulty {EASY, MEDIUM, HARD};
+enum Difficulty {EASY=4, MEDIUM=8, HARD=12};
 
 #endif // DIFFICULTY_H

@@ -42,15 +42,20 @@ void MainGameWindow::initialize()
         Fl::wait();
     }
 
-    if (this->settingsWindow->getLoadSavedPuzzle())
-    {
-        this->gameManager->loadSavedPuzzle();
-    }
-
     this->playerSettings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
     this->playerSettings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());
     this->playerSettings->setDifficulty(this->settingsWindow->getSelectedDifficulty());
     this->playerSettings->setTextColor(this->settingsWindow->getSelectedTextColor());
+
+    this->gameManager->setDifficulty(this->playerSettings->getDifficulty());
+
+    if (this->settingsWindow->getLoadSavedPuzzle())
+    {
+        // TODO write out last saved difficulty
+        // this->gameManager->setDifficulty(this->playerSettings->getLastSavedDifficulty());
+        this->gameManager->setDifficulty(Difficulty::HARD);
+        this->gameManager->loadSavedPuzzle();
+    }
 }
 
 ///Draws the puzzle number label
@@ -69,7 +74,7 @@ string MainGameWindow::getPuzzleNumberOutput()
 {
     // TODO can maybe move this to view formatter class
     return "Puzzle Number: " + to_string(this->gameManager->getCurrentPuzzleNumber()) +
-        "/" + to_string(this->gameManager->DEFAULT_PUZZLE_COUNT);
+        "/" + to_string(this->gameManager->getTotalPuzzlesCount());
 }
 
 void MainGameWindow::refreshBoard()

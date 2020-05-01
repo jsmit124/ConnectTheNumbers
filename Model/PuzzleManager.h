@@ -19,7 +19,7 @@ class PuzzleManager
         vector<Puzzle> puzzles;
 
     public:
-        PuzzleManager(int puzzleCount);
+        PuzzleManager(int);
         virtual ~PuzzleManager();
 
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);

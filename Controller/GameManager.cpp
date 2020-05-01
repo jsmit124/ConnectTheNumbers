@@ -10,8 +10,9 @@ namespace controller
 //
 GameManager::GameManager()
 {
-    this->puzzleManager = new PuzzleManager(DEFAULT_PUZZLE_COUNT);
+    this->puzzleManager = new PuzzleManager(MAX_PUZZLE_COUNT);
     this->highScoreManager = new HighScoreManager();
+    this->doesSavedFileExist = checkFileExists(SAVED_PUZZLE_PATH);
     this->initialize();
 }
 
@@ -29,12 +30,21 @@ void GameManager::initialize()
 {
     this->loadPuzzles();
     this->loadHighScores();
-    this->doesSavedFileExist = checkFileExists(SAVED_PUZZLE_PATH);
 }
 
 bool GameManager::getDoesSavedFileExist()
 {
     return this->doesSavedFileExist;
+}
+
+int GameManager::getTotalPuzzlesCount()
+{
+    return this->difficulty;
+}
+
+void GameManager::setDifficulty(Difficulty difficulty)
+{
+    this->difficulty = difficulty;
 }
 
 bool GameManager::isLastPuzzle()
@@ -55,7 +65,7 @@ void GameManager::resetCurrentPuzzle()
 
 void GameManager::loadPuzzles()
 {
-    vector<Puzzle> puzzles = this->reader.readAllPuzzles(DEFAULT_PUZZLE_COUNT);
+    vector<Puzzle> puzzles = this->reader.readAllPuzzles(MAX_PUZZLE_COUNT);
     for (auto currPuzzle : puzzles)
     {
         this->puzzleManager->add(currPuzzle);
