@@ -4,7 +4,7 @@
 #include "Utils.h"
 #include "../Enum/Difficulty.h"
 
-#include "GameManager.h"
+#include "../Controller/GameManager.h"
 using namespace controller;
 
 #include "ColorSelectionWindow.h"
