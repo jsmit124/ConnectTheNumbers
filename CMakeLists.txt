@@ -27,6 +27,6 @@ add_executable(ConnectTheNumbers
         Model/HighScoreManager.cpp Model/HighScoreManager.h
         Model/HighScoreEntry.cpp Model/HighScoreEntry.h IO/HighScoreReader.cpp IO/HighScoreReader.h IO/HighScoreWriter.cpp IO/HighScoreWriter.h
         Settings/PlayerSettings.cpp Settings/PlayerSettings.h
-        View/InitialSettingsWindow.cpp View/InitialSettingsWindow.h View/HighScoreboardTable.cpp View/HighScoreboardTable.h)
+        View/InitialSettingsWindow.cpp View/InitialSettingsWindow.h View/HighScoreboardTable.cpp View/HighScoreboardTable.h View/HighScoresWindow.cpp View/HighScoresWindow.h)
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${FLTK_LIBRARIES})
 TARGET_LINK_LIBRARIES(ConnectTheNumbers ${OPENGL_LIBRARIES})
