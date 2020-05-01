@@ -5,8 +5,6 @@ namespace view
 
 ButtonValueWindow::ButtonValueWindow(int min, int max) : Fl_Window(175, 100, "Value to set")
 {
-    this->buttonInvoked = WindowResult::NONE;
-
     begin();
 
     this->minimumNumber = min;
@@ -14,17 +12,13 @@ ButtonValueWindow::ButtonValueWindow(int min, int max) : Fl_Window(175, 100, "Va
     this->value = 0;
 
     this->valueInput = new Fl_Input(80, 10, 60, 25, "Value:");
-
-    this->okButton = new Fl_Button(0,0,70, 30, "OK");
-    this->cancelButton = new Fl_Button(0,0,70,30, "Cancel");
-
-    this->setOKLocation(15, 50);
-    this->setCancelLocation(90,50);
+    this->okButton = new Fl_Button(15, 50, 70, 30, "OK");
+    this->cancelButton = new Fl_Button(90, 50, 70, 30, "Cancel");
 
     this->okButton->callback(cbOk, this);
     this->cancelButton->callback(cbCancel, this);
-
     this->valueInput->callback(cbOk, this);
+
     this->okButton->when(FL_WHEN_ENTER_KEY);
 
     end();
@@ -53,27 +47,15 @@ int ButtonValueWindow::getValue() const
     return this->value;
 }
 
-void ButtonValueWindow::setOKLocation(int x, int y)
-{
-    this->okButton->position(x, y);
-}
-
-void ButtonValueWindow::setCancelLocation(int x, int y)
-{
-    this->cancelButton->position(x, y);
-}
-
 void ButtonValueWindow::cbOk(Fl_Widget* widget, void* data)
 {
     ButtonValueWindow* window = (ButtonValueWindow*)data;
-    window->setWindowResult(ButtonValueWindow::OK);
     window->okHandler();
 }
 
 void ButtonValueWindow::cbCancel(Fl_Widget* widget, void* data)
 {
     ButtonValueWindow* window = (ButtonValueWindow*)data;
-    window->setWindowResult(ButtonValueWindow::CANCEL);
     window->cancelHandler();
 }
 
@@ -90,20 +72,11 @@ int ButtonValueWindow::determineIfValidValueEntered()
     return intValue;
 }
 
-ButtonValueWindow::WindowResult ButtonValueWindow::setWindowResult(ButtonValueWindow::WindowResult result)
-{
-    this->buttonInvoked = result;
-}
-
-ButtonValueWindow::WindowResult ButtonValueWindow::getWindowResult()
-{
-    return this->buttonInvoked;
-}
-
 ButtonValueWindow::~ButtonValueWindow()
 {
     delete this->okButton;
     delete this->cancelButton;
+    delete this->valueInput;
 }
 
 }
