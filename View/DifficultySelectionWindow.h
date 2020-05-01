@@ -35,10 +35,6 @@ class DifficultySelectionWindow : public Fl_Window
         void okHandler();
         void cancelHandler();
 
-        void setDifficultyLocation(int, int);
-        void setOkButtonLocation(int, int);
-        void setCancelButtonLocation(int, int);
-
         static void cbOk(Fl_Widget*, void*);
         static void cbCancel(Fl_Widget*, void*);
 };

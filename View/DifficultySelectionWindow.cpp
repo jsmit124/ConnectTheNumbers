@@ -5,16 +5,12 @@ namespace view
 
 DifficultySelectionWindow::DifficultySelectionWindow() : Fl_Window(220, 90, "Difficulty Selection")
 {
-    this->difficultyChoice = new Fl_Choice(0, 0, 100, 30, "Difficulty");
-    this->okButton = new Fl_Button(0, 0, 70, 30, "OK");
-    this->cancelButton = new Fl_Button(0, 0, 70, 30, "Cancel");
+    this->difficultyChoice = new Fl_Choice(115, 5, 100, 30, "Difficulty");
+    this->okButton = new Fl_Button(40, 50, 70, 30, "OK");
+    this->cancelButton = new Fl_Button(120, 50, 70, 30, "Cancel");
 
     this->okButton->callback(cbOk, this);
     this->cancelButton->callback(cbCancel, this);
-
-    this->setCancelButtonLocation(120, 50);
-    this->setOkButtonLocation(40, 50);
-    this->setDifficultyLocation(115, 5);
 
     this->addDifficultyOptions();
 
@@ -36,21 +32,6 @@ Difficulty DifficultySelectionWindow::getDifficultyValue()
 void DifficultySelectionWindow::setDifficultyValue(Difficulty selection)
 {
     this->difficultyValue = selection;
-}
-
-void DifficultySelectionWindow::setDifficultyLocation(int x, int y)
-{
-    this->difficultyChoice->position(x, y);
-}
-
-void DifficultySelectionWindow::setOkButtonLocation(int x, int y)
-{
-    this->okButton->position(x, y);
-}
-
-void DifficultySelectionWindow::setCancelButtonLocation(int x, int y)
-{
-    this->cancelButton->position(x, y);
 }
 
 void DifficultySelectionWindow::cbOk(Fl_Widget* widget, void* data)
