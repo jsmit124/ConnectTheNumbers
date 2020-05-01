@@ -180,6 +180,11 @@ vector<HighScoreEntry *> GameManager::getTopTenScoresByDuration()
     return this->highScoreManager->getTopTenByDuration();
 }
 
+vector<HighScoreEntry *> GameManager::getTopTenScoresByPuzzle()
+{
+    return this->highScoreManager->getTopTenByPuzzle();
+}
+
 void GameManager::recordGameCompletion(const string& name)
 {
     this->highScoreManager->add(name, this->puzzleManager->getCurrentPuzzle().getTimeSpent(),

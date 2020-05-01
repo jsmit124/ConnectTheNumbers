@@ -70,6 +70,7 @@ class GameManager
         void loadSavedPuzzle();
         void saveCurrentPuzzle();
         vector<HighScoreEntry*> getTopTenScoresByDuration();
+        vector<HighScoreEntry*> getTopTenScoresByPuzzle();
         void recordGameCompletion(const string& name);
         void saveHighScores();
 

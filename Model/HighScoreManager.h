@@ -35,17 +35,28 @@ public:
     void add(std::string name, int duration, int puzzle);
 
     /**
-     * Gets the top 10 entries on the high score, sorted by duration in
+     * Gets the top 10 entries on the high score table, sorted by duration in
      * ascending order.
      * @return the 10 entries in ascending duration
      */
     vector<HighScoreEntry*> getTopTenByDuration();
 
     /**
+     * Gets the top 10 entries on the high score, sorted by puzzle and then
+     * duration in a two-level sort in ascending order.
+     * @return the 10 entries in ascending order by puzzle and then duration
+     */
+    vector<HighScoreEntry*> getTopTenByPuzzle();
+
+    /**
      * Clears the scoreboard completely.
      */
     void clear();
 
+    /**
+     * Gets all scores directly. This is used to save all high scores to disk.
+     * @return all scores in this HighScoreManager
+     */
     vector<HighScoreEntry *> *getScores() const;
 
 private:

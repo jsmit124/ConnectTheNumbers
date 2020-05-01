@@ -25,6 +25,18 @@ vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration() {
     return entriesCopy;
 }
 
+vector<HighScoreEntry *> HighScoreManager::getTopTenByPuzzle() {
+    vector<HighScoreEntry*> entriesCopy(*this->scores);
+    sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second) {
+        if (first->getPuzzle() != second->getPuzzle()) {
+            return first->getPuzzle() < second->getPuzzle();
+        }
+        return first->getDuration() < second->getDuration();
+    });
+    entriesCopy.resize(min(entriesCopy.size(), (vector<HighScoreEntry*>::size_type) MAXIMUM_HIGH_SCORE_ENTRIES));
+    return entriesCopy;
+}
+
 void HighScoreManager::clearAndDeleteAllScores()
 {
     for (const auto &entry : *this->scores)
