@@ -14,6 +14,12 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->puzzleGrid = new PuzzleGrid(20, 50, this->gameManager);
     this->color(settings->getBackgroundColor());
 
+    // TODO refactor to be setup buttons
+    this->peekButton = new Fl_Button(100, 515, 60, 40, "?");
+    this->peekButton->labelsize(28);
+    this->peekButton->labelfont(FL_SCREEN_BOLD);
+    this->peekButton->callback(cbPeekButtonClicked, this);
+
     this->addEvaluateButton();
     this->addResetButton();
     this->addPauseButton();
@@ -130,8 +136,9 @@ void MainGameWindow::addPauseButton()
 //
 void MainGameWindow::addResetButton()
 {
-    this->resetButton = new Fl_Button(30, 515, 130, 40, "RESET");
-    this->resetButton->labelsize(16);
+    this->resetButton = new Fl_Button(30, 515, 60, 40, "↺");
+    this->resetButton->labelfont(FL_SCREEN_BOLD);
+    this->resetButton->labelsize(30);
     this->resetButton->callback(cbResetButtonClicked, this);
 }
 
@@ -209,6 +216,23 @@ string MainGameWindow::getRandomEvaluationMessage()
 void MainGameWindow::colorEvaluationPath()
 {
     this->puzzleGrid->colorEvaluationPath(this->gameManager);
+}
+
+void MainGameWindow::colorPeekPath()
+{
+    this->puzzleGrid->colorPeekPath(this->gameManager);
+}
+
+void MainGameWindow::cbPeekButtonClicked(Fl_Widget *widget, void *data)
+{
+    MainGameWindow* window = (MainGameWindow*)data;
+    window->colorPeekPath();
+    //TODO do something other than message (maybe 5 second timer)
+    window->gameManager->increaseTimeBy30();
+    window->refreshTimerLabel();
+    fl_message("Fine.. here is a hint.\n+30 seconds");
+    window->refreshColors();
+    window->refreshBoard();
 }
 
 /// Callback for the reset button click

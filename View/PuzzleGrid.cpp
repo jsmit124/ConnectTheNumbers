@@ -118,6 +118,34 @@ namespace view {
         this->evaluate(startIndex, gameManager);
     }
 
+    void PuzzleGrid::colorPeekPath(GameManager* gameManager)
+    {
+        int currIndex = gameManager->getCurrentEndNodeIndex();
+        bool foundNextShownNode = false;
+
+        while (!foundNextShownNode)
+        {
+            bool isValidNode = currIndex > -1;
+            bool isEditable = gameManager->isPuzzleNodeEditable(currIndex);
+
+            if (isValidNode && !isEditable)
+            {
+                int value = gameManager->getCurrentPuzzleSolvedNodeValue(currIndex);
+                this->gridButtons.at(currIndex)->copy_label(to_string(value).c_str());
+                this->gridButtons.at(currIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
+                foundNextShownNode = true;
+            }
+            else if (isValidNode)
+            {
+                int value = gameManager->getCurrentPuzzleSolvedNodeValue(currIndex);
+                this->gridButtons.at(currIndex)->copy_label(to_string(value).c_str());
+                this->gridButtons.at(currIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
+            }
+
+            currIndex = gameManager->getCurrentPuzzleSolvedNextNodeIndex(currIndex);
+        }
+    }
+
     void PuzzleGrid::evaluate(int prevIndex, GameManager* gameManager)
     {
         int nextIndex = gameManager->getNextNodeIndexOfCurrentPuzzle(prevIndex);

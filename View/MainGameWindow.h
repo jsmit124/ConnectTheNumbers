@@ -41,6 +41,7 @@ class MainGameWindow : public Fl_Window
         Fl_Button* evaluateButton;
         Fl_Button* resetButton;
         Fl_Button* pauseButton;
+        Fl_Button* peekButton;
         Fl_Button* viewHighScoresButton;
         Fl_Box* pausePuzzleOverlay;
         Fl_Box* puzzleNumberLabel;
@@ -48,6 +49,7 @@ class MainGameWindow : public Fl_Window
 
         string getPuzzleNumberOutput();
         void colorEvaluationPath();
+        void colorPeekPath();
         void refreshColors();
         void initialize();
 
@@ -75,6 +77,7 @@ class MainGameWindow : public Fl_Window
         static void cbOnWindowClose(Fl_Widget*, void*);
         static void cbPauseButtonClicked(Fl_Widget* widget, void* data);
         static void cbViewHighScoresClicked(Fl_Widget *widget, void *data);
+        static void cbPeekButtonClicked(Fl_Widget *widget, void *data);
 
         void startGameTimer();
         static void onTimerTick(void *data);

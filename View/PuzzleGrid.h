@@ -43,6 +43,7 @@ namespace view {
         void resetColors(GameManager*);
         void resetBoard(GameManager*);
         void colorEvaluationPath(GameManager*);
+        void colorPeekPath(GameManager* gameManager);
         void deactivate();
         void activate();
 

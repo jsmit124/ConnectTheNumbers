@@ -78,6 +78,12 @@
 		<Unit filename="View/ButtonValueWindow.h" />
 		<Unit filename="View/ColorSelectionWindow.cpp" />
 		<Unit filename="View/ColorSelectionWindow.h" />
+		<Unit filename="View/DifficultySelectionWindow.cpp" />
+		<Unit filename="View/DifficultySelectionWindow.h" />
+		<Unit filename="View/HighScoreboardTable.cpp" />
+		<Unit filename="View/HighScoreboardTable.h" />
+		<Unit filename="View/HighScoresWindow.cpp" />
+		<Unit filename="View/HighScoresWindow.h" />
 		<Unit filename="View/InitialSettingsWindow.cpp" />
 		<Unit filename="View/InitialSettingsWindow.h" />
 		<Unit filename="View/MainGameWindow.cpp" />
@@ -86,6 +92,8 @@
 		<Unit filename="View/PuzzleGrid.h" />
 		<Unit filename="View/PuzzleGridButton.cpp" />
 		<Unit filename="View/PuzzleGridButton.h" />
+		<Unit filename="View/PuzzleSelectionWindow.cpp" />
+		<Unit filename="View/PuzzleSelectionWindow.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

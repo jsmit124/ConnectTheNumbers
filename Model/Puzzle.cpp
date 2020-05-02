@@ -174,6 +174,28 @@ int Puzzle::getNextNodeIndex(int prevIndex)
     return nextNodeIndex;
 }
 
+int Puzzle::getCurrentEndNodeIndex()
+{
+    int currIndex = this->startLocation;
+    bool foundEnd = false;
+
+    while (!foundEnd)
+    {
+        int nextIndex = this->getNextNodeIndex(currIndex);
+
+        if (nextIndex < 0)
+        {
+            foundEnd = true;
+        }
+        else
+        {
+            currIndex = nextIndex;
+        }
+    }
+
+    return currIndex;
+}
+
 void Puzzle::checkIfNextNode(int prevIndex, int nextIndex, int& nextNodeIndex)
 {
     bool isValid = this->isNextNodeValid(prevIndex, nextIndex);
@@ -210,6 +232,11 @@ int Puzzle::getTimeSpent() const
 void Puzzle::setTimeSpent(int timeSpent)
 {
     this->timeSpent = timeSpent;
+}
+
+int Puzzle::incrementTimeBy(int timeIncrease)
+{
+    this->timeSpent += timeIncrease;
 }
 
 void Puzzle::incrementTimeSpent()

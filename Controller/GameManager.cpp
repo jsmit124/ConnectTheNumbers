@@ -110,10 +110,17 @@ void GameManager::resetCurrentPuzzle()
 void GameManager::loadPuzzles()
 {
     vector<Puzzle> puzzles = this->puzzleReader.readAllPuzzles(MAX_PUZZLE_COUNT);
-    for (auto currPuzzle : puzzles)
+    vector<Puzzle> solvedPuzzles = this->puzzleReader.readAllSolvedPuzzles(MAX_PUZZLE_COUNT);
+
+    for (int i = 0; i < puzzles.size(); i++)
     {
-        this->puzzleManager->add(currPuzzle);
+        this->puzzleManager->add(puzzles.at(i), solvedPuzzles.at(i));
     }
+}
+
+int GameManager::getCurrentEndNodeIndex()
+{
+    this->puzzleManager->getCurrentPuzzle().getCurrentEndNodeIndex();
 }
 
 void GameManager::loadSavedPuzzle()
@@ -136,6 +143,14 @@ void GameManager::onTimerTick()
     if (!this->isGamePaused)
     {
         this->puzzleManager->getCurrentPuzzle().incrementTimeSpent();
+    }
+}
+
+void GameManager::increaseTimeBy30()
+{
+    if (!this->isGamePaused)
+    {
+        this->puzzleManager->getCurrentPuzzle().incrementTimeBy(TIME_INCREASE);
     }
 }
 
@@ -172,6 +187,16 @@ int GameManager::getCurrentPuzzleStartIndex()
 bool GameManager::isPuzzleNodeEditable(int index)
 {
     return this->puzzleManager->getCurrentPuzzle().isPuzzleNodeEditable(index);
+}
+
+int GameManager::getCurrentPuzzleSolvedNodeValue(int index)
+{
+    return this->puzzleManager->getCurrentPuzzleSolvedNodeValue(index);
+}
+
+int GameManager::getCurrentPuzzleSolvedNextNodeIndex(int prevIndex)
+{
+    return this->puzzleManager->getNextNodeOfSolvablePuzzle(prevIndex);
 }
 
 void GameManager::setPuzzleNodeValue(int value, int index)

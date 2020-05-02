@@ -36,10 +36,12 @@ class Puzzle
         bool isNextNodeValid(int prevIndex, int nextIndex);
         int getNextNodeIndex(int prevIndex);
 
+        int getCurrentEndNodeIndex();
         int getPuzzleNodeValue(int index);
         bool isPuzzleNodeEditable(int index);
         int getStartLocation();
 
+        int incrementTimeBy(int timeIncrease);
         void setId(int id);
         void setStartLocation(int location);
 

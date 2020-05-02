@@ -19,14 +19,17 @@ class PuzzleManager
     private:
         int currentPuzzleIndex;
         vector<Puzzle> puzzles;
+        vector<Puzzle> solvedPuzzles;
 
     public:
         PuzzleManager(int);
         virtual ~PuzzleManager();
 
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
+        int getNextNodeOfSolvablePuzzle(int index);
+        int getCurrentPuzzleSolvedNodeValue(int index);
         void setCurrentPuzzle(Puzzle puzzle);
-        void add(const Puzzle puzzle);
+        void add(Puzzle puzzle, Puzzle solvedPuzzle);
         void moveToNextPuzzle();
         Puzzle& getCurrentPuzzle();
         int getCurrentPuzzleId();

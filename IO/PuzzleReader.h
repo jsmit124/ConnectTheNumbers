@@ -33,6 +33,7 @@ class PuzzleReader
 {
     const string PUZZLE_INDICATOR = "puzzle_";
     const string SAVED_PUZZLE = "saved";
+    const string SOLVED_INDICATOR = "solved";
     const string EDITABLE_INDICATOR = "x";
     const string DELIMETER = ",";
     const int PUZZLE_START_LOCATION = 1;
@@ -49,6 +50,7 @@ class PuzzleReader
         Puzzle readPuzzleNumber(int puzzleNumber);
         Puzzle readSavedPuzzle();
         vector<Puzzle> readAllPuzzles(int puzzleCount);
+        vector<Puzzle> readAllSolvedPuzzles(int puzzleCount);
 };
 
 }

@@ -30,6 +30,7 @@ class GameManager
     const string SAVED_SCOREBOARD_PATH = "Storage/high_scores.csv";
     const string SAVED_SETTINGS_PATH = "Storage/prev_settings";
     const int MAX_PUZZLE_COUNT = 12;
+    const int TIME_INCREASE = 30;
 
     private:
         PuzzleManager* puzzleManager;
@@ -48,6 +49,7 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        void increaseTimeBy30();
         bool getIsGamePaused();
         void setIsGamePaused(bool condition);
         void saveSettings();
@@ -55,7 +57,10 @@ class GameManager
         int getTotalPuzzlesCount();
         void setDifficulty(Difficulty difficulty);
         bool getDoesSavedFileExist();
+        int getCurrentEndNodeIndex();
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
+        int getCurrentPuzzleSolvedNextNodeIndex(int prevIndex);
+        int getCurrentPuzzleSolvedNodeValue(int index);
         int getCurrentPuzzleStartIndex();
         bool isLastPuzzle();
         bool isFinalPuzzle();

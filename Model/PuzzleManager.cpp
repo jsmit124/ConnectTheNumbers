@@ -40,8 +40,9 @@ void PuzzleManager::setCurrentPuzzle(Puzzle puzzle)
 // @precondition: none
 // @postcondition: this->puzzles.size()++
 //
-void PuzzleManager::add(const Puzzle puzzle)
+void PuzzleManager::add(Puzzle puzzle, Puzzle solvedPuzzle)
 {
+    this->solvedPuzzles.push_back(solvedPuzzle);
     this->puzzles.push_back(puzzle);
 }
 
@@ -64,6 +65,17 @@ void PuzzleManager::moveToNextPuzzle()
 Puzzle& PuzzleManager::getCurrentPuzzle()
 {
     return this->puzzles.at(this->currentPuzzleIndex);
+}
+
+int PuzzleManager::getCurrentPuzzleSolvedNodeValue(int index)
+{
+    return this->solvedPuzzles.at(this->currentPuzzleIndex).getPuzzleNodeValue(index);
+}
+
+int PuzzleManager::getNextNodeOfSolvablePuzzle(int index)
+{
+    Puzzle puzzle = this->solvedPuzzles.at(this->currentPuzzleIndex);
+    return puzzle.getNextNodeIndex(index);
 }
 
 /// Returns the current puzzle id (+1 for vector offset)

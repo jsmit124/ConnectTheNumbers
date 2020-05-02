@@ -70,6 +70,20 @@ Puzzle PuzzleReader::readSavedPuzzle()
     return this->readPuzzleFromFile(filePath);
 }
 
+vector<Puzzle> PuzzleReader::readAllSolvedPuzzles(int puzzleCount)
+{
+    vector<Puzzle> puzzles;
+    puzzles.reserve(puzzleCount);
+
+    for (int i = 1; i <= puzzleCount; i++)
+    {
+        string filePath = PUZZLES_DIRECTORY + PUZZLE_INDICATOR + to_string(i) + SOLVED_INDICATOR;
+        puzzles.push_back(this->readPuzzleFromFile(filePath));
+    }
+
+    return puzzles;
+}
+
 vector<Puzzle> PuzzleReader::readAllPuzzles(int puzzleCount)
 {
     vector<Puzzle> puzzles;
