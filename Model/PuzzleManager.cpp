@@ -12,7 +12,7 @@ namespace model
 PuzzleManager::PuzzleManager(int puzzleCount)
 {
     this->puzzles.reserve(puzzleCount);
-    this->currentPuzzleIndex = 0;
+    this->resetCurrentPuzzleIndex();
 }
 
 /// Puzzle manager destructor
@@ -55,6 +55,16 @@ void PuzzleManager::moveToNextPuzzle()
 {
     this->getCurrentPuzzle().setTimeSpent(0);
     this->currentPuzzleIndex++;
+}
+
+void PuzzleManager::setPuzzleAt(Puzzle puzzle, int index)
+{
+    this->puzzles.at(index) = puzzle;
+}
+
+void PuzzleManager::resetCurrentPuzzleIndex()
+{
+    this->currentPuzzleIndex = 0;
 }
 
 /// Returns the current puzzle

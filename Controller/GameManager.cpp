@@ -124,6 +124,18 @@ int GameManager::getCurrentEndNodeIndex()
     return this->puzzleManager->getCurrentValidEndNodeIndex();
 }
 
+void GameManager::resetGame()
+{
+    vector<Puzzle> puzzles = this->puzzleReader.readAllPuzzles(MAX_PUZZLE_COUNT);
+
+    for (int i = 0; i < puzzles.size(); i++)
+    {
+        this->puzzleManager->setPuzzleAt(puzzles.at(i), i);
+    }
+
+    this->puzzleManager->resetCurrentPuzzleIndex();
+}
+
 bool GameManager::foundFirstNode()
 {
     return this->puzzleManager->getCurrentPuzzle().foundFirstNode();

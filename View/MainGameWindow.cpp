@@ -172,7 +172,7 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 
     if (successfullySolved && isFinalPuzzleOfGame)
     {
-        fl_message("You have mastered all the puzzles... Congrats!");
+        window->showFinalRoundWindow();
     }
     else if (successfullySolved && !isLastPuzzleOfDifficulty)
     {
@@ -184,17 +184,25 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     }
     else if (successfullySolved && isLastPuzzleOfDifficulty)
     {
-        //string message = "Wow.. you only made it to puzzle " + to_string(currentRound) + ".\n" +
-        //                "Moving to next difficulty..\n" +
-        //                "Good luck.";
-
-        //fl_message(message.c_str());
         window->showRoundEndWindow();
     }
     else
     {
         fl_message("Uh oh.. the board is not correct. Try again!");
         window->refreshColors();
+    }
+}
+
+void MainGameWindow::showFinalRoundWindow()
+{
+    switch (fl_choice("Do you want to restart the game?", "Yes", "No", 0))
+    {
+        case 0:
+            this->gameManager->resetGame();
+            this->refreshBoard();
+            break;
+        case 1:
+            break;
     }
 }
 

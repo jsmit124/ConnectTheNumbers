@@ -71,6 +71,7 @@ class MainGameWindow : public Fl_Window
         void startGame();
         void stopGame();
         void showRoundEndWindow();
+        void showFinalRoundWindow();
 
         static void cbEvaluateButtonClicked(Fl_Widget*, void*);
         static void cbResetButtonClicked(Fl_Widget*, void*);

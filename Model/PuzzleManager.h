@@ -25,6 +25,8 @@ class PuzzleManager
         PuzzleManager(int);
         virtual ~PuzzleManager();
 
+        void resetCurrentPuzzleIndex();
+        void setPuzzleAt(Puzzle puzzle, int index);
         int getCurrentValidEndNodeIndex();
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         int getNextNodeOfSolvablePuzzle(int index);

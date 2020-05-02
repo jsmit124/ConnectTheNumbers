@@ -49,6 +49,7 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
+        void resetGame();
         void increaseTimeBy30();
         bool getIsGamePaused();
         void setIsGamePaused(bool condition);
