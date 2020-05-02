@@ -20,6 +20,7 @@ ColorSelectionWindow::ColorSelectionWindow() : Fl_Window(250, 325, "Select a col
         this->cyanButton->callback(cbCyan, this);
         this->magentaButton->callback(cbMagenta, this);
         this->cancelButton->callback(cbCancel, this);
+        this->callback(ColorSelectionWindow::cbOnWindowClose, this);
 }
 
 Fl_Color ColorSelectionWindow::getColor()
@@ -77,6 +78,13 @@ void ColorSelectionWindow::cbMagenta(Fl_Widget* widget, void* data)
 void ColorSelectionWindow::cbCancel(Fl_Widget* widget, void* data)
 {
     ColorSelectionWindow* window = (ColorSelectionWindow*)data;
+    window->setColor(0);
+    window->hide();
+}
+
+void ColorSelectionWindow::cbOnWindowClose(Fl_Widget *, void *data)
+{
+    auto *window = (ColorSelectionWindow*) data;
     window->setColor(0);
     window->hide();
 }

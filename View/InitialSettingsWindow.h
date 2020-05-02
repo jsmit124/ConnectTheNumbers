@@ -82,6 +82,7 @@ class InitialSettingsWindow : public Fl_Window
         static void cbLoadSave(Fl_Widget*, void*);
         static void cbSelectPuzzle(Fl_Widget*, void*);
         static void cbChooseTextColor(Fl_Widget*, void*);
+        static void cbOnWindowClose(Fl_Widget*, void *);
 };
 
 }

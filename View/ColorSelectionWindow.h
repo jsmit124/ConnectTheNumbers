@@ -35,6 +35,7 @@ class ColorSelectionWindow : public Fl_Window
         static void cbCyan(Fl_Widget*, void*);
         static void cbMagenta(Fl_Widget*, void*);
         static void cbCancel(Fl_Widget*, void*);
+        static void cbOnWindowClose(Fl_Widget*, void*);
 };
 
 }

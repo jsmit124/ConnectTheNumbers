@@ -26,6 +26,7 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 350, "Connect th
     this->lastSaveButton->callback(cbLoadSave, this);
     this->chooseLevelButton->callback(cbSelectPuzzle, this);
     this->chooseTextColorButton->callback(cbChooseTextColor, this);
+    this->callback(InitialSettingsWindow::cbOnWindowClose, this);
 
     this->chosenButtonColor = FL_DARK3;
     this->chosenTextColor = FL_WHITE;
@@ -227,6 +228,12 @@ void InitialSettingsWindow::cbChooseTextColor(Fl_Widget* widget, void* data)
     {
         window->setTextColor(colorWindow.getColor());
     }
+}
+
+void InitialSettingsWindow::cbOnWindowClose(Fl_Widget *, void *data)
+{
+    auto *window = (InitialSettingsWindow*) data;
+    window->closeHandler();
 }
 
 void InitialSettingsWindow::setTextColorToAllButtons(Fl_Color color)
