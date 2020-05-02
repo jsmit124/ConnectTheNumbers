@@ -34,11 +34,19 @@ int Puzzle::getId()
     return this->id;
 }
 
+/// Returns the puzzle node value based on [index]
+//
+// @param index: index to get value from
+// @return the node value at index
 int Puzzle::getPuzzleNodeValue(int index)
 {
     return this->nodes.at(index).getValue();
 }
 
+/// Returns if the puzzle node at [index] is editable
+//
+// @param index: the index to check
+// @return true if the node is editable
 bool Puzzle::isPuzzleNodeEditable(int index)
 {
     return this->nodes.at(index).getIsEditable();
@@ -117,16 +125,24 @@ void Puzzle::replace(int value, int index)
     node.setValue(value);
 }
 
+/// Returns the start location.
+// @return the start location
 int Puzzle::getStartLocation()
 {
     return this->startLocation;
 }
 
+/// Function to start recursive call to evaluate each node starting
+/// at this->startLocation. Returns true if evaluated correctly.
+// @return true if passes evaluation; otherwise false
 bool Puzzle::evaluate()
 {
     return this->evaluateNode(this->startLocation);
 }
 
+/// Recursive function to evaluate node.
+/// Calls itself if next index contains valid value (1 greater than prev)
+// @return true if evaluation of node is good; otherwise false
 bool Puzzle::evaluateNode(int index)
 {
     int value = this->nodes.at(index).getValue();
@@ -147,6 +163,9 @@ bool Puzzle::evaluateNode(int index)
     return isValid;
 }
 
+/// Returns the current node index based on [prevIndex]
+// @param prevIndex: the prev index
+// @return the next node index based on prevIndex
 int Puzzle::getNextNodeIndex(int prevIndex)
 {
     int nextNodeIndex = -1;
@@ -167,20 +186,23 @@ int Puzzle::getNextNodeIndex(int prevIndex)
         int leftIndex = prevIndex - 1;
         this->checkIfNextNode(prevIndex, leftIndex, nextNodeIndex);
     }
-    if ((prevIndex - 8) >= minimum)
+    if ((prevIndex - PUZZLE_WIDTH) >= minimum)
     {
-        int topIndex = prevIndex - 8;
+        int topIndex = prevIndex - PUZZLE_WIDTH;
         this->checkIfNextNode(prevIndex, topIndex, nextNodeIndex);
     }
-    if ((prevIndex + 8) < maximum)
+    if ((prevIndex + PUZZLE_WIDTH) < maximum)
     {
-        int bottomIndex = prevIndex + 8;
+        int bottomIndex = prevIndex + PUZZLE_WIDTH;
         this->checkIfNextNode(prevIndex, bottomIndex, nextNodeIndex);
     }
 
     return nextNodeIndex;
 }
 
+/// Returns if the first node has been found (node w/ value of 1)
+//
+// @return true if first node is found; otherwise false
 bool Puzzle::foundFirstNode()
 {
     if (this->startLocation < 0)
@@ -190,6 +212,8 @@ bool Puzzle::foundFirstNode()
     return this->nodes.at(this->startLocation).getValue() == 1;
 }
 
+/// Returns the current end node index (node last in guessed path)
+// @return the last node in the guessed path index
 int Puzzle::getCurrentEndNodeIndex()
 {
     int currIndex = this->startLocation;
@@ -214,6 +238,36 @@ int Puzzle::getCurrentEndNodeIndex()
     }
 
     return currIndex;
+}
+
+/// Returns the time spent solving puzzle
+// @return the time spent
+int Puzzle::getTimeSpent() const
+{
+    return this->timeSpent;
+}
+
+/// Sets the time spent to [timeSpent]
+// @param timeSpent: the time spent on puzzle
+// @post: this->timeSpent = timeSpent
+void Puzzle::setTimeSpent(int timeSpent)
+{
+    this->timeSpent = timeSpent;
+}
+
+/// Increments the time by [timeIncrease]
+// @param timeIncrease: increase time by timeIncrease
+// @post: increments the time by [timeIncrease]
+void Puzzle::incrementTimeBy(int timeIncrease)
+{
+    this->timeSpent += timeIncrease;
+}
+
+/// Increments timeSpent by one
+// @post: this->timeSpent++
+void Puzzle::incrementTimeSpent()
+{
+    this->timeSpent++;
 }
 
 void Puzzle::checkIfNextNode(int prevIndex, int nextIndex, int& nextNodeIndex)
@@ -242,26 +296,6 @@ bool Puzzle::isOnLeftSide(int index)
 bool Puzzle::isOnRightSide(int index)
 {
     return (((index + 1) % 8) == 0);
-}
-
-int Puzzle::getTimeSpent() const
-{
-    return this->timeSpent;
-}
-
-void Puzzle::setTimeSpent(int timeSpent)
-{
-    this->timeSpent = timeSpent;
-}
-
-int Puzzle::incrementTimeBy(int timeIncrease)
-{
-    this->timeSpent += timeIncrease;
-}
-
-void Puzzle::incrementTimeSpent()
-{
-    this->timeSpent++;
 }
 
 }

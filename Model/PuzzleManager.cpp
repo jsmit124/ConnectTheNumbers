@@ -57,11 +57,13 @@ void PuzzleManager::moveToNextPuzzle()
     this->currentPuzzleIndex++;
 }
 
-void PuzzleManager::setPuzzleAt(Puzzle puzzle, int index)
+    void PuzzleManager::setPuzzleAt(Puzzle puzzle, int index)
 {
     this->puzzles.at(index) = puzzle;
 }
 
+/// Resets the current puzzle index to 0
+// @post: this->currentPuzzleIndex = 0
 void PuzzleManager::resetCurrentPuzzleIndex()
 {
     this->currentPuzzleIndex = 0;
@@ -77,15 +79,22 @@ Puzzle& PuzzleManager::getCurrentPuzzle()
     return this->puzzles.at(this->currentPuzzleIndex);
 }
 
+/// Returns the current puzzle solved value at [index]
+//
+// @param index: the index of value
+// @return the puzzle solved value
 int PuzzleManager::getCurrentPuzzleSolvedNodeValue(int index)
 {
     return this->solvedPuzzles.at(this->currentPuzzleIndex).getPuzzleNodeValue(index);
 }
 
-int PuzzleManager::getNextNodeOfSolvablePuzzle(int index)
+/// Get the next node index of the solvable puzzle
+// @param prevIndex: the prev index
+// @return the next index
+int PuzzleManager::getNextNodeOfSolvablePuzzle(int prevIndex)
 {
     Puzzle puzzle = this->solvedPuzzles.at(this->currentPuzzleIndex);
-    return puzzle.getNextNodeIndex(index);
+    return puzzle.getNextNodeIndex(prevIndex);
 }
 
 /// Returns the current puzzle id (+1 for vector offset)
@@ -99,6 +108,8 @@ int PuzzleManager::getCurrentPuzzleId()
     return this->currentPuzzleIndex + 1;
 }
 
+/// Returns current valid end node index of guessed path
+// @return the int of end node index
 int PuzzleManager::getCurrentValidEndNodeIndex()
 {
     int endIndex = this->getCurrentPuzzle().getCurrentEndNodeIndex();
@@ -113,24 +124,31 @@ int PuzzleManager::getCurrentValidEndNodeIndex()
     return endIndex;
 }
 
+/// Returns the next node index of current puzzle
+// @param prevIndex: the prev index
+// @return the next index
 int PuzzleManager::getNextNodeIndexOfCurrentPuzzle(int prevIndex)
 {
     return this->getCurrentPuzzle().getNextNodeIndex(prevIndex);
 }
 
-/// TODO
-//
+/// Returns the evaluation of the puzzle.
+// @return the current puzzles evaluation
 bool PuzzleManager::evaluateCurrentPuzzle()
 {
     int currentIndex = this->currentPuzzleIndex;
     return this->puzzles.at(currentIndex).evaluate();
 }
 
+/// Returns true if current puzzle is the final
+// @return true if current puzzle is the final
 bool PuzzleManager::isFinalPuzzle()
 {
     return this->getCurrentPuzzleId() == this->puzzles.size();
 }
 
+/// Returns true if is last puzzle based on [difficulty]
+// @return true if last puzzle of current difficulty
 bool PuzzleManager::isLastPuzzle(Difficulty difficulty)
 {
     return this->getCurrentPuzzleId() >= difficulty;

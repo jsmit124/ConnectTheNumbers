@@ -12,15 +12,18 @@ using namespace std;
 namespace io
 {
 
+/// Functionality to write settings
+//
 class SettingsWriter
 {
-    private:
 
-    public:
-        SettingsWriter();
-        virtual ~SettingsWriter();
+private:
 
-        void writeSettingsToFile(const string& filename, PlayerSettings& settings);
+public:
+    SettingsWriter();
+    virtual ~SettingsWriter();
+
+    void writeSettingsToFile(const string& filename, PlayerSettings& settings);
 };
 
 }

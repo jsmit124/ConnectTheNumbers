@@ -18,6 +18,7 @@
 					<Add directory="Utils" />
 					<Add directory="View" />
 					<Add directory="Settings" />
+					<Add directory="./" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -33,6 +34,7 @@
 					<Add directory="Utils" />
 					<Add directory="View" />
 					<Add directory="Settings" />
+					<Add directory="./" />
 				</Compiler>
 			</Target>
 		</Build>

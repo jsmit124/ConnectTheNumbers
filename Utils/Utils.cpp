@@ -29,6 +29,9 @@ vector<string> split(string stringToSplit, string delimeter)
     return splittedString;
 }
 
+/// Returns true if the file [filename] exists
+// @param filename: the name of the file to check
+// @return true if file exists; otherwise false
 bool checkFileExists(const string& filename)
 {
     ifstream inFile(filename);
@@ -38,11 +41,18 @@ bool checkFileExists(const string& filename)
     return good;
 }
 
+/// Returns input filtered to only numbers
+// @param input: the input strign to strip
+// @return string formatted to only #'s
 string filterNumbers(string input)
 {
     return regex_replace(input, regex(R"([\D])"), "");
 }
 
+/// Converst the text to int
+// @param text: to convert
+// @param errorMessage: the message to throw
+// @return int from conversion
 int toInt(const string& text, const char* errorMessage)
 {
     istringstream streamConversion(text);
@@ -55,6 +65,9 @@ int toInt(const string& text, const char* errorMessage)
     return value;
 }
 
+/// Formats the seconds to a specfied string
+// @param totalSeconds: the seconds to format
+// @return string formatted to time format
 string formatDurationHoursSeconds(int totalSeconds)
 {
     int minutes = totalSeconds / SECONDS_IN_A_MINUTE;

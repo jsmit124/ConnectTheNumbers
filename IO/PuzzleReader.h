@@ -38,19 +38,19 @@ class PuzzleReader
     const string DELIMETER = ",";
     const int PUZZLE_START_LOCATION = 1;
 
-    private:
-        void loadPuzzleNodes(Puzzle& puzzle, string& line);
-        const PuzzleNode formatPuzzleNode(string nodeString);
-        Puzzle readPuzzleFromFile(const string& filename);
+private:
+    void loadPuzzleNodes(Puzzle& puzzle, string& line);
+    const PuzzleNode formatPuzzleNode(string nodeString);
+    Puzzle readPuzzleFromFile(const string& filename);
 
-    public:
-        PuzzleReader();
-        virtual ~PuzzleReader();
+public:
+    PuzzleReader();
+    virtual ~PuzzleReader();
 
-        Puzzle readPuzzleNumber(int puzzleNumber);
-        Puzzle readSavedPuzzle();
-        vector<Puzzle> readAllPuzzles(int puzzleCount);
-        vector<Puzzle> readAllSolvedPuzzles(int puzzleCount);
+    Puzzle readPuzzleNumber(int puzzleNumber);
+    Puzzle readSavedPuzzle();
+    vector<Puzzle> readAllPuzzles(int puzzleCount);
+    vector<Puzzle> readAllSolvedPuzzles(int puzzleCount);
 };
 
 }

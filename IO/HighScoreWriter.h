@@ -13,18 +13,22 @@ using namespace model;
 
 namespace io
 {
-    class HighScoreWriter
-    {
-    private:
-        void writeScore(ofstream *stream, HighScoreEntry* entry);
 
-    public:
-        HighScoreWriter();
-        virtual ~HighScoreWriter();
+/// Handles writing scores to a file
+//
+class HighScoreWriter
+{
 
-        void writeHighScores(HighScoreManager *manager, const string& fileName);
-    };
+private:
+    void writeScore(ofstream *stream, HighScoreEntry* entry);
+
+public:
+    HighScoreWriter();
+    virtual ~HighScoreWriter();
+
+    void writeHighScores(HighScoreManager *manager, const string& fileName);
+};
+
 }
-
 
 #endif //MOVIEPLAITER_HIGHSCOREWRITER_H

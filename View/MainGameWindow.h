@@ -3,6 +3,7 @@
 
 #include "../Controller/GameManager.h"
 
+#include "Messenger.h"
 #include "PuzzleGrid.h"
 #include "InitialSettingsWindow.h"
 #include "HighScoresWindow.h"
@@ -63,8 +64,11 @@ class MainGameWindow : public Fl_Window
         void startGameTimer();
         static void onTimerTick(void *data);
 
-        void drawTimerLabel();
+        void handlePause();
+        void handleGameFinished();
+        void handleEvaluateCorrectly();
 
+        void drawTimerLabel();
         void refreshTimerLabel();
 
     private:
