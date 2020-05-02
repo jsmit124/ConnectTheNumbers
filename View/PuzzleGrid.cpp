@@ -18,6 +18,9 @@ namespace view {
         this->invalidNodeColor = new Fl_Color(FL_RED);
 
         this->drawPuzzleGrid(x, y, manager);
+
+        this->defaultBackgroundColor = manager->getSettings()->getButtonColor();
+        this->defaultLabelColor = manager->getSettings()->getTextColor();
     }
 
     /// Draws the puzzle grid
