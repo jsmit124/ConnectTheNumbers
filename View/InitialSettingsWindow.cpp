@@ -150,7 +150,8 @@ void InitialSettingsWindow::cbButtonColorButtonClick(Fl_Widget* widget, void* da
     {
         Fl::wait();
     }
-    if (colorWindow.getColor() >= 0)
+
+    if (colorWindow.getColor() != 0)
     {
         window->setButtonColor(colorWindow.getColor());
     }
@@ -168,7 +169,8 @@ void InitialSettingsWindow::cbBackgroundColorButtonClick(Fl_Widget* widget, void
     {
         Fl::wait();
     }
-    if (colorWindow.getColor() >= 0)
+
+    if (colorWindow.getColor() != 0)
     {
         window->setBackgroundColor(colorWindow.getColor());
     }
@@ -221,7 +223,8 @@ void InitialSettingsWindow::cbChooseTextColor(Fl_Widget* widget, void* data)
     {
         Fl::wait();
     }
-    if (colorWindow.getColor() >= 0)
+
+    if (colorWindow.getColor() != 0)
     {
         window->setTextColor(colorWindow.getColor());
     }

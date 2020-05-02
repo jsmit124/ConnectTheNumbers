@@ -55,6 +55,7 @@ class InitialSettingsWindow : public Fl_Window
 
     private:
         static const int MAX_PUZZLE_COUNT = 12;
+        static const int NO_COLOR_SELECTED_VALUE = 21845;
 
         Fl_Button* startButton;
         Fl_Button* closeButton;

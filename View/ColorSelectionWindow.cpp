@@ -77,6 +77,7 @@ void ColorSelectionWindow::cbMagenta(Fl_Widget* widget, void* data)
 void ColorSelectionWindow::cbCancel(Fl_Widget* widget, void* data)
 {
     ColorSelectionWindow* window = (ColorSelectionWindow*)data;
+    window->setColor(0);
     window->hide();
 }
 
