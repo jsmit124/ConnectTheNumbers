@@ -116,6 +116,8 @@ void MainGameWindow::addPauseButton()
 {
     this->pauseButton = new Fl_Button(430, 10, 40, 40, "@||");
     this->pausePuzzleOverlay = new Fl_Box(30, 60, 440, 440, "This is not the puzzle\n you are looking for...");
+    this->pauseButton->labelsize(18);
+    this->pauseButton->labelfont(FL_SCREEN_BOLD);
     this->pausePuzzleOverlay->hide();
     this->pausePuzzleOverlay->labelsize(25);
     this->pausePuzzleOverlay->labelcolor(this->gameManager->getSettings()->getTextColor());
