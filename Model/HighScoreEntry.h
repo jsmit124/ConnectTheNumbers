@@ -11,24 +11,10 @@ namespace model {
 class HighScoreEntry
 {
     public:
-        /**
-         * Constructs a high score entry.
-         * @param name the name of the person achieving the high score
-         * @param duration the duration in which the person solved the puzzle
-         * @param puzzle the puzzle on which the high score was achieved on
-         */
         HighScoreEntry(std::string name, int duration, int puzzle);
 
-        /**
-         * Returns the name associated with this high score entry.
-         * @return the name
-         */
         const std::string &getName() const;
 
-        /**
-         * Returns the duration associated with this high score entry.
-         * @return the duration
-         */
         int getDuration() const;
 
         int getPuzzle() const;

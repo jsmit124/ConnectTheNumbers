@@ -144,6 +144,8 @@ void GameManager::saveCurrentPuzzle()
     this->puzzleWriter.savePuzzleToFile(puzzle);
 }
 
+/// Called whenever the game timer loop fires.
+/// \post this->getTimeSpentOnPuzzle() increments by 1
 void GameManager::onTimerTick()
 {
     if (!this->isGamePaused)
@@ -152,6 +154,10 @@ void GameManager::onTimerTick()
     }
 }
 
+/// Increases the timer by 30 seconds. This is used to penalize those who try to get a hint.
+///
+/// @precondition none
+/// @postcondition this->getTimeSpentOnPuzzle() == @prev + 30
 void GameManager::increaseTimeBy30()
 {
     if (!this->isGamePaused)
@@ -160,11 +166,18 @@ void GameManager::increaseTimeBy30()
     }
 }
 
+//// Returns whether or not the game is paused.
+///
+/// @return whether or not the game is paused
 bool GameManager::getIsGamePaused()
 {
     return this->isGamePaused;
 }
 
+//// Sets whether or not the game is paused.
+///
+/// @param condition whether or not the game is paused
+/// @post this->getIsGamePaused() == condition
 void GameManager::setIsGamePaused(bool condition)
 {
     this->isGamePaused = condition;
@@ -210,26 +223,42 @@ void GameManager::setPuzzleNodeValue(int value, int index)
     this->puzzleManager->getCurrentPuzzle().replace(value, index);
 }
 
+/// Evaluates the current puzzle and ensures that all rows are correctly filled in.
+///
+/// \return true if the puzzle was solved, false otherwise
 bool GameManager::evaluateCurrentPuzzle()
 {
     return this->puzzleManager->evaluateCurrentPuzzle();
 }
 
+/// Returns how much time the user has spent solving this puzzle.
+///
+/// \return the time the user has spent solving this puzzle
 int GameManager::getTimeSpentOnPuzzle() const
 {
     return this->puzzleManager->getCurrentPuzzle().getTimeSpent();
 }
 
+/// Returns the top ten scores by duration, ascending.
+///
+/// \return the top ten scores by duration
 vector<HighScoreEntry *> GameManager::getTopTenScoresByDuration()
 {
     return this->highScoreManager->getTopTenByDuration();
 }
 
+/// Returns the top ten scores by puzzle, in a two-level sort that sorts by puzzle and then duration.
+///
+/// \return the top ten scores by puzzle
 vector<HighScoreEntry *> GameManager::getTopTenScoresByPuzzle()
 {
     return this->highScoreManager->getTopTenByPuzzle();
 }
 
+/// Records that the game has been completed by a certain user and enters it into the scoreboard.
+///
+/// \param name the name of the player
+/// \post Attempt is recorded in the scoreboard.
 void GameManager::recordGameCompletion(const string& name)
 {
     this->highScoreManager->add(name, this->puzzleManager->getCurrentPuzzle().getTimeSpent(),
@@ -245,12 +274,18 @@ void GameManager::loadHighScores()
     }
 }
 
+/// Saves all the high scores to disk.
+///
+/// @post The scoreboard will be saved to disk.
 void GameManager::saveHighScores()
 {
     HighScoreWriter scoreWriter;
     scoreWriter.writeHighScores(this->highScoreManager, SAVED_SCOREBOARD_PATH);
 }
 
+/// Clears all the high scores.
+///
+/// @post The high scoreboard shall be empty.
 void GameManager::clearHighScores()
 {
     this->highScoreManager->clear();

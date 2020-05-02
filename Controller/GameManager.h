@@ -42,6 +42,9 @@ class GameManager
         PlayerSettings* playerSettings;
 
         void readPreviousSettings();
+        void initialize();
+        void loadPuzzles();
+        void loadHighScores();
         bool doesSavedFileExist;
         bool isGamePaused;
 
@@ -70,10 +73,8 @@ class GameManager
         bool evaluateCurrentPuzzle();
         int getPuzzleNodeValue(int index);
         bool isPuzzleNodeEditable(int index);
-        void initialize();
         void setPuzzleNodeValue(int value, int index);
         int getCurrentPuzzleNumber();
-        void loadPuzzles();
         void loadSavedPuzzle();
         void saveCurrentPuzzle();
         vector<HighScoreEntry*> getTopTenScoresByDuration();
@@ -82,8 +83,6 @@ class GameManager
         void saveHighScores();
 
         void onTimerTick();
-
-        void loadHighScores();
 
         int getTimeSpentOnPuzzle() const;
 
