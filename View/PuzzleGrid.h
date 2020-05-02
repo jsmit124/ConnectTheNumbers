@@ -43,6 +43,8 @@ namespace view {
         void resetColors(GameManager*);
         void resetBoard(GameManager*);
         void colorEvaluationPath(GameManager*);
+        void deactivate();
+        void activate();
 
     private:
         Fl_Group *gridGroup;

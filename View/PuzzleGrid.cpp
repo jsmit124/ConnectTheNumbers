@@ -55,6 +55,16 @@ namespace view {
         this->gridGroup->end();
     }
 
+    void PuzzleGrid::deactivate()
+    {
+        this->gridGroup->deactivate();
+    }
+
+    void PuzzleGrid::activate()
+    {
+        this->gridGroup->activate();
+    }
+
     void PuzzleGrid::updatePuzzleNode(int index, GameManager* gameManager)
     {
         PuzzleGridButton* button = this->gridButtons.at(index);

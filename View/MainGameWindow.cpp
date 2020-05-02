@@ -25,6 +25,8 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     this->startGameTimer();
     this->callback(MainGameWindow::cbOnWindowClose, this);
 
+    this->highScoresWindow = new HighScoresWindow(this->gameManager);
+
     end();
 }
 
@@ -186,13 +188,19 @@ void MainGameWindow::cbResetButtonClicked(Fl_Widget* widget, void* data)
     window->refreshTimerLabel();
 }
 
+HighScoresWindow* MainGameWindow::getHighScoresWindow()
+{
+    return this->highScoresWindow;
+}
+
 void MainGameWindow::cbViewHighScoresClicked(Fl_Widget* widget, void* data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
-    HighScoresWindow highScoresWindow(window->gameManager);
-    highScoresWindow.show();
+    HighScoresWindow* highScoresWindow = window->getHighScoresWindow();
+    highScoresWindow->refreshTableData();
+    highScoresWindow->show();
 
-    while (highScoresWindow.shown())
+    while (highScoresWindow->shown())
     {
         Fl::wait();
     }
@@ -216,6 +224,7 @@ void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
 void MainGameWindow::stopGame()
 {
     this->pauseButton->label("@>");
+    this->puzzleGrid->deactivate();
     this->pausePuzzleOverlay->show();
     this->gameManager->setIsGamePaused(true);
     this->resetButton->deactivate();
@@ -225,6 +234,7 @@ void MainGameWindow::stopGame()
 void MainGameWindow::startGame()
 {
     this->pauseButton->label("@||");
+    this->puzzleGrid->activate();
     this->pausePuzzleOverlay->hide();
     this->gameManager->setIsGamePaused(false);
     this->resetButton->activate();
@@ -264,6 +274,7 @@ void MainGameWindow::cbOnWindowClose(Fl_Widget *, void *data)
     window->gameManager->saveHighScores();
     window->gameManager->saveSettings();
 
+    window->getHighScoresWindow()->hide();
     window->hide();
 }
 
