@@ -101,12 +101,12 @@ void MainGameWindow::refreshBoard()
     this->puzzleNumberLabel->copy_label(labelText.c_str());
 
     this->puzzleGrid->resetBoard(this->gameManager);
-    this->puzzleGrid->resetColors(this->gameManager);
+    this->puzzleGrid->resetColors();
 }
 
 void MainGameWindow::refreshColors()
 {
-    this->puzzleGrid->resetColors(this->gameManager);
+    this->puzzleGrid->resetColors();
 }
 
 ///Adds the submit button to the screen

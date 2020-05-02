@@ -6,8 +6,11 @@ using namespace std;
 
 namespace view {
 
+/// Handles implementation of the PuzzleGridButton button widget
+//
 class PuzzleGridButton : public Fl_Button
 {
+
     public:
         PuzzleGridButton(int x, int y, int width, int height, int inputID);
         virtual ~PuzzleGridButton();
@@ -17,6 +20,7 @@ class PuzzleGridButton : public Fl_Button
 
     private:
         int ID;
+
 };
 
 }

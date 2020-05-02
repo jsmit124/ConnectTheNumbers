@@ -12,6 +12,8 @@ using namespace std;
 namespace view
 {
 
+/// Handles implementation of the PuzzleSelectionWindow UI window
+//
 class PuzzleSelectionWindow : public Fl_Window
 {
     public:
@@ -35,6 +37,9 @@ class PuzzleSelectionWindow : public Fl_Window
 
         static void cbOk(Fl_Widget*, void*);
         static void cbCancel(Fl_Widget*, void*);
+
+        void addButtonsToWindow();
+        void setCallbacksForButtons();
 
 };
 

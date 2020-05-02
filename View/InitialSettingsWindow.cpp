@@ -3,104 +3,138 @@
 namespace view
 {
 
+/// Instantiates a new InitialSettingsWindow window for taking user input
+//
+// @pre none
+// @post none
+//
 InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 350, "Connect the Numbers")
 {
     begin();
 
-    this->value = 0;
-
-    this->lastSaveButton = new Fl_Button(25, 25, 200, 30, "Continue game");
-    this->startButton = new Fl_Button(25, 65, 200, 30, "Start");
-    this->chooseLevelButton = new Fl_Button(25, 105, 200, 30, "Select Puzzle");
-    this->chooseDifficultyButton = new Fl_Button(25, 145, 200, 30, "Choose difficulty");
-    this->chooseBackgroundColorButton = new Fl_Button(25, 185, 200, 30, "Choose background color");
-    this->chooseButtonColorButton = new Fl_Button(25, 225, 200, 30, "Choose button color");
-    this->chooseTextColorButton = new Fl_Button(25, 265, 200, 30, "Choose text color");
-    this->closeButton = new Fl_Button(25, 305, 200, 30, "Close");
-
-    this->startButton->callback(cbStart, this);
-    this->closeButton->callback(cbClose, this);
-    this->chooseButtonColorButton->callback(cbButtonColorButtonClick, this);
-    this->chooseBackgroundColorButton->callback(cbBackgroundColorButtonClick, this);
-    this->chooseDifficultyButton->callback(cbDifficultyButtonClick, this);
-    this->lastSaveButton->callback(cbLoadSave, this);
-    this->chooseLevelButton->callback(cbSelectPuzzle, this);
-    this->chooseTextColorButton->callback(cbChooseTextColor, this);
-    this->callback(InitialSettingsWindow::cbOnWindowClose, this);
-
-    this->chosenButtonColor = FL_DARK3;
-    this->chosenTextColor = FL_WHITE;
-    this->chosenDifficulty = Difficulty::EASY;
-    this->chosenPuzzleNumber = 0;
-    this->loadSavedPuzzle = false;
-
-    this->color(this->chosenBackgroundColor);
-    this->setColorToAllButtons(this->chosenButtonColor);
-    this->setTextColorToAllButtons(this->chosenTextColor);
+    this->drawAllButtons();
+    this->setCallbacks();
+    this->setDefaultValues();
+    this->setColorScheme();
 
     end();
 }
 
+/// Handles functionality for the start button click event
+//
+// @pre none
+// @post none
+//
 void InitialSettingsWindow::startHandler()
 {
     this->hide();
 }
 
+/// Handles functionality for the close button click event
+//
+// @pre none
+// @post none
+//
 void InitialSettingsWindow::closeHandler()
 {
     exit(EXIT_FAILURE);
 }
 
-void InitialSettingsWindow::setButtonColor(Fl_Color color)
+/// Returns the button color selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->chosenButtonColor
+//
+Fl_Color InitialSettingsWindow::getSelectedButtonColor()
 {
-    this->chosenButtonColor = color;
-    this->setColorToAllButtons(color);
+    return this->chosenButtonColor;
 }
 
-void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
+/// Returns the boolean value for whether or not to load a saved puzzle
+//
+// @pre none
+// @post none
+//
+// @return true if program should load the saved puzzle;
+//      false otherwise
+//
+bool InitialSettingsWindow::getLoadSavedPuzzle()
 {
-    this->startButton->color(color);
-    this->closeButton->color(color);
-    this->chooseButtonColorButton->color(color);
-    this->chooseBackgroundColorButton->color(color);
-    this->chooseDifficultyButton->color(color);
-    this->lastSaveButton->color(color);
-    this->chooseLevelButton->color(color);
-    this->chooseTextColorButton->color(color);
-
-    this->startButton->redraw();
-    this->closeButton->redraw();
-    this->chooseButtonColorButton->redraw();
-    this->chooseBackgroundColorButton->redraw();
-    this->chooseDifficultyButton->redraw();
-    this->lastSaveButton->redraw();
-    this->chooseLevelButton->redraw();
-    this->chooseTextColorButton->redraw();
+    return this->loadSavedPuzzle;
 }
 
-void InitialSettingsWindow::setBackgroundColor(Fl_Color color)
+/// Returns the background color selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->chosenBackgroundColor
+//
+Fl_Color InitialSettingsWindow::getSelectedBackgroundColor()
 {
-    this->chosenBackgroundColor = color;
-    this->color(color);
-    this->redraw();
+    return this->chosenBackgroundColor;
 }
 
-void InitialSettingsWindow::setDifficulty(Difficulty selection)
+/// Returns the difficulty setting selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->chosenDifficulty
+//
+Difficulty InitialSettingsWindow::getSelectedDifficulty()
 {
-    this->chosenDifficulty = selection;
+    return this->chosenDifficulty;
 }
 
-void InitialSettingsWindow::setTextColor(Fl_Color color)
+/// Returns the puzzle number selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->chosenPuzzleNumber
+//
+int InitialSettingsWindow::getSelectedPuzzle()
 {
-    this->chosenTextColor = color;
-    this->setTextColorToAllButtons(color);
+    return this->chosenPuzzleNumber;
 }
 
+/// Returns the text color selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->chosenTextColor
+//
+Fl_Color InitialSettingsWindow::getSelectedTextColor()
+{
+    return this->chosenTextColor;
+}
+
+/// Sets the boolean value for whether or not to load the saved puzzle
+//
+// @pre none
+// @post this->loadSavedPuzzle EQUALS condition
+//
+// @param condition true if program should load the saved puzzle;
+//      false otherwise
+//
 void InitialSettingsWindow::setLoadSavedPuzzle(bool condition)
 {
     this->loadSavedPuzzle = condition;
 }
 
+/// Sets the saved button state
+//
+// @pre none
+// @post this->lastSaveButton is activated if condition EQUALS true
+//      otherwise, this->lastSaveButton is deactivated
+//
+// @param condition true if the button should be activated
+//      false otherwise
+//
 void InitialSettingsWindow::setSavedButtonState(bool condition)
 {
     if (condition)
@@ -113,10 +147,166 @@ void InitialSettingsWindow::setSavedButtonState(bool condition)
     }
 }
 
+/// Sets the button color and applies it to all buttons on the window
+//
+// @pre none
+// @post this->chosenButtonColor EQUALS color
+//
+// @param color the color value selected by the user
+//
+void InitialSettingsWindow::setButtonColor(Fl_Color color)
+{
+    this->chosenButtonColor = color;
+    this->setColorToAllButtons(color);
+}
+
+/// Sets the background color and applies it to the window
+//
+// @pre none
+// @post this->chosenBackgroundColor EQUALS color
+//
+// @param color the color value selected by the user
+//
+void InitialSettingsWindow::setBackgroundColor(Fl_Color color)
+{
+    this->chosenBackgroundColor = color;
+    this->color(color);
+    this->redraw();
+}
+
+/// Sets the difficulty setting selected by the user
+//
+// @pre none
+// @post this->chosenDifficulty EQUALS selection
+//
+// @param selection the difficulty setting selected by the user
+//
+void InitialSettingsWindow::setDifficulty(Difficulty selection)
+{
+    this->chosenDifficulty = selection;
+}
+
+/// Sets the puzzle number selected by the user
+//
+// @pre none
+// @post this->loadSavedPuzzle EQUALS false
+//      AND this->chosenPuzzleNumber EQUALS puzzleNumber
+//
+// @param puzzleNumber the puzzle number selected by the user
+//
 void InitialSettingsWindow::setSelectedPuzzle(int puzzleNumber)
 {
     this->loadSavedPuzzle = false;
     this->chosenPuzzleNumber = puzzleNumber;
+}
+
+/// Sets the text color selected by the user
+//
+// @pre none
+// @post this->chosenTextColor EQUALS color
+//
+// @param color the color selected by the user
+//
+void InitialSettingsWindow::setTextColor(Fl_Color color)
+{
+    this->chosenTextColor = color;
+    this->setTextColorToAllButtons(color);
+}
+
+/// Applies the input color value to all the buttons in the window
+//
+// @pre none
+// @post all buttons color (property) EQUALS color (param)
+//
+// @param color the color to apply to all buttons in the window
+//
+void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
+{
+    this->startButton->color(color);
+    this->closeButton->color(color);
+    this->chooseButtonColorButton->color(color);
+    this->chooseBackgroundColorButton->color(color);
+    this->chooseDifficultyButton->color(color);
+    this->lastSaveButton->color(color);
+    this->chooseLevelButton->color(color);
+    this->chooseTextColorButton->color(color);
+
+    this->redrawButtons();
+}
+
+/// Applys the text color to all buttons in the window
+//
+// @pre none
+// @post all buttons labelcolor (property) EQUALS color (param)
+//
+// @param color the color to apply to all buttons labelcolor property
+//
+void InitialSettingsWindow::setTextColorToAllButtons(Fl_Color color)
+{
+    this->startButton->labelcolor(color);
+    this->closeButton->labelcolor(color);
+    this->chooseButtonColorButton->labelcolor(color);
+    this->chooseBackgroundColorButton->labelcolor(color);
+    this->chooseDifficultyButton->labelcolor(color);
+    this->lastSaveButton->labelcolor(color);
+    this->chooseLevelButton->labelcolor(color);
+    this->chooseTextColorButton->labelcolor(color);
+
+    this->redrawButtons();
+}
+
+void InitialSettingsWindow::drawAllButtons()
+{
+    this->lastSaveButton = new Fl_Button(25, 25, 200, 30, "Continue game");
+    this->startButton = new Fl_Button(25, 65, 200, 30, "Start");
+    this->chooseLevelButton = new Fl_Button(25, 105, 200, 30, "Select Puzzle");
+    this->chooseDifficultyButton = new Fl_Button(25, 145, 200, 30, "Choose difficulty");
+    this->chooseBackgroundColorButton = new Fl_Button(25, 185, 200, 30, "Choose background color");
+    this->chooseButtonColorButton = new Fl_Button(25, 225, 200, 30, "Choose button color");
+    this->chooseTextColorButton = new Fl_Button(25, 265, 200, 30, "Choose text color");
+    this->closeButton = new Fl_Button(25, 305, 200, 30, "Close");
+}
+
+void InitialSettingsWindow::setCallbacks()
+{
+    this->startButton->callback(cbStart, this);
+    this->closeButton->callback(cbClose, this);
+    this->chooseButtonColorButton->callback(cbButtonColorButtonClick, this);
+    this->chooseBackgroundColorButton->callback(cbBackgroundColorButtonClick, this);
+    this->chooseDifficultyButton->callback(cbDifficultyButtonClick, this);
+    this->lastSaveButton->callback(cbLoadSave, this);
+    this->chooseLevelButton->callback(cbSelectPuzzle, this);
+    this->chooseTextColorButton->callback(cbChooseTextColor, this);
+    this->callback(InitialSettingsWindow::cbOnWindowClose, this);
+}
+
+void InitialSettingsWindow::setDefaultValues()
+{
+    this->chosenButtonColor = FL_DARK3;
+    this->chosenTextColor = FL_WHITE;
+    this->chosenDifficulty = Difficulty::EASY;
+    this->chosenPuzzleNumber = 0;
+    this->loadSavedPuzzle = false;
+    this->value = 0;
+}
+
+void InitialSettingsWindow::setColorScheme()
+{
+    this->color(this->chosenBackgroundColor);
+    this->setColorToAllButtons(this->chosenButtonColor);
+    this->setTextColorToAllButtons(this->chosenTextColor);
+}
+
+void InitialSettingsWindow::redrawButtons()
+{
+    this->startButton->redraw();
+    this->closeButton->redraw();
+    this->chooseButtonColorButton->redraw();
+    this->chooseBackgroundColorButton->redraw();
+    this->chooseDifficultyButton->redraw();
+    this->lastSaveButton->redraw();
+    this->chooseLevelButton->redraw();
+    this->chooseTextColorButton->redraw();
 }
 
 void InitialSettingsWindow::cbStart(Fl_Widget* widget, void* data)
@@ -208,7 +398,6 @@ void InitialSettingsWindow::cbSelectPuzzle(Fl_Widget* widget, void* data)
     }
 
     window->setSelectedPuzzle(puzzleSelector.getPuzzleSelectionValue());
-
 }
 
 void InitialSettingsWindow::cbChooseTextColor(Fl_Widget* widget, void* data)
@@ -236,57 +425,8 @@ void InitialSettingsWindow::cbOnWindowClose(Fl_Widget *, void *data)
     window->closeHandler();
 }
 
-void InitialSettingsWindow::setTextColorToAllButtons(Fl_Color color)
-{
-    this->startButton->labelcolor(color);
-    this->closeButton->labelcolor(color);
-    this->chooseButtonColorButton->labelcolor(color);
-    this->chooseBackgroundColorButton->labelcolor(color);
-    this->chooseDifficultyButton->labelcolor(color);
-    this->lastSaveButton->labelcolor(color);
-    this->chooseLevelButton->labelcolor(color);
-    this->chooseTextColorButton->labelcolor(color);
-
-    this->startButton->redraw();
-    this->closeButton->redraw();
-    this->chooseButtonColorButton->redraw();
-    this->chooseBackgroundColorButton->redraw();
-    this->chooseDifficultyButton->redraw();
-    this->lastSaveButton->redraw();
-    this->chooseLevelButton->redraw();
-    this->chooseTextColorButton->redraw();
-}
-
-Fl_Color InitialSettingsWindow::getSelectedButtonColor()
-{
-    return this->chosenButtonColor;
-}
-
-bool InitialSettingsWindow::getLoadSavedPuzzle()
-{
-    return this->loadSavedPuzzle;
-}
-
-Fl_Color InitialSettingsWindow::getSelectedBackgroundColor()
-{
-    return this->chosenBackgroundColor;
-}
-
-Difficulty InitialSettingsWindow::getSelectedDifficulty()
-{
-    return this->chosenDifficulty;
-}
-
-int InitialSettingsWindow::getSelectedPuzzle()
-{
-    return this->chosenPuzzleNumber;
-}
-
-Fl_Color InitialSettingsWindow::getSelectedTextColor()
-{
-    return this->chosenTextColor;
-}
-
+/// Deconstructs the window and frees up all memory allocated to the window
+//
 InitialSettingsWindow::~InitialSettingsWindow()
 {
     delete this->startButton;

@@ -36,11 +36,12 @@ namespace view {
     /// A puzzle grid widget whose labels can be arbitrarily set and react to click events.
     //
     class PuzzleGrid {
+
     public:
         PuzzleGrid(int, int, GameManager* gameManager);
         ~PuzzleGrid();
 
-        void resetColors(GameManager*);
+        void resetColors();
         void resetBoard(GameManager*);
         void colorEvaluationPath(GameManager*);
         void colorPeekPath(GameManager* gameManager);
@@ -64,6 +65,9 @@ namespace view {
         void evaluate(int, GameManager*);
         void drawPuzzleGrid(int, int, GameManager*);
         static void cbButtonSelected(Fl_Widget*, void*);
+
+        void setDefaultColorValues(GameManager*);
+
     };
 }
 

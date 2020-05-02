@@ -3,6 +3,11 @@
 namespace view
 {
 
+/// Instantiates a new DifficultySelectionWindow
+//
+// @pre none
+// @post none
+//
 DifficultySelectionWindow::DifficultySelectionWindow() : Fl_Window(220, 90, "Difficulty Selection")
 {
     this->difficultyChoice = new Fl_Choice(115, 5, 100, 30, "Difficulty");
@@ -17,21 +22,35 @@ DifficultySelectionWindow::DifficultySelectionWindow() : Fl_Window(220, 90, "Dif
     this->difficultyValue = Difficulty::EASY;
 }
 
-void DifficultySelectionWindow::addDifficultyOptions()
-{
-    this->difficultyChoice->add("Easy");
-    this->difficultyChoice->add("Medium");
-    this->difficultyChoice->add("Hard");
-}
-
+/// Returns the difficulty value selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->difficultyValue
+//
 Difficulty DifficultySelectionWindow::getDifficultyValue()
 {
     return this->difficultyValue;
 }
 
+/// Sets the difficulty value selection from user input
+//
+// @pre none
+// @post this->difficultyValue EQUALS selection
+//
+// @param selection the value selected by the user
+//
 void DifficultySelectionWindow::setDifficultyValue(Difficulty selection)
 {
     this->difficultyValue = selection;
+}
+
+void DifficultySelectionWindow::addDifficultyOptions()
+{
+    this->difficultyChoice->add("Easy");
+    this->difficultyChoice->add("Medium");
+    this->difficultyChoice->add("Hard");
 }
 
 void DifficultySelectionWindow::cbOk(Fl_Widget* widget, void* data)
@@ -74,6 +93,8 @@ void DifficultySelectionWindow::cancelHandler()
     this->hide();
 }
 
+/// Deconstructs the window and frees all allocated memory
+//
 DifficultySelectionWindow::~DifficultySelectionWindow()
 {
     delete this->okButton;

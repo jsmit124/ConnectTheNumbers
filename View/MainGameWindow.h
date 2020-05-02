@@ -29,30 +29,10 @@ using namespace std;
 namespace view
 {
 
+/// Handles implementation of the MainGameWindow UI window
+//
 class MainGameWindow : public Fl_Window
 {
-    private:
-        PuzzleGrid* puzzleGrid;
-        GameManager* gameManager;
-        InitialSettingsWindow* settingsWindow;
-        HighScoresWindow* highScoresWindow;
-
-        Fl_Box* highScoresLabel;
-        Fl_Button* evaluateButton;
-        Fl_Button* resetButton;
-        Fl_Button* pauseButton;
-        Fl_Button* peekButton;
-        Fl_Button* viewHighScoresButton;
-        Fl_Box* pausePuzzleOverlay;
-        Fl_Box* puzzleNumberLabel;
-        Fl_Box* gameTimerLabel;
-
-        string getPuzzleNumberOutput();
-        void colorEvaluationPath();
-        void colorPeekPath();
-        void refreshColors();
-        void initialize();
-
     public:
         MainGameWindow(int width, int height, const char* title);
         virtual ~MainGameWindow();
@@ -86,6 +66,29 @@ class MainGameWindow : public Fl_Window
         void drawTimerLabel();
 
         void refreshTimerLabel();
+
+    private:
+        PuzzleGrid* puzzleGrid;
+        GameManager* gameManager;
+        InitialSettingsWindow* settingsWindow;
+        HighScoresWindow* highScoresWindow;
+
+        Fl_Box* highScoresLabel;
+        Fl_Button* evaluateButton;
+        Fl_Button* resetButton;
+        Fl_Button* pauseButton;
+        Fl_Button* peekButton;
+        Fl_Button* viewHighScoresButton;
+        Fl_Box* pausePuzzleOverlay;
+        Fl_Box* puzzleNumberLabel;
+        Fl_Box* gameTimerLabel;
+
+        string getPuzzleNumberOutput();
+        void colorEvaluationPath();
+        void colorPeekPath();
+        void refreshColors();
+        void initialize();
+
 };
 
 }

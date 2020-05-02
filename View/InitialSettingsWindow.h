@@ -26,6 +26,8 @@ using namespace std;
 namespace view
 {
 
+/// Handles implementation of the InitialSettingsWindow UI window
+//
 class InitialSettingsWindow : public Fl_Window
 {
     public:
@@ -55,7 +57,6 @@ class InitialSettingsWindow : public Fl_Window
 
     private:
         static const int MAX_PUZZLE_COUNT = 12;
-        static const int NO_COLOR_SELECTED_VALUE = 21845;
 
         Fl_Button* startButton;
         Fl_Button* closeButton;
@@ -83,6 +84,12 @@ class InitialSettingsWindow : public Fl_Window
         static void cbSelectPuzzle(Fl_Widget*, void*);
         static void cbChooseTextColor(Fl_Widget*, void*);
         static void cbOnWindowClose(Fl_Widget*, void *);
+
+        void drawAllButtons();
+        void setCallbacks();
+        void setDefaultValues();
+        void setColorScheme();
+        void redrawButtons();
 };
 
 }

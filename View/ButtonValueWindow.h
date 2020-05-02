@@ -13,6 +13,8 @@ using namespace std;
 namespace view
 {
 
+/// UI Window for taking user input through Fl_Input textbox
+//
 class ButtonValueWindow : public Fl_Window
 {
     public:

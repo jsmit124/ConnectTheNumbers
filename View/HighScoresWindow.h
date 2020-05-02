@@ -12,9 +12,11 @@ using namespace controller;
 using namespace model;
 
 namespace view {
+
     enum HighScoresSort { BY_DURATION, BY_PUZZLE };
 
     class HighScoresWindow : public Fl_Window {
+
     public:
         explicit HighScoresWindow(GameManager *manager);
         ~HighScoresWindow() override;

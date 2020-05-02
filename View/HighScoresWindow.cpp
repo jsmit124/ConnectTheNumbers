@@ -3,6 +3,13 @@
 namespace view
 {
 
+    /// Constructs a new HighScoresWindow to view high scores table
+    //
+    // @pre none
+    // @post this->manager EQUALS manager
+    //
+    // @param manager the manager to use in controller the view
+    //
     HighScoresWindow::HighScoresWindow(GameManager *manager) : Fl_Window(420, 460, "High Scores")
     {
         this->manager = manager;
@@ -20,6 +27,28 @@ namespace view
         this->sortChoice->value(0);
 
         this->applyColorScheme();
+    }
+
+    /// Refreshes the high scores table data
+    //
+    // @pre none
+    // @post table is refreshed with updated data
+    //
+    void HighScoresWindow::refreshTableData()
+    {
+        vector<HighScoreEntry*> entries;
+        switch (this->sortBy)
+        {
+            case BY_PUZZLE:
+                entries = this->manager->getTopTenScoresByPuzzle();
+                break;
+            case BY_DURATION:
+            default:
+                entries = this->manager->getTopTenScoresByDuration();
+                break;
+        }
+
+        this->table->refresh(entries);
     }
 
     void HighScoresWindow::applyColorScheme()
@@ -41,30 +70,6 @@ namespace view
         window->refreshTableData();
     }
 
-    void HighScoresWindow::refreshTableData()
-    {
-        vector<HighScoreEntry*> entries;
-        switch (this->sortBy)
-        {
-            case BY_PUZZLE:
-                entries = this->manager->getTopTenScoresByPuzzle();
-                break;
-            case BY_DURATION:
-            default:
-                entries = this->manager->getTopTenScoresByDuration();
-                break;
-        }
-
-        this->table->refresh(entries);
-    }
-
-    HighScoresWindow::~HighScoresWindow()
-    {
-        delete this->clearButton;
-        delete this->table;
-        delete this->sortChoice;
-    }
-
     void HighScoresWindow::cbSortChanged(Fl_Widget *, void *data)
     {
         auto *window = (HighScoresWindow *) data;
@@ -79,6 +84,15 @@ namespace view
         }
 
         window->refreshTableData();
+    }
+
+    /// Deconstructs the window and frees up all allocated memory
+    //
+    HighScoresWindow::~HighScoresWindow()
+    {
+        delete this->clearButton;
+        delete this->table;
+        delete this->sortChoice;
     }
 
 }

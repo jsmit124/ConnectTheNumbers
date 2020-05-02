@@ -3,31 +3,49 @@
 namespace view
 {
 
+/// Instantiates a new ColorSelectionWindow
+// Sets up all buttons and callbacks for taking user input
+//
+// @pre none
+// @post none
+//
 ColorSelectionWindow::ColorSelectionWindow() : Fl_Window(250, 325, "Select a color")
 {
-        this->blueButton = new Fl_Button(25, 25, 200, 30, "Blue");
-        this->darkButton = new Fl_Button(25, 67, 200, 30, "Dark");
-        this->whiteButton = new Fl_Button(25, 109, 200, 30, "White");
-        this->yellowButton = new Fl_Button(25, 151, 200, 30, "Yellow");
-        this->cyanButton = new Fl_Button(25,193, 200, 30, "Cyan");
-        this->magentaButton = new Fl_Button(25, 235, 200, 30, "Magenta");
-        this->cancelButton = new Fl_Button(25, 277, 200, 30,"Cancel");
+    this->blueButton = new Fl_Button(25, 25, 200, 30, "Blue");
+    this->darkButton = new Fl_Button(25, 67, 200, 30, "Dark");
+    this->whiteButton = new Fl_Button(25, 109, 200, 30, "White");
+    this->yellowButton = new Fl_Button(25, 151, 200, 30, "Yellow");
+    this->cyanButton = new Fl_Button(25,193, 200, 30, "Cyan");
+    this->magentaButton = new Fl_Button(25, 235, 200, 30, "Magenta");
+    this->cancelButton = new Fl_Button(25, 277, 200, 30,"Cancel");
 
-        this->blueButton->callback(cbBlue, this);
-        this->darkButton->callback(cbDark, this);
-        this->whiteButton->callback(cbWhite, this);
-        this->yellowButton->callback(cbYellow, this);
-        this->cyanButton->callback(cbCyan, this);
-        this->magentaButton->callback(cbMagenta, this);
-        this->cancelButton->callback(cbCancel, this);
-        this->callback(ColorSelectionWindow::cbOnWindowClose, this);
+    this->blueButton->callback(cbBlue, this);
+    this->darkButton->callback(cbDark, this);
+    this->whiteButton->callback(cbWhite, this);
+    this->yellowButton->callback(cbYellow, this);
+    this->cyanButton->callback(cbCyan, this);
+    this->magentaButton->callback(cbMagenta, this);
+    this->cancelButton->callback(cbCancel, this);
+    this->callback(ColorSelectionWindow::cbOnWindowClose, this);
 }
 
+/// Returns the color selected by the user
+//
+// @pre none
+// @post none
+//
+// @return this->selectedColor
+//
 Fl_Color ColorSelectionWindow::getColor()
 {
     return this->selectedColor;
 }
 
+/// Sets the value of this->selectedColor
+//
+// @pre none
+// @post this->selectedColor EQUALS color
+//
 void ColorSelectionWindow::setColor(Fl_Color color)
 {
     this->selectedColor = color;
@@ -89,6 +107,8 @@ void ColorSelectionWindow::cbOnWindowClose(Fl_Widget *, void *data)
     window->hide();
 }
 
+/// Destructs the window and frees up all allocated memory
+//
 ColorSelectionWindow::~ColorSelectionWindow()
 {
     delete this->blueButton;

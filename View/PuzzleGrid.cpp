@@ -8,22 +8,125 @@ namespace view {
 
     /// Creates a puzzle grid widget.
     //
+    // @pre none
+    // @post this->xLocation EQUALS x AND this->yLocation EQUALS y
+    //          AND puzzleGrid is drawn AND default color values pulled from manager and set
+    //
     // @param x the x-location to place the widget
     // @param y the y-location to place the widget
+    // @param manager the gameManager used to control the winow
     //
     PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager)
     {
         this->xLocation = x;
         this->yLocation = y;
 
-        this->validNodeColor = new Fl_Color(FL_DARK_GREEN);
-        this->defaultEvaluationTextColor = new Fl_Color(FL_WHITE);
-        this->invalidNodeColor = new Fl_Color(FL_RED);
+        this->setDefaultColorValues(manager);
 
         this->drawPuzzleGrid(x, y, manager);
+    }
 
-        this->defaultBackgroundColor = manager->getSettings()->getButtonColor();
-        this->defaultLabelColor = manager->getSettings()->getTextColor();
+    /// Resets the colors in the grid to default settings
+    //
+    // @pre none
+    // @post all grid button color settings are set to default
+    //
+    void PuzzleGrid::resetColors()
+    {
+        for (int i = 0; i < this->gridButtons.size(); i++)
+        {
+            this->gridButtons.at(i)->color(this->defaultBackgroundColor);
+            this->gridButtons.at(i)->labelcolor(this->defaultLabelColor);
+            this->gridButtons.at(i)->redraw();
+        }
+    }
+
+    /// Resets the board to initial state
+    //
+    // @pre none
+    // @post all button values restored to all buttons in the grid
+    //
+    void PuzzleGrid::resetBoard(GameManager* gameManager)
+    {
+        for (int i = 0; i < this->gridButtons.size(); i++)
+        {
+            this->updatePuzzleNode(i, gameManager);
+        }
+    }
+
+    /// Colors the buttons in the evaluation path
+    //
+    // @pre none
+    // @post respective color values are applied to the applicable buttons
+    //
+    // @param gameManager the game manager to pull applicable buttons
+    //              and color values from
+    //
+    void PuzzleGrid::colorEvaluationPath(GameManager* gameManager)
+    {
+        int startIndex = gameManager->getCurrentPuzzleStartIndex();
+
+        PuzzleGridButton* startButton = this->gridButtons.at(startIndex);
+        startButton->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
+
+        this->evaluate(startIndex, gameManager);
+    }
+
+    /// Color the buttons in the peek path
+    //
+    // @pre none
+    // @post respective color values are applied to the applicable buttons
+    //
+    // @param gameManager the game manager to pull applicable buttons
+    //          and color values from
+    //
+    void PuzzleGrid::colorPeekPath(GameManager* gameManager)
+    {
+        int currIndex = gameManager->getCurrentEndNodeIndex();
+        bool isValidNode = currIndex > -1;
+        bool foundNextShownNode = !isValidNode;
+
+        while (!foundNextShownNode)
+        {
+            isValidNode = currIndex > -1;
+            bool isEditable = gameManager->isPuzzleNodeEditable(currIndex);
+
+            if (isValidNode && !isEditable)
+            {
+                int value = gameManager->getCurrentPuzzleSolvedNodeValue(currIndex);
+                this->gridButtons.at(currIndex)->copy_label(to_string(value).c_str());
+                this->gridButtons.at(currIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
+                foundNextShownNode = true;
+            }
+            else if (isValidNode)
+            {
+                int value = gameManager->getCurrentPuzzleSolvedNodeValue(currIndex);
+                this->gridButtons.at(currIndex)->copy_label(to_string(value).c_str());
+                this->gridButtons.at(currIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
+            }
+
+            currIndex = gameManager->getCurrentPuzzleSolvedNextNodeIndex(currIndex);
+        }
+    }
+
+    /// Activates the puzzle grid window
+    //
+    // @pre none
+    // @post this->gridGroup->isActivated EQUALS true
+    //
+    void PuzzleGrid::activate()
+    {
+        this->gridGroup->activate();
+    }
+
+    /// Deactivates the puzzle grid window
+    //
+    // @pre none
+    // @post this->gridGroup->isActivated EQUALS false
+    //
+    void PuzzleGrid::deactivate()
+    {
+        this->gridGroup->deactivate();
     }
 
     /// Draws the puzzle grid
@@ -55,14 +158,14 @@ namespace view {
         this->gridGroup->end();
     }
 
-    void PuzzleGrid::deactivate()
+    void PuzzleGrid::setDefaultColorValues(GameManager* manager)
     {
-        this->gridGroup->deactivate();
-    }
+        this->validNodeColor = new Fl_Color(FL_DARK_GREEN);
+        this->defaultEvaluationTextColor = new Fl_Color(FL_WHITE);
+        this->invalidNodeColor = new Fl_Color(FL_RED);
 
-    void PuzzleGrid::activate()
-    {
-        this->gridGroup->activate();
+        this->defaultBackgroundColor = manager->getSettings()->getButtonColor();
+        this->defaultLabelColor = manager->getSettings()->getTextColor();
     }
 
     void PuzzleGrid::updatePuzzleNode(int index, GameManager* gameManager)
@@ -87,63 +190,6 @@ namespace view {
         else
         {
             button->copy_label(to_string(value).c_str());
-        }
-    }
-
-    void PuzzleGrid::resetBoard(GameManager* gameManager)
-    {
-        for (int i = 0; i < this->gridButtons.size(); i++)
-        {
-            this->updatePuzzleNode(i, gameManager);
-        }
-    }
-
-    void PuzzleGrid::resetColors(GameManager* gameManager)
-    {
-        for (int i = 0; i < this->gridButtons.size(); i++)
-        {
-            this->gridButtons.at(i)->color(this->defaultBackgroundColor);
-            this->gridButtons.at(i)->labelcolor(this->defaultLabelColor);
-            this->gridButtons.at(i)->redraw();
-        }
-    }
-
-    void PuzzleGrid::colorEvaluationPath(GameManager* gameManager)
-    {
-        int startIndex = gameManager->getCurrentPuzzleStartIndex();
-
-        PuzzleGridButton* startButton = this->gridButtons.at(startIndex);
-        startButton->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
-
-        this->evaluate(startIndex, gameManager);
-    }
-
-    void PuzzleGrid::colorPeekPath(GameManager* gameManager)
-    {
-        int currIndex = gameManager->getCurrentEndNodeIndex();
-        bool isValidNode = currIndex > -1;
-        bool foundNextShownNode = !isValidNode;
-
-        while (!foundNextShownNode)
-        {
-            isValidNode = currIndex > -1;
-            bool isEditable = gameManager->isPuzzleNodeEditable(currIndex);
-
-            if (isValidNode && !isEditable)
-            {
-                int value = gameManager->getCurrentPuzzleSolvedNodeValue(currIndex);
-                this->gridButtons.at(currIndex)->copy_label(to_string(value).c_str());
-                this->gridButtons.at(currIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
-                foundNextShownNode = true;
-            }
-            else if (isValidNode)
-            {
-                int value = gameManager->getCurrentPuzzleSolvedNodeValue(currIndex);
-                this->gridButtons.at(currIndex)->copy_label(to_string(value).c_str());
-                this->gridButtons.at(currIndex)->setColors(this->validNodeColor, this->defaultEvaluationTextColor);
-            }
-
-            currIndex = gameManager->getCurrentPuzzleSolvedNextNodeIndex(currIndex);
         }
     }
 

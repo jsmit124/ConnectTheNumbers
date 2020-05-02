@@ -8,6 +8,8 @@ using namespace std;
 namespace view
 {
 
+/// UI window with buttons for allowing user to select a color
+//
 class ColorSelectionWindow : public Fl_Window
 {
     public:

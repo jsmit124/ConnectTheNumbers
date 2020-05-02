@@ -2,12 +2,31 @@
 
 namespace view
 {
+
+     /// Constructs the high scoreboard.
+     //
+     // @pre none
+     // @post none
+     //
+     // @param X the x-position to place the component
+     // @param Y the y-position to place the component
+     // @param W the width of the component
+     // @param H the height of the component
+     // @param entries the initial entries to populate with
+     //
     HighScoreboardTable::HighScoreboardTable(int X, int Y, int W, int H, vector<HighScoreEntry*> entries) : Fl_Table_Row(X, Y, W, H, nullptr)
     {
         this->refresh(entries);
         this->end();
     }
 
+    /// Refreshes the scoreboard.
+    //
+    // @pre none
+    // @post all entries are refreshed with input values
+    //
+    // @param entries the new entries to use
+    //
     void HighScoreboardTable::refresh(vector<HighScoreEntry*> entries) {
         this->entriesUsed = entries;
 

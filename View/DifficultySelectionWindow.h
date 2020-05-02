@@ -14,6 +14,8 @@ using namespace std;
 namespace view
 {
 
+/// UI window with controls for allowing user to select a difficulty setting
+//
 class DifficultySelectionWindow : public Fl_Window
 {
     public:
