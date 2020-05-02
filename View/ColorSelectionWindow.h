@@ -28,14 +28,6 @@ class ColorSelectionWindow : public Fl_Window
         Fl_Button* magentaButton;
         Fl_Button* cancelButton;
 
-        void setBlueButtonLocation(int, int);
-        void setDarkButtonLocation(int, int);
-        void setLightBlueButtonLocation(int, int);
-        void setYellowButtonLocation(int, int);
-        void setCyanButtonLocation(int, int);
-        void setMagentaButtonLocation(int, int);
-        void setCancelButtonLocation(int, int);
-
         static void cbBlue(Fl_Widget*, void*);
         static void cbDark(Fl_Widget*, void*);
         static void cbLightBlue(Fl_Widget*, void*);
