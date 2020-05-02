@@ -11,7 +11,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     begin();
 
     PlayerSettings* settings = this->gameManager->getSettings();
-    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager, settings->getButtonColor(), settings->getTextColor());
+    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager);
     this->color(settings->getBackgroundColor());
 
     this->addEvaluateButton();
@@ -49,9 +49,9 @@ void MainGameWindow::initialize()
     }
 
     settings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
+    settings->setTextColor(this->settingsWindow->getSelectedTextColor());
     settings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());
     settings->setDifficulty(this->settingsWindow->getSelectedDifficulty());
-    settings->setTextColor(this->settingsWindow->getSelectedTextColor());
 
     this->gameManager->setDifficulty(settings->getDifficulty());
 

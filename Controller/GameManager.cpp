@@ -39,7 +39,10 @@ void GameManager::initialize()
 
 void GameManager::readPreviousSettings()
 {
-    *this->playerSettings = this->settingsReader.readSettingsFile(SAVED_SETTINGS_PATH);
+    if (checkFileExists(SAVED_SETTINGS_PATH))
+    {
+        *this->playerSettings = this->settingsReader.readSettingsFile(SAVED_SETTINGS_PATH);
+    }
 }
 
 void GameManager::saveSettings()

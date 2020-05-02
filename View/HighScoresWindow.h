@@ -18,6 +18,7 @@ namespace view {
     public:
         explicit HighScoresWindow(GameManager *manager);
         ~HighScoresWindow() override;
+
     private:
         GameManager *manager;
         Fl_Button *clearButton;
@@ -26,10 +27,10 @@ namespace view {
         HighScoresSort sortBy;
 
         static void cbClearClicked(Fl_Widget*, void *data);
-
         static void cbSortChanged(Fl_Widget*, void *data);
 
         void refreshTableData();
+        void applyColorScheme();
     };
 }
 

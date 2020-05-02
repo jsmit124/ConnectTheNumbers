@@ -7,7 +7,9 @@ namespace settings
 //
 PlayerSettings::PlayerSettings()
 {
-    //ctor
+    this->backgroundColor = fl_darker(fl_darker(FL_DARK_YELLOW));
+    this->buttonColor = FL_DARK3;
+    this->textColor = FL_WHITE;
 }
 
 PlayerSettings::~PlayerSettings()
@@ -27,11 +29,6 @@ void PlayerSettings::setButtonColor(Fl_Color color)
 void PlayerSettings::setTextColor(Fl_Color color)
 {
     this->textColor = color;
-}
-
-Fl_Color PlayerSettings::getTextColor()
-{
-    return this->textColor;
 }
 
 /// Sets the desired background color
@@ -69,6 +66,11 @@ Fl_Color PlayerSettings::getButtonColor()
 Fl_Color PlayerSettings::getBackgroundColor()
 {
     return this->backgroundColor;
+}
+
+Fl_Color PlayerSettings::getTextColor()
+{
+    return this->textColor;
 }
 
 Difficulty PlayerSettings::getDifficulty()

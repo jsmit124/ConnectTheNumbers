@@ -37,12 +37,12 @@ namespace view {
     //
     class PuzzleGrid {
     public:
-        PuzzleGrid(int x, int y, GameManager* gameManager, Fl_Color, Fl_Color);
+        PuzzleGrid(int, int, GameManager* gameManager);
         ~PuzzleGrid();
 
-        void resetColors(GameManager* gameManager);
-        void resetBoard(GameManager* gameManager);
-        void colorEvaluationPath(GameManager* gameManager);
+        void resetColors(GameManager*);
+        void resetBoard(GameManager*);
+        void colorEvaluationPath(GameManager*);
 
     private:
         Fl_Group *gridGroup;
@@ -54,9 +54,9 @@ namespace view {
         Fl_Color defaultBackgroundColor;
         Fl_Color defaultLabelColor;
 
-        void updatePuzzleNode(int index, GameManager* gameManager);
-        void evaluate(int prevIndex, GameManager* gameManager);
-        void drawPuzzleGrid(int, int, GameManager*, Fl_Color, Fl_Color);
+        void updatePuzzleNode(int, GameManager*);
+        void evaluate(int, GameManager*);
+        void drawPuzzleGrid(int, int, GameManager*);
         static void cbButtonSelected(Fl_Widget*, void*);
     };
 }

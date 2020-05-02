@@ -27,7 +27,6 @@ InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 350, "Connect th
     this->chooseLevelButton->callback(cbSelectPuzzle, this);
     this->chooseTextColorButton->callback(cbChooseTextColor, this);
 
-    this->chosenBackgroundColor = fl_darker(fl_darker(fl_darker(FL_DARK_BLUE)));
     this->chosenButtonColor = FL_DARK3;
     this->chosenTextColor = FL_WHITE;
     this->chosenDifficulty = Difficulty::EASY;
