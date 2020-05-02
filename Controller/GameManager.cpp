@@ -121,7 +121,7 @@ void GameManager::loadPuzzles()
 
 int GameManager::getCurrentEndNodeIndex()
 {
-    this->puzzleManager->getCurrentPuzzle().getCurrentEndNodeIndex();
+    return this->puzzleManager->getCurrentValidEndNodeIndex();
 }
 
 bool GameManager::foundFirstNode()

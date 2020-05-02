@@ -89,6 +89,20 @@ int PuzzleManager::getCurrentPuzzleId()
     return this->currentPuzzleIndex + 1;
 }
 
+int PuzzleManager::getCurrentValidEndNodeIndex()
+{
+    int endIndex = this->getCurrentPuzzle().getCurrentEndNodeIndex();
+    int currentValue = this->getCurrentPuzzle().getPuzzleNodeValue(endIndex);
+    int solvedPuzzleValue = this->solvedPuzzles.at(this->currentPuzzleIndex).getPuzzleNodeValue(endIndex);
+
+    if (currentValue != solvedPuzzleValue)
+    {
+        int solvedPuzzleIndex = this->solvedPuzzles.at(this->currentPuzzleIndex).getStartLocation();
+        return solvedPuzzleIndex;
+    }
+    return endIndex;
+}
+
 int PuzzleManager::getNextNodeIndexOfCurrentPuzzle(int prevIndex)
 {
     return this->getCurrentPuzzle().getNextNodeIndex(prevIndex);

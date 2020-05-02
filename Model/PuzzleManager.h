@@ -25,6 +25,7 @@ class PuzzleManager
         PuzzleManager(int);
         virtual ~PuzzleManager();
 
+        int getCurrentValidEndNodeIndex();
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         int getNextNodeOfSolvablePuzzle(int index);
         int getCurrentPuzzleSolvedNodeValue(int index);
