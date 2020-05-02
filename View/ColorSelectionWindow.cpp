@@ -7,7 +7,7 @@ ColorSelectionWindow::ColorSelectionWindow() : Fl_Window(250, 325, "Select a col
 {
         this->blueButton = new Fl_Button(25, 25, 200, 30, "Blue");
         this->darkButton = new Fl_Button(25, 67, 200, 30, "Dark");
-        this->lightBlueButton = new Fl_Button(25, 109, 200, 30, "Light Blue");
+        this->whiteButton = new Fl_Button(25, 109, 200, 30, "White");
         this->yellowButton = new Fl_Button(25, 151, 200, 30, "Yellow");
         this->cyanButton = new Fl_Button(25,193, 200, 30, "Cyan");
         this->magentaButton = new Fl_Button(25, 235, 200, 30, "Magenta");
@@ -15,7 +15,7 @@ ColorSelectionWindow::ColorSelectionWindow() : Fl_Window(250, 325, "Select a col
 
         this->blueButton->callback(cbBlue, this);
         this->darkButton->callback(cbDark, this);
-        this->lightBlueButton->callback(cbLightBlue, this);
+        this->whiteButton->callback(cbWhite, this);
         this->yellowButton->callback(cbYellow, this);
         this->cyanButton->callback(cbCyan, this);
         this->magentaButton->callback(cbMagenta, this);
@@ -47,10 +47,10 @@ void ColorSelectionWindow::cbDark(Fl_Widget* widget, void* data)
     window->hide();
 }
 
-void ColorSelectionWindow::cbLightBlue(Fl_Widget* widget, void* data)
+void ColorSelectionWindow::cbWhite(Fl_Widget* widget, void* data)
 {
     ColorSelectionWindow* window = (ColorSelectionWindow*)data;
-    window->setColor(FL_BLUE);
+    window->setColor(FL_WHITE);
     window->hide();
 }
 
@@ -93,7 +93,7 @@ ColorSelectionWindow::~ColorSelectionWindow()
 {
     delete this->blueButton;
     delete this->darkButton;
-    delete this->lightBlueButton;
+    delete this->whiteButton;
     delete this->yellowButton;
     delete this->cyanButton;
     delete this->magentaButton;

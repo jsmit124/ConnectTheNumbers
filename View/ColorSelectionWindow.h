@@ -22,7 +22,7 @@ class ColorSelectionWindow : public Fl_Window
 
         Fl_Button* blueButton;
         Fl_Button* darkButton;
-        Fl_Button* lightBlueButton;
+        Fl_Button* whiteButton;
         Fl_Button* yellowButton;
         Fl_Button* cyanButton;
         Fl_Button* magentaButton;
@@ -30,7 +30,7 @@ class ColorSelectionWindow : public Fl_Window
 
         static void cbBlue(Fl_Widget*, void*);
         static void cbDark(Fl_Widget*, void*);
-        static void cbLightBlue(Fl_Widget*, void*);
+        static void cbWhite(Fl_Widget*, void*);
         static void cbYellow(Fl_Widget*, void*);
         static void cbCyan(Fl_Widget*, void*);
         static void cbMagenta(Fl_Widget*, void*);
