@@ -6,6 +6,8 @@
 #include <vector>
 using namespace std;
 
+#define PUZZLE_WIDTH 8
+
 namespace model
 {
 
@@ -20,29 +22,25 @@ class Puzzle
         int timeSpent;
 
         bool evaluateNode(int index);
-
         bool isOnRightSide(int index);
         bool isOnLeftSide(int index);
+        bool isNextNodeValid(int prevIndex, int nextIndex);
+
+        void checkIfNextNode(int prevIndex, int nextIndex, int& nextNodeIndex);
 
     public:
         Puzzle();
         virtual ~Puzzle();
 
-        bool foundFirstNode();
         PuzzleNode getStartNode();
         vector<PuzzleNode>& getNodes();
         int getId();
 
-        void checkIfNextNode(int prevIndex, int nextIndex, int& nextNodeIndex);
-        bool isNextNodeValid(int prevIndex, int nextIndex);
         int getNextNodeIndex(int prevIndex);
-
         int getCurrentEndNodeIndex();
         int getPuzzleNodeValue(int index);
-        bool isPuzzleNodeEditable(int index);
         int getStartLocation();
 
-        int incrementTimeBy(int timeIncrease);
         void setId(int id);
         void setStartLocation(int location);
 
@@ -50,11 +48,13 @@ class Puzzle
         void replace(int value, int index);
 
         int getTimeSpent() const;
-
         void setTimeSpent(int timeSpent);
         void incrementTimeSpent();
+        void incrementTimeBy(int timeIncrease);
 
         bool evaluate();
+        bool foundFirstNode();
+        bool isPuzzleNodeEditable(int index);
 };
 
 }

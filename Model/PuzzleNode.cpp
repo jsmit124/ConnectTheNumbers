@@ -67,11 +67,16 @@ void PuzzleNode::setIsEditable(bool condition)
     this->isEditable = condition;
 }
 
+/// Sets the id of current node
+// @param idToSet: the id to set to
+// @post: this->id = idToSet
 void PuzzleNode::setId(int idToSet)
 {
     this->id = idToSet;
 }
 
+/// Returns the id
+// @return the id
 int PuzzleNode::getId()
 {
     return this->id;

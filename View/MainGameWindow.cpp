@@ -163,38 +163,46 @@ void MainGameWindow::drawTimerLabel()
 //
 void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 {
-    // REFACTOR THIS Nolan<--
     MainGameWindow* window = (MainGameWindow*)data;
     bool successfullySolved = window->getGameManager()->evaluateCurrentPuzzle();
-    bool isLastPuzzleOfDifficulty = window->getGameManager()->isLastPuzzle();
-    int isFinalPuzzleOfGame = window->getGameManager()->isFinalPuzzle();
-    int currentRound = window->getGameManager()->getCurrentPuzzleNumber();
     window->colorEvaluationPath();
-    Messenger messenger;
 
     if (successfullySolved)
     {
-        window->handleGameFinished();
-        window->getGameManager()->recordGameCompletion("user");
-        messenger.showPuzzleEndMessage(window->getGameManager()->getTimeSpentOnPuzzle());
-
-        if (isFinalPuzzleOfGame)
-        {
-            window->showFinalRoundWindow();
-        }
-        else if (!isLastPuzzleOfDifficulty)
-        {
-            window->getGameManager()->moveToNextPuzzle();
-            window->refreshBoard();
-        }
-        else
-        {
-            window->showRoundEndWindow();
-        }
+        window->handleEvaluateCorrectly();
     }
     else
     {
         fl_message("Uh oh.. the board is not correct. Try again!");
+        window->refreshBoard();
+    }
+}
+
+/// Handles events fired during a valid evaluation
+//
+void MainGameWindow::handleEvaluateCorrectly()
+{
+    this->handleGameFinished();
+    this->gameManager->recordGameCompletion("user");
+
+    Messenger messenger;
+    messenger.showPuzzleEndMessage(this->gameManager->getTimeSpentOnPuzzle());
+
+    bool isFinalPuzzleOfGame = this->gameManager->isFinalPuzzle();
+    bool isLastPuzzleOfDifficulty = this->gameManager->isLastPuzzle();
+
+    if (isFinalPuzzleOfGame)
+    {
+        this->showFinalRoundWindow();
+    }
+    else if (!isLastPuzzleOfDifficulty)
+    {
+        this->gameManager->moveToNextPuzzle();
+        this->refreshBoard();
+    }
+    else
+    {
+        this->showRoundEndWindow();
     }
 }
 

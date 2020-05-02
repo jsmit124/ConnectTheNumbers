@@ -9,11 +9,9 @@ using namespace std;
 namespace view
 {
 
+/// Deals with returning specialized message windows
 class Messenger
 {
-    private:
-        vector<string> puzzleEndMessages;
-        void addPuzzleEndMessages();
 
     public:
         Messenger();

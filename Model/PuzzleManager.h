@@ -16,29 +16,34 @@ namespace model
 //
 class PuzzleManager
 {
-    private:
-        int currentPuzzleIndex;
-        vector<Puzzle> puzzles;
-        vector<Puzzle> solvedPuzzles;
 
-    public:
-        PuzzleManager(int);
-        virtual ~PuzzleManager();
+private:
+    int currentPuzzleIndex;
+    vector<Puzzle> puzzles;
+    vector<Puzzle> solvedPuzzles;
 
-        void resetCurrentPuzzleIndex();
-        void setPuzzleAt(Puzzle puzzle, int index);
-        int getCurrentValidEndNodeIndex();
-        int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
-        int getNextNodeOfSolvablePuzzle(int index);
-        int getCurrentPuzzleSolvedNodeValue(int index);
-        void setCurrentPuzzle(Puzzle puzzle);
-        void add(Puzzle puzzle, Puzzle solvedPuzzle);
-        void moveToNextPuzzle();
-        Puzzle& getCurrentPuzzle();
-        int getCurrentPuzzleId();
-        bool isFinalPuzzle();
-        bool evaluateCurrentPuzzle();
-        bool isLastPuzzle(Difficulty difficulty);
+public:
+    PuzzleManager(int);
+    virtual ~PuzzleManager();
+
+    Puzzle& getCurrentPuzzle();
+
+    int getCurrentValidEndNodeIndex();
+    int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
+    int getNextNodeOfSolvablePuzzle(int prevIndex);
+    int getCurrentPuzzleSolvedNodeValue(int index);
+    int getCurrentPuzzleId();
+
+    void setCurrentPuzzle(Puzzle puzzle);
+    void setPuzzleAt(Puzzle puzzle, int index);
+
+    bool isFinalPuzzle();
+    bool evaluateCurrentPuzzle();
+    bool isLastPuzzle(Difficulty difficulty);
+
+    void add(Puzzle puzzle, Puzzle solvedPuzzle);
+    void moveToNextPuzzle();
+    void resetCurrentPuzzleIndex();
 };
 
 }

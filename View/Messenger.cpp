@@ -3,15 +3,12 @@
 namespace view
 {
 
-Messenger::Messenger()
-{
-    this->addPuzzleEndMessages();
-}
+Messenger::Messenger() = default;
+Messenger::~Messenger() = default;
 
-Messenger::~Messenger()
-{
-}
-
+/// Returns a puzzle message dialog based on the time completed
+// @param timeCompleted: the time completed
+// @post: dialog shown with msg
 void Messenger::showPuzzleEndMessage(int timeCompleted)
 {
     int minute = 60;
@@ -19,35 +16,24 @@ void Messenger::showPuzzleEndMessage(int timeCompleted)
 
     if (timeCompleted <= minute)
     {
-        message = this->puzzleEndMessages.at(0);
+        fl_message("Wow.. that was impressive.");
     }
     else if (timeCompleted <= minute * 2)
     {
-        message = this->puzzleEndMessages.at(1);
+        fl_message("Not bad, not bad...");
     }
     else if (timeCompleted <= minute * 3)
     {
-        message = this->puzzleEndMessages.at(2);
+        fl_message("Not slow, not fast, just average.");
     }
     else if (timeCompleted <= minute * 4)
     {
-        message = this->puzzleEndMessages.at(3);
+        fl_message("You're just plain EG-NO-RA-MOOSE.");
     }
     else
     {
-        message = this->puzzleEndMessages.at(4);
+        fl_message("Yikes!");
     }
-
-    fl_message(message.c_str());
-}
-
-void Messenger::addPuzzleEndMessages()
-{
-    this->puzzleEndMessages.push_back("Wow.. that was impressive.");
-    this->puzzleEndMessages.push_back("Not bad, not bad...");
-    this->puzzleEndMessages.push_back("Not slow, not fast, just average.");
-    this->puzzleEndMessages.push_back("You're just plain EG-NO-RA-MOOSE.");
-    this->puzzleEndMessages.push_back("Yikes!");
 }
 
 }

@@ -10,32 +10,36 @@ using namespace std;
 namespace settings
 {
 
+/// Hold settings for the player
+//
 class PlayerSettings
 {
-    public:
-        PlayerSettings();
-        virtual ~PlayerSettings();
 
-        void setButtonColor(Fl_Color color);
-        void setTextColor(Fl_Color color);
-        void setBackgroundColor(Fl_Color color);
-        void setDifficulty(Difficulty selection);
-        void setLastSavedDifficulty(Difficulty difficulty);
+private:
 
-        Fl_Color getButtonColor();
-        Fl_Color getBackgroundColor();
-        Difficulty getDifficulty();
-        Difficulty getLastSavedDifficulty();
-        Fl_Color getTextColor();
+    Difficulty lastSavedDifficulty;
+    Difficulty chosenDifficulty;
+    Fl_Color buttonColor;
+    Fl_Color backgroundColor;
+    Fl_Color textColor;
 
-        void moveToNextDifficulty();
+public:
+    PlayerSettings();
+    virtual ~PlayerSettings();
 
-    private:
-        Difficulty lastSavedDifficulty;
-        Difficulty chosenDifficulty;
-        Fl_Color buttonColor;
-        Fl_Color backgroundColor;
-        Fl_Color textColor;
+    void setButtonColor(Fl_Color color);
+    void setTextColor(Fl_Color color);
+    void setBackgroundColor(Fl_Color color);
+    void setDifficulty(Difficulty selection);
+    void setLastSavedDifficulty(Difficulty difficulty);
+
+    Fl_Color getButtonColor();
+    Fl_Color getBackgroundColor();
+    Difficulty getDifficulty();
+    Difficulty getLastSavedDifficulty();
+    Fl_Color getTextColor();
+
+    void moveToNextDifficulty();
 };
 
 }

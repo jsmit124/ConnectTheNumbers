@@ -83,10 +83,12 @@ class MainGameWindow : public Fl_Window
 
         void startGameTimer();
         static void onTimerTick(void *data);
+
         void handlePause();
         void handleGameFinished();
-        void drawTimerLabel();
+        void handleEvaluateCorrectly();
 
+        void drawTimerLabel();
         void refreshTimerLabel();
 };
 

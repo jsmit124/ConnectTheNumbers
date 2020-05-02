@@ -16,6 +16,8 @@ using namespace std;
 namespace io
 {
 
+/// Functionality to read settings
+//
 class SettingsReader
 {
 
@@ -27,11 +29,14 @@ class SettingsReader
         TEXT_COLOR = 3
     };
 
-    public:
-        SettingsReader();
-        virtual ~SettingsReader();
+private:
+    void setState(SettingsReaderState& state, PlayerSettings& settings, string& line);
 
-        PlayerSettings readSettingsFile(const string& filename);
+public:
+    SettingsReader();
+    virtual ~SettingsReader();
+
+    PlayerSettings readSettingsFile(const string& filename);
 };
 
 }

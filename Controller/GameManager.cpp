@@ -32,8 +32,8 @@ GameManager::~GameManager()
     delete this->highScoreManager;
 }
 
-  /// ///////// ///
- ///  GETTERS  ///
+/// ///////// ///
+///  GETTERS  ///
 /// ///////// ///
 
 /// Returns the top ten scores by duration, ascending.
@@ -206,8 +206,8 @@ PlayerSettings* GameManager::getSettings()
     return this->playerSettings;
 }
 
-  /// ///////// ///
- ///  SETTERS  ///
+/// ///////// ///
+///  SETTERS  ///
 /// ///////// ///
 
 /// Sets whether or not the game is paused.
@@ -242,6 +242,13 @@ void GameManager::moveToPuzzle(int puzzleId)
 
     Puzzle puzzle = this->puzzleReader.readPuzzleNumber(puzzleId);
     this->puzzleManager->setCurrentPuzzle(puzzle);
+}
+
+/// Clears the high scores
+// @post: highscores are cleared
+void GameManager::clearHighScores()
+{
+    this->highScoreManager->clear();
 }
 
 /// Resets the game to puzzle 1 and resets all puzzles to original values.
@@ -281,8 +288,8 @@ void GameManager::resetCurrentPuzzle()
     this->puzzleManager->setCurrentPuzzle(newPuzzle);
 }
 
-  /// ///////// ///
- ///  ACTIONS  ///
+/// ///////// ///
+///  ACTIONS  ///
 /// ///////// ///
 
 /// Increases the timer by 30 seconds. This is used to penalize those who try to get a hint.
@@ -323,7 +330,7 @@ void GameManager::onTimerTick()
 void GameManager::recordGameCompletion(const string& name)
 {
     this->highScoreManager->add(name, this->puzzleManager->getCurrentPuzzle().getTimeSpent(),
-            this->puzzleManager->getCurrentPuzzleId());
+                                this->puzzleManager->getCurrentPuzzleId());
 }
 
 /// Moves to the next puzzle in the collection
@@ -387,8 +394,8 @@ void GameManager::saveCurrentPuzzle()
     this->puzzleWriter.savePuzzleToFile(puzzle);
 }
 
-  /// //////////////// ///
- ///  PRIVATE HELPERS ///
+/// //////////////// ///
+///  PRIVATE HELPERS ///
 /// //////////////// ///
 
 void GameManager::initialize()

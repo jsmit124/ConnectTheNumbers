@@ -8,22 +8,23 @@ namespace model
 //
 class PuzzleNode
 {
-    private:
-        int id;
-        int value;
-        bool isEditable;
 
-    public:
-        PuzzleNode();
-        virtual ~PuzzleNode();
+private:
+    int id;
+    int value;
+    bool isEditable;
 
-        int getId();
-        int getValue();
-        bool getIsEditable();
+public:
+    PuzzleNode();
+    virtual ~PuzzleNode();
 
-        void setId(int idToSet);
-        void setValue(int valueToSet);
-        void setIsEditable(bool condition);
+    int getId();
+    int getValue();
+    bool getIsEditable();
+
+    void setId(int idToSet);
+    void setValue(int valueToSet);
+    void setIsEditable(bool condition);
 };
 
 }

@@ -13,17 +13,24 @@
 using namespace std;
 using namespace model;
 
-namespace io {
-    class HighScoreReader {
-    public:
-        HighScoreReader();
-        virtual ~HighScoreReader();
+namespace io
+{
 
-        void loadScores(HighScoreManager *target, const string &fileName);
+/// Reads in the high scores
+//
+class HighScoreReader
+{
 
-    private:
-        void readAndAddEntry(HighScoreManager *scoreboard, string line);
-    };
+public:
+    HighScoreReader();
+    virtual ~HighScoreReader();
+
+    void loadScores(HighScoreManager *target, const string &fileName);
+
+private:
+    void readAndAddEntry(HighScoreManager *scoreboard, string line);
+
+};
 }
 
 #endif //MOVIEPLAITER_HIGHSCOREREADER_H

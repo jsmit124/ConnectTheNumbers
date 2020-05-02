@@ -3,14 +3,14 @@
 namespace io
 {
 
-SettingsWriter::SettingsWriter()
-{
-}
+SettingsWriter::SettingsWriter() = default;
+SettingsWriter::~SettingsWriter() = default;
 
-SettingsWriter::~SettingsWriter()
-{
-}
-
+/// Writes the settings from [settings] to the [filename]
+//
+// @post: filename.contents += settings
+// @param filename: the name of the file
+// @param settings: the settings to write from
 void SettingsWriter::writeSettingsToFile(const string& filename, PlayerSettings& settings)
 {
     ofstream outFile(filename);
