@@ -68,7 +68,6 @@ class MainGameWindow : public Fl_Window
         void addPauseButton();
         void addViewHighScoresButton();
 
-        void togglePuzzleOverlay(bool condition);
         void startGame();
         void stopGame();
 

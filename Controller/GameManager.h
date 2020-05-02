@@ -62,6 +62,7 @@ class GameManager
         int getCurrentPuzzleSolvedNextNodeIndex(int prevIndex);
         int getCurrentPuzzleSolvedNodeValue(int index);
         int getCurrentPuzzleStartIndex();
+        bool foundFirstNode();
         bool isLastPuzzle();
         bool isFinalPuzzle();
         void resetCurrentPuzzle();

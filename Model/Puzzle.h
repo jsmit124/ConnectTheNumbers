@@ -28,6 +28,7 @@ class Puzzle
         Puzzle();
         virtual ~Puzzle();
 
+        bool foundFirstNode();
         PuzzleNode getStartNode();
         vector<PuzzleNode>& getNodes();
         int getId();

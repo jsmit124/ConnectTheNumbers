@@ -226,13 +226,22 @@ void MainGameWindow::colorPeekPath()
 void MainGameWindow::cbPeekButtonClicked(Fl_Widget *widget, void *data)
 {
     MainGameWindow* window = (MainGameWindow*)data;
-    window->colorPeekPath();
-    //TODO do something other than message (maybe 5 second timer)
-    window->gameManager->increaseTimeBy30();
-    window->refreshTimerLabel();
-    fl_message("Fine.. here is a hint.\n+30 seconds");
-    window->refreshColors();
-    window->refreshBoard();
+
+    if (window->gameManager->foundFirstNode())
+    {
+        window->colorPeekPath();
+        //TODO do something other than message (maybe 5 second timer)
+        window->gameManager->increaseTimeBy30();
+        window->refreshTimerLabel();
+        fl_message("Fine.. here is a hint.\n+30 seconds");
+
+        window->refreshColors();
+        window->refreshBoard();
+    }
+    else
+    {
+        fl_message("You need to find '1' on the puzzle first.");
+    }
 }
 
 /// Callback for the reset button click

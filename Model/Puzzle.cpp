@@ -11,6 +11,7 @@ namespace model
 Puzzle::Puzzle()
 {
     this->timeSpent = 0;
+    this->startLocation = -1;
 }
 
 /// Puzzle destructor
@@ -107,6 +108,12 @@ void Puzzle::add(PuzzleNode node)
 void Puzzle::replace(int value, int index)
 {
     PuzzleNode& node = this->nodes.at(index);
+
+    if (value == 1)
+    {
+        this->startLocation = index;
+    }
+
     node.setValue(value);
 }
 
@@ -174,14 +181,27 @@ int Puzzle::getNextNodeIndex(int prevIndex)
     return nextNodeIndex;
 }
 
+bool Puzzle::foundFirstNode()
+{
+    if (this->startLocation < 0)
+    {
+        return false;
+    }
+    return this->nodes.at(this->startLocation).getValue() == 1;
+}
+
 int Puzzle::getCurrentEndNodeIndex()
 {
     int currIndex = this->startLocation;
     bool foundEnd = false;
+    int nextIndex = -1;
 
     while (!foundEnd)
     {
-        int nextIndex = this->getNextNodeIndex(currIndex);
+        if (currIndex > -1)
+        {
+            nextIndex = this->getNextNodeIndex(currIndex);
+        }
 
         if (nextIndex < 0)
         {

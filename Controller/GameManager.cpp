@@ -104,7 +104,8 @@ void GameManager::moveToNextPuzzle()
 
 void GameManager::resetCurrentPuzzle()
 {
-    this->moveToPuzzle(this->puzzleManager->getCurrentPuzzleId());
+    Puzzle newPuzzle = this->puzzleReader.readPuzzleNumber(this->puzzleManager->getCurrentPuzzleId());
+    this->puzzleManager->setCurrentPuzzle(newPuzzle);
 }
 
 void GameManager::loadPuzzles()
@@ -121,6 +122,11 @@ void GameManager::loadPuzzles()
 int GameManager::getCurrentEndNodeIndex()
 {
     this->puzzleManager->getCurrentPuzzle().getCurrentEndNodeIndex();
+}
+
+bool GameManager::foundFirstNode()
+{
+    return this->puzzleManager->getCurrentPuzzle().foundFirstNode();
 }
 
 void GameManager::loadSavedPuzzle()

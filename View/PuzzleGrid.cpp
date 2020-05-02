@@ -121,11 +121,12 @@ namespace view {
     void PuzzleGrid::colorPeekPath(GameManager* gameManager)
     {
         int currIndex = gameManager->getCurrentEndNodeIndex();
-        bool foundNextShownNode = false;
+        bool isValidNode = currIndex > -1;
+        bool foundNextShownNode = !isValidNode;
 
         while (!foundNextShownNode)
         {
-            bool isValidNode = currIndex > -1;
+            isValidNode = currIndex > -1;
             bool isEditable = gameManager->isPuzzleNodeEditable(currIndex);
 
             if (isValidNode && !isEditable)
