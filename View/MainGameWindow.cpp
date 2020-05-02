@@ -38,8 +38,10 @@ void MainGameWindow::initialize()
     this->settingsWindow = new InitialSettingsWindow();
 
     this->settingsWindow->setColorToAllButtons(settings->getButtonColor());
-    this->settingsWindow->setBackgroundColor(settings->getBackgroundColor());
     this->settingsWindow->setTextColorToAllButtons(settings->getTextColor());
+    this->settingsWindow->setBackgroundColor(settings->getBackgroundColor());
+    this->settingsWindow->setButtonColor(settings->getButtonColor());
+    this->settingsWindow->setTextColor(settings->getTextColor());
 
     this->settingsWindow->set_modal();
     this->settingsWindow->show();
