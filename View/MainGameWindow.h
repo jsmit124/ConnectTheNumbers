@@ -14,6 +14,7 @@
 #include <FL/Fl_Group.H>
 #include <Fl/Fl_Window.H>
 #include <Fl/Fl_Export.H>
+
 #include <algorithm>
 #include <string>
 #include <thread>
@@ -30,69 +31,80 @@ using namespace std;
 namespace view
 {
 
-/// Handles implementation of the MainGameWindow UI window
+/// Class manages the Main Game Window
 //
 class MainGameWindow : public Fl_Window
 {
-    public:
-        MainGameWindow(int width, int height, const char* title);
-        virtual ~MainGameWindow();
 
-        GameManager* getGameManager();
-        HighScoresWindow* getHighScoresWindow();
-        string getRandomEvaluationMessage();
+private:
+    /// Members
+    PuzzleGrid* puzzleGrid;
+    GameManager* gameManager;
+    InitialSettingsWindow* settingsWindow;
+    HighScoresWindow* highScoresWindow;
 
-        void refreshBoard();
-        void drawPuzzleNumberLabel();
-        void addEvaluateButton();
-        void addResetButton();
-        void addPauseButton();
-        void addViewHighScoresButton();
+    /// Fltk Controls
+    Fl_Box* highScoresLabel;
+    Fl_Button* evaluateButton;
+    Fl_Button* resetButton;
+    Fl_Button* pauseButton;
+    Fl_Button* peekButton;
+    Fl_Button* viewHighScoresButton;
+    Fl_Box* pausePuzzleOverlay;
+    Fl_Box* puzzleNumberLabel;
+    Fl_Box* gameTimerLabel;
 
-        void startGame();
-        void stopGame();
-        void showRoundEndWindow();
-        void showFinalRoundWindow();
+    /// Private Helpers
+    string formatPuzzleNumberOutput();
+    void setupMainWindowControls();
+    void colorEvaluationPath();
+    void colorPeekPath();
+    void refreshColors();
+    void initializeSettingsWindow();
+    void initializeSettings();
 
-        static void cbEvaluateButtonClicked(Fl_Widget*, void*);
-        static void cbResetButtonClicked(Fl_Widget*, void*);
-        static void cbOnWindowClose(Fl_Widget*, void*);
-        static void cbPauseButtonClicked(Fl_Widget* widget, void* data);
-        static void cbViewHighScoresClicked(Fl_Widget *widget, void *data);
-        static void cbPeekButtonClicked(Fl_Widget *widget, void *data);
+    void addViewHighScoresButton();
+    void addPuzzleOverlayBox();
+    void addEvaluateButton();
+    void addResetButton();
+    void addPauseButton();
+    void addPeekButton();
 
-        void startGameTimer();
-        static void onTimerTick(void *data);
+public:
+    MainGameWindow(int width, int height, const char* title);
+    virtual ~MainGameWindow();
 
-        void handlePause();
-        void handleGameFinished();
-        void handleEvaluateCorrectly();
+    /// Getters
+    HighScoresWindow* getHighScoresWindow();
+    string getRandomEvaluationMessage();
 
-        void drawTimerLabel();
-        void refreshTimerLabel();
+    /// Game Update Events
+    void startGame();
+    void stopGame();
+    void showRoundEndWindow();
+    void showFinalRoundWindow();
 
-    private:
-        PuzzleGrid* puzzleGrid;
-        GameManager* gameManager;
-        InitialSettingsWindow* settingsWindow;
-        HighScoresWindow* highScoresWindow;
+    void refreshTimerLabel();
+    void refreshBoard();
 
-        Fl_Box* highScoresLabel;
-        Fl_Button* evaluateButton;
-        Fl_Button* resetButton;
-        Fl_Button* pauseButton;
-        Fl_Button* peekButton;
-        Fl_Button* viewHighScoresButton;
-        Fl_Box* pausePuzzleOverlay;
-        Fl_Box* puzzleNumberLabel;
-        Fl_Box* gameTimerLabel;
+    void drawPuzzleNumberLabel();
+    void drawTimerLabel();
 
-        string getPuzzleNumberOutput();
-        void colorEvaluationPath();
-        void colorPeekPath();
-        void refreshColors();
-        void initialize();
+    void handlePause();
+    void handleGameFinished();
+    void handleEvaluateCorrectly();
 
+    /// Fltk ctrl callbacks
+    static void cbEvaluateButtonClicked(Fl_Widget*, void*);
+    static void cbResetButtonClicked(Fl_Widget*, void*);
+    static void cbOnWindowClose(Fl_Widget*, void*);
+    static void cbPauseButtonClicked(Fl_Widget* widget, void* data);
+    static void cbViewHighScoresClicked(Fl_Widget *widget, void *data);
+    static void cbPeekButtonClicked(Fl_Widget *widget, void *data);
+
+    /// Events
+    void startGameTimer();
+    static void onTimerTick(void *data);
 };
 
 }
