@@ -160,7 +160,7 @@ int Puzzle::getNextNodeIndex(int prevIndex)
         int leftIndex = prevIndex - 1;
         this->checkIfNextNode(prevIndex, leftIndex, nextNodeIndex);
     }
-    if ((prevIndex - 8) > minimum)
+    if ((prevIndex - 8) >= minimum)
     {
         int topIndex = prevIndex - 8;
         this->checkIfNextNode(prevIndex, topIndex, nextNodeIndex);
