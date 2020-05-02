@@ -33,6 +33,9 @@ class GameManager
     const int TIME_INCREASE = 30;
 
     private:
+
+        /// Members
+        //
         PuzzleManager* puzzleManager;
         HighScoreManager* highScoreManager;
         PuzzleReader puzzleReader;
@@ -41,6 +44,8 @@ class GameManager
         SettingsReader settingsReader;
         PlayerSettings* playerSettings;
 
+        /// Private Helpers
+        //
         void readPreviousSettings();
         void initialize();
         void loadPuzzles();
@@ -52,44 +57,52 @@ class GameManager
         GameManager();
         virtual ~GameManager();
 
-        void resetGame();
-        void increaseTimeBy30();
+        /// Getters
+        //
         bool getIsGamePaused();
-        void setIsGamePaused(bool condition);
-        void saveSettings();
-        PlayerSettings* getSettings();
-        int getTotalPuzzlesCount();
-        void setDifficulty(Difficulty difficulty);
         bool getDoesSavedFileExist();
+        bool foundFirstNode();
+        bool isLastPuzzle();
+        bool isFinalPuzzle();
+        bool isPuzzleNodeEditable(int index);
+        int getTimeSpentOnPuzzle() const;
+        bool evaluateCurrentPuzzle();
+
+        int getTotalPuzzlesCount();
         int getCurrentEndNodeIndex();
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         int getCurrentPuzzleSolvedNextNodeIndex(int prevIndex);
         int getCurrentPuzzleSolvedNodeValue(int index);
         int getCurrentPuzzleStartIndex();
-        bool foundFirstNode();
-        bool isLastPuzzle();
-        bool isFinalPuzzle();
-        void resetCurrentPuzzle();
-        void moveToNextPuzzle();
-        bool evaluateCurrentPuzzle();
         int getPuzzleNodeValue(int index);
-        bool isPuzzleNodeEditable(int index);
-        void setPuzzleNodeValue(int value, int index);
         int getCurrentPuzzleNumber();
-        void loadSavedPuzzle();
-        void saveCurrentPuzzle();
+        PlayerSettings* getSettings();
+
         vector<HighScoreEntry*> getTopTenScoresByDuration();
         vector<HighScoreEntry*> getTopTenScoresByPuzzle();
-        void recordGameCompletion(const string& name);
-        void saveHighScores();
 
-        void onTimerTick();
+        /// Setters
+        //
+        void setIsGamePaused(bool condition);
+        void setDifficulty(Difficulty difficulty);
+        void setPuzzleNodeValue(int value, int index);
 
-        int getTimeSpentOnPuzzle() const;
+        /// Actions
+        //
+        void resetGame();
+        void saveSettings();
 
+        void resetCurrentPuzzle();
+        void moveToNextPuzzle();
+        void loadSavedPuzzle();
+        void saveCurrentPuzzle();
         void moveToPuzzle(int puzzleId);
 
+        void recordGameCompletion(const string& name);
+        void increaseTimeBy30();
+        void saveHighScores();
         void clearHighScores();
+        void onTimerTick();
 };
 
 }
