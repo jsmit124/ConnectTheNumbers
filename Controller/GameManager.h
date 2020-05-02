@@ -58,6 +58,7 @@ class GameManager
         int getNextNodeIndexOfCurrentPuzzle(int prevIndex);
         int getCurrentPuzzleStartIndex();
         bool isLastPuzzle();
+        bool isFinalPuzzle();
         void resetCurrentPuzzle();
         void moveToNextPuzzle();
         bool evaluateCurrentPuzzle();

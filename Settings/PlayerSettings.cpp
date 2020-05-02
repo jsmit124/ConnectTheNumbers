@@ -83,4 +83,19 @@ Difficulty PlayerSettings::getLastSavedDifficulty()
     return this->lastSavedDifficulty;
 }
 
+void PlayerSettings::moveToNextDifficulty()
+{
+    switch (this->chosenDifficulty)
+    {
+        case EASY:
+            this->chosenDifficulty = MEDIUM;
+            break;
+        case MEDIUM:
+            this->chosenDifficulty = HARD;
+            break;
+        case HARD:
+            this->chosenDifficulty = EASY;
+    }
+}
+
 }

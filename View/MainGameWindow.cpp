@@ -155,26 +155,55 @@ void MainGameWindow::drawTimerLabel()
 //
 void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
 {
+    // REFACTOR THIS Nolan<--
     MainGameWindow* window = (MainGameWindow*)data;
     bool successfullySolved = window->getGameManager()->evaluateCurrentPuzzle();
-    bool isLastPuzzle = window->getGameManager()->isLastPuzzle();
+    bool isLastPuzzleOfDifficulty = window->getGameManager()->isLastPuzzle();
+    int isFinalPuzzleOfGame = window->getGameManager()->isFinalPuzzle();
+    int currentRound = window->getGameManager()->getCurrentPuzzleNumber();
     window->colorEvaluationPath();
 
-    if (successfullySolved && !isLastPuzzle)
+    if (successfullySolved && isFinalPuzzleOfGame)
+    {
+        fl_message("You have mastered all the puzzles... Congrats!");
+    }
+    else if (successfullySolved && !isLastPuzzleOfDifficulty)
     {
         window->getGameManager()->recordGameCompletion("user");
+        // TODO assign random messages to eval
+        fl_message(window->getRandomEvaluationMessage().c_str());
         window->getGameManager()->moveToNextPuzzle();
         window->refreshBoard();
     }
-    else if (successfullySolved && isLastPuzzle)
+    else if (successfullySolved && isLastPuzzleOfDifficulty)
     {
-        fl_message("You have mastered all the puzzles... Congrats!");
+        string message = "Wow.. you only made it to puzzle " + to_string(currentRound) + ".\n" +
+                        "Moving to next difficulty..\n" +
+                        "Good luck.";
+
+        fl_message(message.c_str());
+        window->getGameManager()->moveToNextPuzzle();
+        window->refreshBoard();
     }
     else
     {
         fl_message("Uh oh.. the board is not correct. Try again!");
         window->refreshColors();
     }
+}
+
+string MainGameWindow::getRandomEvaluationMessage()
+{
+    vector<string> messages;
+
+    messages.push_back("A");
+    messages.push_back("B");
+    messages.push_back("C");
+    messages.push_back("D");
+    messages.push_back("E");
+    int randomNumber = rand() % messages.size() + 1;
+
+    return messages.at(randomNumber);
 }
 
 void MainGameWindow::colorEvaluationPath()

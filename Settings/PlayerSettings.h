@@ -28,6 +28,8 @@ class PlayerSettings
         Difficulty getLastSavedDifficulty();
         Fl_Color getTextColor();
 
+        void moveToNextDifficulty();
+
     private:
         Difficulty lastSavedDifficulty;
         Difficulty chosenDifficulty;

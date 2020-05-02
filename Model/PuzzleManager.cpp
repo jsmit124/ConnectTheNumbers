@@ -66,13 +66,13 @@ Puzzle& PuzzleManager::getCurrentPuzzle()
     return this->puzzles.at(this->currentPuzzleIndex);
 }
 
-/// Returns the current puzzle number (+1 for vector offset)
+/// Returns the current puzzle id (+1 for vector offset)
 //
 // @precondition: none
 // @postcondition: none
 // @return the current puzzle number
 //
-int PuzzleManager::getCurrentPuzzleNumber()
+int PuzzleManager::getCurrentPuzzleId()
 {
     return this->currentPuzzleIndex + 1;
 }
@@ -90,9 +90,14 @@ bool PuzzleManager::evaluateCurrentPuzzle()
     return this->puzzles.at(currentIndex).evaluate();
 }
 
-bool PuzzleManager::isLastPuzzle()
+bool PuzzleManager::isFinalPuzzle()
 {
-    return this->getCurrentPuzzleNumber() == this->puzzles.size();
+    return this->getCurrentPuzzleId() == this->puzzles.size();
+}
+
+bool PuzzleManager::isLastPuzzle(Difficulty difficulty)
+{
+    return this->getCurrentPuzzleId() >= difficulty;
 }
 
 }

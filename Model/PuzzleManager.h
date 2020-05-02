@@ -3,6 +3,8 @@
 
 #include "Puzzle.h"
 
+#include "../Enum/Difficulty.h"
+
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -27,9 +29,10 @@ class PuzzleManager
         void add(const Puzzle puzzle);
         void moveToNextPuzzle();
         Puzzle& getCurrentPuzzle();
-        int getCurrentPuzzleNumber();
+        int getCurrentPuzzleId();
+        bool isFinalPuzzle();
         bool evaluateCurrentPuzzle();
-        bool isLastPuzzle();
+        bool isLastPuzzle(Difficulty difficulty);
 };
 
 }

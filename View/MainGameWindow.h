@@ -17,6 +17,7 @@
 #include <string>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
 using namespace std;
 
 #include "../Settings/PlayerSettings.h"
@@ -56,6 +57,7 @@ class MainGameWindow : public Fl_Window
 
         GameManager* getGameManager();
         HighScoresWindow* getHighScoresWindow();
+        string getRandomEvaluationMessage();
 
         void refreshBoard();
         void drawPuzzleNumberLabel();

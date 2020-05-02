@@ -72,7 +72,13 @@ void GameManager::setDifficulty(Difficulty difficulty)
 
 bool GameManager::isLastPuzzle()
 {
-    return this->puzzleManager->isLastPuzzle();
+    return this->puzzleManager->isLastPuzzle(this->playerSettings->getDifficulty());
+}
+
+bool GameManager::isFinalPuzzle()
+{
+    bool test = this->puzzleManager->isFinalPuzzle();
+    return test;
 }
 
 void GameManager::moveToPuzzle(int puzzleId)
@@ -88,12 +94,17 @@ void GameManager::moveToPuzzle(int puzzleId)
 
 void GameManager::moveToNextPuzzle()
 {
+    if (this->puzzleManager->getCurrentPuzzleId() == this->playerSettings->getDifficulty())
+    {
+        this->playerSettings->moveToNextDifficulty();
+    }
+
     this->puzzleManager->moveToNextPuzzle();
 }
 
 void GameManager::resetCurrentPuzzle()
 {
-    this->moveToPuzzle(this->puzzleManager->getCurrentPuzzleNumber());
+    this->moveToPuzzle(this->puzzleManager->getCurrentPuzzleId());
 }
 
 void GameManager::loadPuzzles()
@@ -140,7 +151,7 @@ void GameManager::setIsGamePaused(bool condition)
 
 int GameManager::getCurrentPuzzleNumber()
 {
-    return this->puzzleManager->getCurrentPuzzleNumber();
+    return this->puzzleManager->getCurrentPuzzleId();
 }
 
 int GameManager::getPuzzleNodeValue(int index)
@@ -191,7 +202,7 @@ vector<HighScoreEntry *> GameManager::getTopTenScoresByPuzzle()
 void GameManager::recordGameCompletion(const string& name)
 {
     this->highScoreManager->add(name, this->puzzleManager->getCurrentPuzzle().getTimeSpent(),
-            this->puzzleManager->getCurrentPuzzleNumber());
+            this->puzzleManager->getCurrentPuzzleId());
 }
 
 void GameManager::loadHighScores()
