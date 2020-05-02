@@ -12,8 +12,8 @@
 #define PUZZLE_ROWS 8
 #define PUZZLE_COLS 8
 
-#define BUTTON_WIDTH 40
-#define BUTTON_HEIGHT 40
+#define BUTTON_WIDTH 55
+#define BUTTON_HEIGHT 55
 #define BUTTON_PADDING 10
 
 #include "../Controller/GameManager.h"
@@ -47,6 +47,9 @@ namespace view {
     private:
         Fl_Group *gridGroup;
         vector<PuzzleGridButton*> gridButtons;
+
+        int xLocation;
+        int yLocation;
 
         Fl_Color* validNodeColor;
         Fl_Color* invalidNodeColor;

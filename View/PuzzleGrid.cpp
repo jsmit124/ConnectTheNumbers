@@ -13,6 +13,9 @@ namespace view {
     //
     PuzzleGrid::PuzzleGrid(int x, int y, GameManager* manager)
     {
+        this->xLocation = x;
+        this->yLocation = y;
+
         this->validNodeColor = new Fl_Color(FL_DARK_GREEN);
         this->defaultEvaluationTextColor = new Fl_Color(FL_WHITE);
         this->invalidNodeColor = new Fl_Color(FL_RED);
@@ -39,8 +42,9 @@ namespace view {
                 int placedY = row * BUTTON_WIDTH + BUTTON_PADDING;
                 int index = row * PUZZLE_ROWS + col;
 
-                PuzzleGridButton *button = new PuzzleGridButton(placedX, placedY, BUTTON_WIDTH, BUTTON_HEIGHT, index);
+                PuzzleGridButton *button = new PuzzleGridButton(this->xLocation + placedX, this->yLocation + placedY, BUTTON_WIDTH, BUTTON_HEIGHT, index);
                 button->callback(cbButtonSelected, gameManager);
+                button->labelsize(20);
                 button->color(gameManager->getSettings()->getButtonColor());
                 button->labelcolor(gameManager->getSettings()->getTextColor());
 

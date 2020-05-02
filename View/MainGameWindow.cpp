@@ -11,7 +11,7 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     begin();
 
     PlayerSettings* settings = this->gameManager->getSettings();
-    this->puzzleGrid = new PuzzleGrid (20, 0, this->gameManager);
+    this->puzzleGrid = new PuzzleGrid(20, 50, this->gameManager);
     this->color(settings->getBackgroundColor());
 
     this->addEvaluateButton();
@@ -72,16 +72,16 @@ void MainGameWindow::drawPuzzleNumberLabel()
 {
     string labelText = this->getPuzzleNumberOutput();
 
-    this->puzzleNumberLabel = new Fl_Box(85, 380, 175, 30, nullptr);
+    this->puzzleNumberLabel = new Fl_Box(30, 10, 145, 40, nullptr);
     this->puzzleNumberLabel->copy_label(labelText.c_str());
     this->puzzleNumberLabel->box(FL_UP_BOX);
-    this->puzzleNumberLabel->labelsize(14);
+    this->puzzleNumberLabel->labelsize(18);
 }
 
 string MainGameWindow::getPuzzleNumberOutput()
 {
     // TODO can maybe move this to view formatter class
-    return "Puzzle Number: " + to_string(this->gameManager->getCurrentPuzzleNumber()) +
+    return "Puzzle: " + to_string(this->gameManager->getCurrentPuzzleNumber()) +
         "/" + to_string(this->gameManager->getTotalPuzzlesCount());
 }
 
@@ -103,15 +103,18 @@ void MainGameWindow::refreshColors()
 //
 void MainGameWindow::addEvaluateButton()
 {
-    this->evaluateButton = new Fl_Button(221, 340, 110, 30, "EVALUATE");
+    this->evaluateButton = new Fl_Button(175, 515, 150, 40, "EVALUATE");
+    this->evaluateButton->labelsize(18);
     this->evaluateButton->callback(cbEvaluateButtonClicked, this);
 }
 
 void MainGameWindow::addPauseButton()
 {
-    this->pauseButton = new Fl_Button(300, 380, 40, 40, "@||");
-    this->pausePuzzleOverlay = new Fl_Box(20, 20, 300, 300, "This is not the puzzle you are looking for...");
+    this->pauseButton = new Fl_Button(430, 10, 40, 40, "@||");
+    this->pausePuzzleOverlay = new Fl_Box(30, 60, 440, 440, "This is not the puzzle\n you are looking for...");
     this->pausePuzzleOverlay->hide();
+    this->pausePuzzleOverlay->labelsize(25);
+    this->pausePuzzleOverlay->labelcolor(this->gameManager->getSettings()->getTextColor());
     this->pausePuzzleOverlay->color(this->gameManager->getSettings()->getButtonColor());
     this->pausePuzzleOverlay->box(FL_UP_BOX);
     this->pauseButton->callback(cbPauseButtonClicked, this);
@@ -121,22 +124,24 @@ void MainGameWindow::addPauseButton()
 //
 void MainGameWindow::addResetButton()
 {
-    this->resetButton = new Fl_Button(10, 340, 110, 30, "RESET");
+    this->resetButton = new Fl_Button(30, 515, 130, 40, "RESET");
+    this->resetButton->labelsize(16);
     this->resetButton->callback(cbResetButtonClicked, this);
 }
 
 void MainGameWindow::addViewHighScoresButton()
 {
-    this->viewHighScoresButton = new Fl_Button(420, 350, 110, 30, "HIGH SCORES");
+    this->viewHighScoresButton = new Fl_Button(340, 515, 130, 40, "HIGH SCORES");
+    this->viewHighScoresButton->labelsize(16);
     this->viewHighScoresButton->callback(cbViewHighScoresClicked, this);
 }
 
 /// Adds the timer label to the window.
 void MainGameWindow::drawTimerLabel()
 {
-    this->gameTimerLabel = new Fl_Box(385, 385, 175, 30, nullptr);
+    this->gameTimerLabel = new Fl_Box(200, 10, 205, 40, nullptr);
     this->gameTimerLabel->box(FL_UP_BOX);
-    this->gameTimerLabel->labelsize(16);
+    this->gameTimerLabel->labelsize(18);
     this->refreshTimerLabel();
 }
 
