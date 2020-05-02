@@ -34,6 +34,7 @@ class MainGameWindow : public Fl_Window
         PuzzleGrid* puzzleGrid;
         GameManager* gameManager;
         InitialSettingsWindow* settingsWindow;
+        HighScoresWindow* highScoresWindow;
 
         Fl_Box* highScoresLabel;
         Fl_Button* evaluateButton;
@@ -54,6 +55,7 @@ class MainGameWindow : public Fl_Window
         virtual ~MainGameWindow();
 
         GameManager* getGameManager();
+        HighScoresWindow* getHighScoresWindow();
 
         void refreshBoard();
         void drawPuzzleNumberLabel();

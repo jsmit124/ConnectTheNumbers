@@ -12,7 +12,6 @@ namespace view
         this->clearButton = new Fl_Button(350, 420, 60, 30, "Clear");
         this->sortChoice = new Fl_Choice(150, 420, 100, 30, "Sort: ");
 
-
         this->clearButton->callback(HighScoresWindow::cbClearClicked, this);
         this->sortChoice->callback(HighScoresWindow::cbSortChanged, this);
 

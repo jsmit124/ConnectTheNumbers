@@ -19,6 +19,8 @@ namespace view {
         explicit HighScoresWindow(GameManager *manager);
         ~HighScoresWindow() override;
 
+        void refreshTableData();
+
     private:
         GameManager *manager;
         Fl_Button *clearButton;
@@ -29,7 +31,6 @@ namespace view {
         static void cbClearClicked(Fl_Widget*, void *data);
         static void cbSortChanged(Fl_Widget*, void *data);
 
-        void refreshTableData();
         void applyColorScheme();
     };
 }
