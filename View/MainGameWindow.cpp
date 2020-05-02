@@ -100,6 +100,7 @@ void MainGameWindow::refreshBoard()
     string labelText = this->getPuzzleNumberOutput();
     this->puzzleNumberLabel->copy_label(labelText.c_str());
 
+    this->gameManager->setIsGamePaused(false);
     this->puzzleGrid->resetBoard(this->gameManager);
     this->puzzleGrid->resetColors(this->gameManager);
 }
@@ -169,27 +170,31 @@ void MainGameWindow::cbEvaluateButtonClicked(Fl_Widget* widget, void* data)
     int isFinalPuzzleOfGame = window->getGameManager()->isFinalPuzzle();
     int currentRound = window->getGameManager()->getCurrentPuzzleNumber();
     window->colorEvaluationPath();
+    Messenger messenger;
 
-    if (successfullySolved && isFinalPuzzleOfGame)
+    if (successfullySolved)
     {
-        window->showFinalRoundWindow();
-    }
-    else if (successfullySolved && !isLastPuzzleOfDifficulty)
-    {
+        window->handleGameFinished();
         window->getGameManager()->recordGameCompletion("user");
-        // TODO assign random messages to eval
-        fl_message(window->getRandomEvaluationMessage().c_str());
-        window->getGameManager()->moveToNextPuzzle();
-        window->refreshBoard();
-    }
-    else if (successfullySolved && isLastPuzzleOfDifficulty)
-    {
-        window->showRoundEndWindow();
+        messenger.showPuzzleEndMessage(window->getGameManager()->getTimeSpentOnPuzzle());
+
+        if (isFinalPuzzleOfGame)
+        {
+            window->showFinalRoundWindow();
+        }
+        else if (!isLastPuzzleOfDifficulty)
+        {
+            window->getGameManager()->moveToNextPuzzle();
+            window->refreshBoard();
+        }
+        else
+        {
+            window->showRoundEndWindow();
+        }
     }
     else
     {
         fl_message("Uh oh.. the board is not correct. Try again!");
-        window->refreshColors();
     }
 }
 
@@ -199,6 +204,7 @@ void MainGameWindow::showFinalRoundWindow()
     {
         case 0:
             this->gameManager->resetGame();
+            this->startGame();
             this->refreshBoard();
             break;
         case 1:
@@ -212,25 +218,12 @@ void MainGameWindow::showRoundEndWindow()
     {
         case 0:
             this->gameManager->moveToNextPuzzle();
+            this->startGame();
             this->refreshBoard();
             break;
         case 1:
             break;
     }
-}
-
-string MainGameWindow::getRandomEvaluationMessage()
-{
-    vector<string> messages;
-
-    messages.push_back("A");
-    messages.push_back("B");
-    messages.push_back("C");
-    messages.push_back("D");
-    messages.push_back("E");
-    int randomNumber = rand() % messages.size() + 1;
-
-    return messages.at(randomNumber);
 }
 
 void MainGameWindow::colorEvaluationPath()
@@ -250,7 +243,6 @@ void MainGameWindow::cbPeekButtonClicked(Fl_Widget *widget, void *data)
     if (window->gameManager->foundFirstNode())
     {
         window->colorPeekPath();
-        //TODO do something other than message (maybe 5 second timer)
         window->gameManager->increaseTimeBy30();
         window->refreshTimerLabel();
         fl_message("Fine.. here is a hint.\n+30 seconds");
@@ -303,19 +295,30 @@ void MainGameWindow::cbPauseButtonClicked(Fl_Widget* widget, void* data)
     }
     else
     {
-        window->stopGame();
+        window->handlePause();
     }
 }
 
 void MainGameWindow::stopGame()
 {
-    this->pauseButton->label("@>");
-    this->puzzleGrid->deactivate();
-    this->pausePuzzleOverlay->show();
     this->gameManager->setIsGamePaused(true);
     this->peekButton->deactivate();
     this->resetButton->deactivate();
     this->evaluateButton->deactivate();
+    this->puzzleGrid->deactivate();
+}
+
+void MainGameWindow::handleGameFinished()
+{
+    this->stopGame();
+    this->pauseButton->deactivate();
+}
+
+void MainGameWindow::handlePause()
+{
+    this->pauseButton->label("@>");
+    this->pausePuzzleOverlay->show();
+    this->stopGame();
 }
 
 void MainGameWindow::startGame()
@@ -327,6 +330,7 @@ void MainGameWindow::startGame()
     this->peekButton->activate();
     this->resetButton->activate();
     this->evaluateButton->activate();
+    this->pauseButton->activate();
 }
 
 GameManager* MainGameWindow::getGameManager()
