@@ -231,11 +231,17 @@ void PuzzleGrid::cbButtonSelected(Fl_Widget* widget, void* data)
         Fl::wait();
     }
 
-    if (buttonValueEntry.getValue() != 0)
+    if (buttonValueEntry.getValue() > 0)
     {
         auto * currButton = (PuzzleGridButton*)widget;
         manager->setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID());
         widget->copy_label(to_string(buttonValueEntry.getValue()).c_str());
+    }
+    else if (buttonValueEntry.getValue() == 0)
+    {
+        auto * currButton = (PuzzleGridButton*)widget;
+        manager->setPuzzleNodeValue(buttonValueEntry.getValue(), currButton->getID());
+        widget->copy_label("");
     }
 }
 

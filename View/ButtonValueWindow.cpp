@@ -17,7 +17,7 @@ ButtonValueWindow::ButtonValueWindow(int min, int max) : Fl_Window(175, 100, "Va
 
     this->minimumNumber = min;
     this->maximumNumber = max;
-    this->value = 0;
+    this->value = -1;
 
     this->valueInput = new Fl_Input(80, 10, 60, 25, "Value:");
     this->okButton = new Fl_Button(15, 50, 70, 30, "OK");
@@ -54,7 +54,6 @@ void ButtonValueWindow::okHandler()
 //
 void ButtonValueWindow::cancelHandler()
 {
-    this->value = 0;
     this->hide();
 }
 
@@ -85,6 +84,12 @@ void ButtonValueWindow::cbCancel(Fl_Widget* widget, void* data)
 int ButtonValueWindow::determineIfValidValueEntered()
 {
     string value = this->valueInput->value();
+
+    if (value == "")
+    {
+        return 0;
+    }
+
     int intValue = toInt(value, "Error converting value to an integer.");
 
     if (intValue < this->minimumNumber || intValue > this->maximumNumber)
