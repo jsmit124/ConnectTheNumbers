@@ -57,11 +57,12 @@ void MainGameWindow::showRoundEndWindow()
 {
     switch (fl_choice("Do you want to keep going?", "Yes", "No", 0))
     {
-    case 0:
-        this->startGame();
-        this->gameManager->moveToNextPuzzle();
-        this->refreshBoard();
-        break;
+        case 0:
+            this->startGame();
+            this->gameManager->moveToNextPuzzle();
+            this->refreshBoard();
+            break;
+
     }
 }
 
@@ -71,11 +72,13 @@ void MainGameWindow::showFinalRoundWindow()
 {
     switch (fl_choice("Do you want to restart the game?", "Yes", "No", 0))
     {
-    case 0:
-        this->startGame();
-        this->gameManager->resetGame();
-        this->refreshBoard();
-        break;
+        case 0:
+            this->startGame();
+            this->gameManager->resetGame();
+            this->refreshBoard();
+            break;
+        case 1:
+            break;
     }
 }
 
@@ -123,6 +126,7 @@ void MainGameWindow::refreshBoard()
     string labelText = this->formatPuzzleNumberOutput();
     this->puzzleNumberLabel->copy_label(labelText.c_str());
 
+    this->puzzleGrid->activate();
     this->gameManager->setIsGamePaused(false);
     this->puzzleGrid->resetBoard(this->gameManager);
     this->puzzleGrid->resetColors();
