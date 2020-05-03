@@ -116,12 +116,6 @@ void Puzzle::add(PuzzleNode node)
 void Puzzle::replace(int value, int index)
 {
     PuzzleNode& node = this->nodes.at(index);
-
-    if (value == 1)
-    {
-        this->startLocation = index;
-    }
-
     node.setValue(value);
 }
 
