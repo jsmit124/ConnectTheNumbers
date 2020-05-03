@@ -25,7 +25,6 @@ ButtonValueWindow::ButtonValueWindow(int min, int max) : Fl_Window(175, 100, "Va
 
     this->okButton->callback(cbOk, this);
     this->cancelButton->callback(cbCancel, this);
-    this->valueInput->callback(cbOk, this);
 
     this->okButton->when(FL_WHEN_ENTER_KEY);
 
@@ -57,6 +56,7 @@ void ButtonValueWindow::okHandler()
 //
 void ButtonValueWindow::cancelHandler()
 {
+    this->value = 0;
     this->hide();
 }
 
