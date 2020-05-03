@@ -7,11 +7,11 @@ using namespace view;
 //
 int main (int argc, char ** argv)
 {
-  MainGameWindow *window;
+    MainGameWindow *window;
 
-  window = new MainGameWindow(500, 575, "Connect the Numbers by Smith, Williams, and Steinborn");
-  window->show();
+    window = new MainGameWindow(500, 575, "Connect the Numbers by Smith, Williams, and Steinborn");
+    window->show();
 
-  int exitCode = Fl::run();
-  return exitCode;
+    int exitCode = Fl::run();
+    return exitCode;
 }

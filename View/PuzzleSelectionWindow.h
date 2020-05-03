@@ -16,30 +16,30 @@ namespace view
 //
 class PuzzleSelectionWindow : public Fl_Window
 {
-    public:
-        PuzzleSelectionWindow();
-        virtual ~PuzzleSelectionWindow();
+public:
+    PuzzleSelectionWindow();
+    virtual ~PuzzleSelectionWindow();
 
-        int getPuzzleSelectionValue();
-        void setPuzzleSelectionValue(int puzzleNumber);
+    int getPuzzleSelectionValue();
+    void setPuzzleSelectionValue(int puzzleNumber);
 
-    private:
-        Fl_Choice* puzzleSelectionChoice;
-        Fl_Button* okButton;
-        Fl_Button* cancelButton;
+private:
+    Fl_Choice* puzzleSelectionChoice;
+    Fl_Button* okButton;
+    Fl_Button* cancelButton;
 
-        int puzzleSelectionValue;
+    int puzzleSelectionValue;
 
-        void addSelectionOptions();
+    void addSelectionOptions();
 
-        void okHandler();
-        void cancelHandler();
+    void okHandler();
+    void cancelHandler();
 
-        static void cbOk(Fl_Widget*, void*);
-        static void cbCancel(Fl_Widget*, void*);
+    static void cbOk(Fl_Widget*, void*);
+    static void cbCancel(Fl_Widget*, void*);
 
-        void addButtonsToWindow();
-        void setCallbacksForButtons();
+    void addButtonsToWindow();
+    void setCallbacksForButtons();
 
 };
 

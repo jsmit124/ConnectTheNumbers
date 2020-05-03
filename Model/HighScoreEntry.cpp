@@ -15,19 +15,22 @@ HighScoreEntry::HighScoreEntry(std::string name, int duration, int puzzle): puzz
 
 /// Returns the name associated with this high score entry.
 // @return the name
-const std::string &HighScoreEntry::getName() const {
+const std::string &HighScoreEntry::getName() const
+{
     return this->name;
 }
 
 /// Returns the duration associated with this high score entry.
 // @return the duration
-int HighScoreEntry::getDuration() const {
+int HighScoreEntry::getDuration() const
+{
     return this->duration;
 }
 
 /// Returns the puzzle associated with this high score entry.
 // @return the puzzle
-int HighScoreEntry::getPuzzle() const {
+int HighScoreEntry::getPuzzle() const
+{
     return this->puzzle;
 }
 

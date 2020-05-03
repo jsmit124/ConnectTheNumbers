@@ -9,7 +9,8 @@
 
 using namespace std;
 
-namespace model {
+namespace model
+{
 
 /**
  * Keeps track of all potential high scores.

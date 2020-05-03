@@ -3,26 +3,27 @@
 
 #include <string>
 
-namespace model {
+namespace model
+{
 
 /**
  * Represents a high score entry.
  */
 class HighScoreEntry
 {
-    public:
-        HighScoreEntry(std::string name, int duration, int puzzle);
+public:
+    HighScoreEntry(std::string name, int duration, int puzzle);
 
-        const std::string &getName() const;
+    const std::string &getName() const;
 
-        int getDuration() const;
+    int getDuration() const;
 
-        int getPuzzle() const;
+    int getPuzzle() const;
 
 private:
-        std::string name;
-        const int duration;
-        const int puzzle;
+    std::string name;
+    const int duration;
+    const int puzzle;
 };
 
 }

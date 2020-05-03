@@ -13,11 +13,11 @@ namespace view
 class Messenger
 {
 
-    public:
-        Messenger();
-        virtual ~Messenger();
+public:
+    Messenger();
+    virtual ~Messenger();
 
-        void showPuzzleEndMessage(int timeCompleted);
+    void showPuzzleEndMessage(int timeCompleted);
 };
 
 }

@@ -30,66 +30,71 @@ namespace view
 //
 class InitialSettingsWindow : public Fl_Window
 {
-    public:
-        InitialSettingsWindow();
-        virtual ~InitialSettingsWindow();
+public:
+    InitialSettingsWindow();
+    virtual ~InitialSettingsWindow();
 
-        void startHandler();
-        void closeHandler();
+    void startHandler();
+    void closeHandler();
 
-        Fl_Color getSelectedButtonColor();
-        Fl_Color getSelectedBackgroundColor();
-        Difficulty getSelectedDifficulty();
-        bool getLoadSavedPuzzle();
-        int getSelectedPuzzle();
-        Fl_Color getSelectedTextColor();
+    Fl_Color getSelectedButtonColor();
+    Fl_Color getSelectedBackgroundColor();
+    Difficulty getSelectedDifficulty();
+    bool getLoadSavedPuzzle();
+    int getSelectedPuzzle();
+    Fl_Color getSelectedTextColor();
+    string getUsername();
 
-        void setLoadSavedPuzzle(bool);
-        void setSavedButtonState(bool);
-        void setButtonColor(Fl_Color);
-        void setBackgroundColor(Fl_Color);
-        void setDifficulty(Difficulty);
-        void setSelectedPuzzle(int);
-        void setTextColor(Fl_Color);
+    void setUsername(const string& username);
+    void setLoadSavedPuzzle(bool);
+    void setSavedButtonState(bool);
+    void setButtonColor(Fl_Color);
+    void setBackgroundColor(Fl_Color);
+    void setDifficulty(Difficulty);
+    void setSelectedPuzzle(int);
+    void setTextColor(Fl_Color);
 
-        void setColorToAllButtons(Fl_Color);
-        void setTextColorToAllButtons(Fl_Color);
+    void setColorToAllButtons(Fl_Color);
+    void setTextColorToAllButtons(Fl_Color);
 
-    private:
-        static const int MAX_PUZZLE_COUNT = 12;
+private:
+    static const int MAX_PUZZLE_COUNT = 12;
 
-        Fl_Button* startButton;
-        Fl_Button* closeButton;
-        Fl_Button* chooseButtonColorButton;
-        Fl_Button* chooseBackgroundColorButton;
-        Fl_Button* chooseDifficultyButton;
-        Fl_Button* lastSaveButton;
-        Fl_Button* chooseLevelButton;
-        Fl_Button* chooseTextColorButton;
+    Fl_Input* usernameInput;
+    Fl_Button* startButton;
+    Fl_Button* closeButton;
+    Fl_Button* chooseButtonColorButton;
+    Fl_Button* chooseBackgroundColorButton;
+    Fl_Button* chooseDifficultyButton;
+    Fl_Button* lastSaveButton;
+    Fl_Button* chooseLevelButton;
+    Fl_Button* chooseTextColorButton;
 
-        Difficulty chosenDifficulty;
-        Fl_Color chosenButtonColor;
-        Fl_Color chosenBackgroundColor;
-        Fl_Color chosenTextColor;
-        int chosenPuzzleNumber;
-        int value;
-        bool loadSavedPuzzle;
+    Difficulty chosenDifficulty;
+    Fl_Color chosenButtonColor;
+    Fl_Color chosenBackgroundColor;
+    Fl_Color chosenTextColor;
+    int chosenPuzzleNumber;
+    int value;
+    bool loadSavedPuzzle;
+    string username;
 
-        static void cbStart(Fl_Widget*, void*);
-        static void cbClose(Fl_Widget*, void*);
-        static void cbButtonColorButtonClick(Fl_Widget*, void*);
-        static void cbBackgroundColorButtonClick(Fl_Widget*, void*);
-        static void cbDifficultyButtonClick(Fl_Widget*, void*);
-        static void cbLoadSave(Fl_Widget*, void*);
-        static void cbSelectPuzzle(Fl_Widget*, void*);
-        static void cbChooseTextColor(Fl_Widget*, void*);
-        static void cbOnWindowClose(Fl_Widget*, void *);
+    static void cbStart(Fl_Widget*, void*);
+    static void cbClose(Fl_Widget*, void*);
+    static void cbButtonColorButtonClick(Fl_Widget*, void*);
+    static void cbBackgroundColorButtonClick(Fl_Widget*, void*);
+    static void cbDifficultyButtonClick(Fl_Widget*, void*);
+    static void cbLoadSave(Fl_Widget*, void*);
+    static void cbSelectPuzzle(Fl_Widget*, void*);
+    static void cbChooseTextColor(Fl_Widget*, void*);
+    static void cbOnWindowClose(Fl_Widget*, void *);
 
-        void drawAllButtons();
-        void setCallbacks();
-        void setDefaultValues();
-        void setColorScheme();
-        void redrawButtons();
+    void drawAllControls();
+    void setCallbacks();
+    void setDefaultValues();
+    void setColorScheme();
+    void redrawControls();
+    void setupUsernameInput();
 };
 
 }

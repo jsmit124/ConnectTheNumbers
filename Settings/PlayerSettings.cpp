@@ -10,6 +10,7 @@ PlayerSettings::PlayerSettings()
     this->backgroundColor = fl_darker(fl_darker(FL_DARK_YELLOW));
     this->buttonColor = FL_DARK3;
     this->textColor = FL_WHITE;
+    this->username = DEFAULT_USERNAME;
 }
 
 PlayerSettings::~PlayerSettings() = default;
@@ -51,6 +52,21 @@ void PlayerSettings::setDifficulty(Difficulty selection)
 void PlayerSettings::setLastSavedDifficulty(Difficulty difficulty)
 {
     this->lastSavedDifficulty = difficulty;
+}
+
+/// Sets the username to [username]
+// @post: this->username = username
+// @param username: username to set
+void PlayerSettings::setUsername(const string& username)
+{
+    this->username = username;
+}
+
+/// Gets the username to [username]
+// @return the username
+string PlayerSettings::getUsername()
+{
+    return this->username;
 }
 
 /// Returns the Fl_Color chosen to be the button color
@@ -96,14 +112,14 @@ void PlayerSettings::moveToNextDifficulty()
 {
     switch (this->chosenDifficulty)
     {
-        case EASY:
-            this->chosenDifficulty = MEDIUM;
-            break;
-        case MEDIUM:
-            this->chosenDifficulty = HARD;
-            break;
-        case HARD:
-            this->chosenDifficulty = EASY;
+    case EASY:
+        this->chosenDifficulty = MEDIUM;
+        break;
+    case MEDIUM:
+        this->chosenDifficulty = HARD;
+        break;
+    case HARD:
+        this->chosenDifficulty = EASY;
     }
 }
 

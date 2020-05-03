@@ -16,23 +16,25 @@
 
 using namespace model;
 
-namespace view {
+namespace view
+{
 
-    /// Handles implementation of the Window to display the high scoreboard table.
-    //
-    class HighScoreboardTable : public Fl_Table_Row {
+/// Handles implementation of the Window to display the high scoreboard table.
+//
+class HighScoreboardTable : public Fl_Table_Row
+{
 
-    private:
-        vector<HighScoreEntry *> entriesUsed;
-        void drawHeader(const char *s, int X, int Y, int W, int H);
-        void drawData(const char *s, int X, int Y, int W, int H);
-        void draw_cell(TableContext context, int row, int col, int x, int y, int w, int h) override;
+private:
+    vector<HighScoreEntry *> entriesUsed;
+    void drawHeader(const char *s, int X, int Y, int W, int H);
+    void drawData(const char *s, int X, int Y, int W, int H);
+    void draw_cell(TableContext context, int row, int col, int x, int y, int w, int h) override;
 
-    public:
-        HighScoreboardTable(int X, int Y, int W, int H, vector<HighScoreEntry *> entries);
-        void refresh(vector<HighScoreEntry *> entries);
+public:
+    HighScoreboardTable(int X, int Y, int W, int H, vector<HighScoreEntry *> entries);
+    void refresh(vector<HighScoreEntry *> entries);
 
-    };
+};
 }
 
 

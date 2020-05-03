@@ -8,11 +8,11 @@ namespace view
 // @pre none
 // @post none
 //
-InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 350, "Connect the Numbers")
+InitialSettingsWindow::InitialSettingsWindow() : Fl_Window(250, 420, "Connect the Numbers")
 {
     begin();
 
-    this->drawAllButtons();
+    this->drawAllControls();
     this->setCallbacks();
     this->setDefaultValues();
     this->setColorScheme();
@@ -213,6 +213,21 @@ void InitialSettingsWindow::setTextColor(Fl_Color color)
     this->setTextColorToAllButtons(color);
 }
 
+/// Sets the username to the input field
+// @param username: the username to set
+// @post: this->usernameInput = username
+void InitialSettingsWindow::setUsername(const string& username)
+{
+    this->usernameInput->value(username.c_str());
+}
+
+/// Returns the username from the input field
+// @return username from input field
+string InitialSettingsWindow::getUsername()
+{
+    return this->usernameInput->value();
+}
+
 /// Applies the input color value to all the buttons in the window
 //
 // @pre none
@@ -230,8 +245,9 @@ void InitialSettingsWindow::setColorToAllButtons(Fl_Color color)
     this->lastSaveButton->color(color);
     this->chooseLevelButton->color(color);
     this->chooseTextColorButton->color(color);
+    this->usernameInput->color(color);
 
-    this->redrawButtons();
+    this->redrawControls();
 }
 
 /// Applys the text color to all buttons in the window
@@ -251,20 +267,23 @@ void InitialSettingsWindow::setTextColorToAllButtons(Fl_Color color)
     this->lastSaveButton->labelcolor(color);
     this->chooseLevelButton->labelcolor(color);
     this->chooseTextColorButton->labelcolor(color);
+    this->usernameInput->textcolor(color);
 
-    this->redrawButtons();
+    this->redrawControls();
 }
 
-void InitialSettingsWindow::drawAllButtons()
+void InitialSettingsWindow::drawAllControls()
 {
-    this->lastSaveButton = new Fl_Button(25, 25, 200, 30, "Continue game");
-    this->startButton = new Fl_Button(25, 65, 200, 30, "Start");
-    this->chooseLevelButton = new Fl_Button(25, 105, 200, 30, "Select Puzzle");
-    this->chooseDifficultyButton = new Fl_Button(25, 145, 200, 30, "Choose difficulty");
-    this->chooseBackgroundColorButton = new Fl_Button(25, 185, 200, 30, "Choose background color");
-    this->chooseButtonColorButton = new Fl_Button(25, 225, 200, 30, "Choose button color");
-    this->chooseTextColorButton = new Fl_Button(25, 265, 200, 30, "Choose text color");
-    this->closeButton = new Fl_Button(25, 305, 200, 30, "Close");
+    this->lastSaveButton = new Fl_Button(25, 85, 200, 30, "Continue game");
+    this->startButton = new Fl_Button(25, 125, 200, 30, "Start");
+    this->chooseLevelButton = new Fl_Button(25, 165, 200, 30, "Select Puzzle");
+    this->chooseDifficultyButton = new Fl_Button(25, 205, 200, 30, "Choose difficulty");
+    this->chooseBackgroundColorButton = new Fl_Button(25, 245, 200, 30, "Choose background color");
+    this->chooseButtonColorButton = new Fl_Button(25, 285, 200, 30, "Choose button color");
+    this->chooseTextColorButton = new Fl_Button(25, 325, 200, 30, "Choose text color");
+    this->closeButton = new Fl_Button(25, 365, 200, 30, "Close");
+
+    this->setupUsernameInput();
 }
 
 void InitialSettingsWindow::setCallbacks()
@@ -288,16 +307,26 @@ void InitialSettingsWindow::setDefaultValues()
     this->chosenPuzzleNumber = 0;
     this->loadSavedPuzzle = false;
     this->value = 0;
+    this->username = "user";
 }
 
 void InitialSettingsWindow::setColorScheme()
 {
     this->color(this->chosenBackgroundColor);
+    this->usernameInput->color(this->chosenButtonColor);
     this->setColorToAllButtons(this->chosenButtonColor);
     this->setTextColorToAllButtons(this->chosenTextColor);
 }
 
-void InitialSettingsWindow::redrawButtons()
+void InitialSettingsWindow::setupUsernameInput()
+{
+    this->usernameInput = new Fl_Input(70, 25, 155, 40, "User:");
+    this->usernameInput->labelsize(16);
+    this->usernameInput->textsize(16);
+    this->usernameInput->labelcolor(FL_BLACK);
+}
+
+void InitialSettingsWindow::redrawControls()
 {
     this->startButton->redraw();
     this->closeButton->redraw();
@@ -307,6 +336,7 @@ void InitialSettingsWindow::redrawButtons()
     this->lastSaveButton->redraw();
     this->chooseLevelButton->redraw();
     this->chooseTextColorButton->redraw();
+    this->usernameInput->redraw();
 }
 
 void InitialSettingsWindow::cbStart(Fl_Widget* widget, void* data)

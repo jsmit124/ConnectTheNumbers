@@ -11,30 +11,32 @@
 using namespace controller;
 using namespace model;
 
-namespace view {
+namespace view
+{
 
-    enum HighScoresSort { BY_DURATION, BY_PUZZLE };
+enum HighScoresSort { BY_DURATION, BY_PUZZLE };
 
-    class HighScoresWindow : public Fl_Window {
+class HighScoresWindow : public Fl_Window
+{
 
-    public:
-        explicit HighScoresWindow(GameManager *manager);
-        ~HighScoresWindow() override;
+public:
+    explicit HighScoresWindow(GameManager *manager);
+    ~HighScoresWindow() override;
 
-        void refreshTableData();
+    void refreshTableData();
 
-    private:
-        GameManager *manager;
-        Fl_Button *clearButton;
-        Fl_Choice *sortChoice;
-        HighScoreboardTable *table;
-        HighScoresSort sortBy;
+private:
+    GameManager *manager;
+    Fl_Button *clearButton;
+    Fl_Choice *sortChoice;
+    HighScoreboardTable *table;
+    HighScoresSort sortBy;
 
-        static void cbClearClicked(Fl_Widget*, void *data);
-        static void cbSortChanged(Fl_Widget*, void *data);
+    static void cbClearClicked(Fl_Widget*, void *data);
+    static void cbSortChanged(Fl_Widget*, void *data);
 
-        void applyColorScheme();
-    };
+    void applyColorScheme();
+};
 }
 
 

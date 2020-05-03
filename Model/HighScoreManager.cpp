@@ -1,6 +1,7 @@
 #include "HighScoreManager.h"
 
-namespace model {
+namespace model
+{
 
 /// Constructs a new HighScoreManager.
 //
@@ -11,7 +12,8 @@ HighScoreManager::HighScoreManager()
 
 /// Destroys this HighScoreManager.
 //
-HighScoreManager::~HighScoreManager() {
+HighScoreManager::~HighScoreManager()
+{
     this->clearAndDeleteAllScores();
     delete this->scores;
 }
@@ -21,7 +23,8 @@ HighScoreManager::~HighScoreManager() {
 // @param name the name of the player
 // @param duration the duration the player achieved
 // @param puzzle the puzzle the player solved
-void HighScoreManager::add(std::string name, int duration, int puzzle) {
+void HighScoreManager::add(std::string name, int duration, int puzzle)
+{
     auto *entry = new HighScoreEntry(name, duration, puzzle);
     this->scores->push_back(entry);
 }
@@ -29,9 +32,11 @@ void HighScoreManager::add(std::string name, int duration, int puzzle) {
 /// Gets the top 10 entries on the high score table, sorted by duration in
 /// ascending order.
 // @return the 10 entries in ascending duration
-vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration() {
+vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration()
+{
     vector<HighScoreEntry*> entriesCopy(*this->scores);
-    sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second) {
+    sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second)
+    {
         return first->getDuration() < second->getDuration();
     });
     entriesCopy.resize(min(entriesCopy.size(), (vector<HighScoreEntry*>::size_type) MAXIMUM_HIGH_SCORE_ENTRIES));
@@ -41,10 +46,13 @@ vector<HighScoreEntry *> HighScoreManager::getTopTenByDuration() {
 /// Gets the top 10 entries on the high score, sorted by puzzle and then
 /// duration in a two-level sort in ascending order.
 // @return the 10 entries in ascending order by puzzle and then duration
-vector<HighScoreEntry *> HighScoreManager::getTopTenByPuzzle() {
+vector<HighScoreEntry *> HighScoreManager::getTopTenByPuzzle()
+{
     vector<HighScoreEntry*> entriesCopy(*this->scores);
-    sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second) {
-        if (first->getPuzzle() != second->getPuzzle()) {
+    sort(entriesCopy.begin(), entriesCopy.end(), [](HighScoreEntry *first, HighScoreEntry *second)
+    {
+        if (first->getPuzzle() != second->getPuzzle())
+        {
             return first->getPuzzle() < second->getPuzzle();
         }
         return first->getDuration() < second->getDuration();
@@ -63,7 +71,8 @@ void HighScoreManager::clear()
 
 /// Gets all scores directly. This is used to save all high scores to disk.
 // @return all scores in this HighScoreManager
-vector<HighScoreEntry *> *HighScoreManager::getScores() const {
+vector<HighScoreEntry *> *HighScoreManager::getScores() const
+{
     return this->scores;
 }
 

@@ -27,8 +27,8 @@ MainGameWindow::MainGameWindow(int width, int height, const char* title) : Fl_Wi
     end();
 }
 
-  /// ///////// ///
- ///  GETTERS  ///
+/// ///////// ///
+///  GETTERS  ///
 /// ////////  ///
 
 /// Returns the pointer to highScoresWindow
@@ -47,8 +47,8 @@ string MainGameWindow::formatPuzzleNumberOutput()
            "/" + to_string(this->gameManager->getTotalPuzzlesCount());
 }
 
-  /// ///////////// ///
- ///  GAME EVENTS  ///
+/// ///////////// ///
+///  GAME EVENTS  ///
 /// ///////////// ///
 
 /// Displays a prompt indicating question to continue playing
@@ -57,11 +57,11 @@ void MainGameWindow::showRoundEndWindow()
 {
     switch (fl_choice("Do you want to keep going?", "Yes", "No", 0))
     {
-        case 0:
-            this->startGame();
-            this->gameManager->moveToNextPuzzle();
-            this->refreshBoard();
-            break;
+    case 0:
+        this->startGame();
+        this->gameManager->moveToNextPuzzle();
+        this->refreshBoard();
+        break;
 
     }
 }
@@ -72,13 +72,13 @@ void MainGameWindow::showFinalRoundWindow()
 {
     switch (fl_choice("Do you want to restart the game?", "Yes", "No", 0))
     {
-        case 0:
-            this->startGame();
-            this->gameManager->resetGame();
-            this->refreshBoard();
-            break;
-        case 1:
-            break;
+    case 0:
+        this->startGame();
+        this->gameManager->resetGame();
+        this->refreshBoard();
+        break;
+    case 1:
+        break;
     }
 }
 
@@ -126,7 +126,11 @@ void MainGameWindow::refreshBoard()
     string labelText = this->formatPuzzleNumberOutput();
     this->puzzleNumberLabel->copy_label(labelText.c_str());
 
+    this->evaluateButton->activate();
+    this->resetButton->activate();
+    this->peekButton->activate();
     this->puzzleGrid->activate();
+    this->pauseButton->activate();
     this->gameManager->setIsGamePaused(false);
     this->puzzleGrid->resetBoard(this->gameManager);
     this->puzzleGrid->resetColors();
@@ -191,7 +195,7 @@ void MainGameWindow::handleGameFinished()
 void MainGameWindow::handleEvaluateCorrectly()
 {
     this->handleGameFinished();
-    this->gameManager->recordGameCompletion("user");
+    this->gameManager->recordGameCompletion(this->gameManager->getSettings()->getUsername());
 
     Messenger messenger;
     messenger.showPuzzleEndMessage(this->gameManager->getTimeSpentOnPuzzle());
@@ -214,8 +218,8 @@ void MainGameWindow::handleEvaluateCorrectly()
     }
 }
 
-  /// /////////// ///
- ///  CALLBACKS  ///
+/// /////////// ///
+///  CALLBACKS  ///
 /// /////////// ///
 
 /// Callback for peek button click event
@@ -309,8 +313,8 @@ void MainGameWindow::cbViewHighScoresClicked(Fl_Widget* widget, void* data)
     }
 }
 
-  /// //////// ///
- ///  EVENTS  ///
+/// //////// ///
+///  EVENTS  ///
 /// //////// ///
 
 /// Starts the game timer and sets the tick frequency.
@@ -393,6 +397,7 @@ void MainGameWindow::initializeSettingsWindow()
     PlayerSettings* settings = this->gameManager->getSettings();
     this->settingsWindow = new InitialSettingsWindow();
 
+    this->settingsWindow->setUsername(settings->getUsername());
     this->settingsWindow->setColorToAllButtons(settings->getButtonColor());
     this->settingsWindow->setTextColorToAllButtons(settings->getTextColor());
     this->settingsWindow->setBackgroundColor(settings->getBackgroundColor());
@@ -415,6 +420,7 @@ void MainGameWindow::initializeSettings()
 {
     PlayerSettings* settings = this->gameManager->getSettings();
 
+    settings->setUsername(this->settingsWindow->getUsername());
     settings->setButtonColor(this->settingsWindow->getSelectedButtonColor());
     settings->setTextColor(this->settingsWindow->getSelectedTextColor());
     settings->setBackgroundColor(this->settingsWindow->getSelectedBackgroundColor());

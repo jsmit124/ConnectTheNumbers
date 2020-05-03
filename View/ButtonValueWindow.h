@@ -17,28 +17,28 @@ namespace view
 //
 class ButtonValueWindow : public Fl_Window
 {
-    public:
-        ButtonValueWindow(int min = 1, int max = 64);
-        virtual ~ButtonValueWindow();
+public:
+    ButtonValueWindow(int min = 1, int max = 64);
+    virtual ~ButtonValueWindow();
 
-        void okHandler();
-        void cancelHandler();
+    void okHandler();
+    void cancelHandler();
 
-        int getValue() const;
+    int getValue() const;
 
-    private:
-        Fl_Button* okButton;
-        Fl_Button* cancelButton;
-        Fl_Input* valueInput;
+private:
+    Fl_Button* okButton;
+    Fl_Button* cancelButton;
+    Fl_Input* valueInput;
 
-        int minimumNumber;
-        int maximumNumber;
-        int value;
+    int minimumNumber;
+    int maximumNumber;
+    int value;
 
-        static void cbOk(Fl_Widget*, void*);
-        static void cbCancel(Fl_Widget*, void*);
+    static void cbOk(Fl_Widget*, void*);
+    static void cbCancel(Fl_Widget*, void*);
 
-        int determineIfValidValueEntered();
+    int determineIfValidValueEntered();
 };
 
 }

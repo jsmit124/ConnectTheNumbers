@@ -57,7 +57,7 @@ void PuzzleManager::moveToNextPuzzle()
     this->currentPuzzleIndex++;
 }
 
-    void PuzzleManager::setPuzzleAt(Puzzle puzzle, int index)
+void PuzzleManager::setPuzzleAt(Puzzle puzzle, int index)
 {
     this->puzzles.at(index) = puzzle;
 }

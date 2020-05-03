@@ -23,10 +23,11 @@ class SettingsReader
 
     enum SettingsReaderState
     {
-        DIFFICULTY = 0,
-        BACKGROUND_COLOR = 1,
-        BUTTON_COLOR = 2,
-        TEXT_COLOR = 3
+        USERNAME = 0,
+        DIFFICULTY = 1,
+        BACKGROUND_COLOR = 2,
+        BUTTON_COLOR = 3,
+        TEXT_COLOR = 4
     };
 
 private:

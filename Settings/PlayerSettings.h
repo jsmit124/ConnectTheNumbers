@@ -5,6 +5,7 @@
 
 #include <Fl/Fl_Export.H>
 #include <Fl/Fl.H>
+#include <string>
 using namespace std;
 
 namespace settings
@@ -16,17 +17,20 @@ class PlayerSettings
 {
 
 private:
+    string DEFAULT_USERNAME = "plzGiveMeA";
 
     Difficulty lastSavedDifficulty;
     Difficulty chosenDifficulty;
     Fl_Color buttonColor;
     Fl_Color backgroundColor;
     Fl_Color textColor;
+    string username;
 
 public:
     PlayerSettings();
     virtual ~PlayerSettings();
 
+    void setUsername(const string& username);
     void setButtonColor(Fl_Color color);
     void setTextColor(Fl_Color color);
     void setBackgroundColor(Fl_Color color);
@@ -38,6 +42,7 @@ public:
     Difficulty getDifficulty();
     Difficulty getLastSavedDifficulty();
     Fl_Color getTextColor();
+    string getUsername();
 
     void moveToNextDifficulty();
 };

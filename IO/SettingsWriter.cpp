@@ -15,6 +15,7 @@ void SettingsWriter::writeSettingsToFile(const string& filename, PlayerSettings&
 {
     ofstream outFile(filename);
 
+    outFile << settings.getUsername() << endl;
     outFile << settings.getDifficulty() << endl;
     outFile << settings.getBackgroundColor() << endl;
     outFile << settings.getButtonColor() << endl;

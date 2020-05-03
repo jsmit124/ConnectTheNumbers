@@ -31,44 +31,46 @@ using namespace view;
 #include <iostream>
 using namespace std;
 
-namespace view {
+namespace view
+{
 
-    /// A puzzle grid widget whose labels can be arbitrarily set and react to click events.
-    //
-    class PuzzleGrid {
+/// A puzzle grid widget whose labels can be arbitrarily set and react to click events.
+//
+class PuzzleGrid
+{
 
-    public:
-        PuzzleGrid(int, int, GameManager* gameManager);
-        ~PuzzleGrid();
+public:
+    PuzzleGrid(int, int, GameManager* gameManager);
+    ~PuzzleGrid();
 
-        void resetColors();
-        void resetBoard(GameManager*);
-        void colorEvaluationPath(GameManager*);
-        void colorPeekPath(GameManager* gameManager);
-        void deactivate();
-        void activate();
+    void resetColors();
+    void resetBoard(GameManager*);
+    void colorEvaluationPath(GameManager*);
+    void colorPeekPath(GameManager* gameManager);
+    void deactivate();
+    void activate();
 
-    private:
-        Fl_Group *gridGroup;
-        vector<PuzzleGridButton*> gridButtons;
+private:
+    Fl_Group *gridGroup;
+    vector<PuzzleGridButton*> gridButtons;
 
-        int xLocation;
-        int yLocation;
+    int xLocation;
+    int yLocation;
 
-        Fl_Color* validNodeColor;
-        Fl_Color* invalidNodeColor;
-        Fl_Color* defaultEvaluationTextColor;
-        Fl_Color defaultBackgroundColor;
-        Fl_Color defaultLabelColor;
+    Fl_Color* validNodeColor;
+    Fl_Color* invalidNodeColor;
+    Fl_Color* defaultEvaluationTextColor;
+    Fl_Color defaultBackgroundColor;
+    Fl_Color defaultLabelColor;
 
-        void updatePuzzleNode(int, GameManager*);
-        void evaluate(int, GameManager*);
-        void drawPuzzleGrid(int, int, GameManager*);
-        static void cbButtonSelected(Fl_Widget*, void*);
+    void updatePuzzleNode(int, GameManager*);
+    void evaluate(int, GameManager*);
+    void drawPuzzleGrid(int, int, GameManager*);
+    static void cbButtonSelected(Fl_Widget*, void*);
 
-        void setDefaultColorValues(GameManager*);
+    void setDefaultColorValues(GameManager*);
 
-    };
+};
 }
 
 

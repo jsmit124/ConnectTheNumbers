@@ -21,7 +21,7 @@ PlayerSettings SettingsReader::readSettingsFile(const string& filename)
     }
 
     PlayerSettings settings;
-    SettingsReaderState state = DIFFICULTY;
+    SettingsReaderState state = USERNAME;
     string line;
 
     while (getline(inFile, line))
@@ -35,23 +35,27 @@ PlayerSettings SettingsReader::readSettingsFile(const string& filename)
 void SettingsReader::setState(SettingsReaderState& state, PlayerSettings& settings, string& line)
 {
     switch (state)
-        {
-        case DIFFICULTY:
-            settings.setLastSavedDifficulty(static_cast<Difficulty>(stoi(line)));
-            state = BACKGROUND_COLOR;
-            break;
-        case BACKGROUND_COLOR:
-            settings.setBackgroundColor(static_cast<Fl_Color>(stoi(line)));
-            state = BUTTON_COLOR;
-            break;
-        case BUTTON_COLOR:
-            settings.setButtonColor(static_cast<Fl_Color>(stoi(line)));
-            state = TEXT_COLOR;
-            break;
-        case TEXT_COLOR:
-            settings.setTextColor(static_cast<Fl_Color>(stoi(line)));
-            break;
-        }
+    {
+    case USERNAME:
+        settings.setUsername(line);
+        state = DIFFICULTY;
+        break;
+    case DIFFICULTY:
+        settings.setLastSavedDifficulty(static_cast<Difficulty>(stoi(line)));
+        state = BACKGROUND_COLOR;
+        break;
+    case BACKGROUND_COLOR:
+        settings.setBackgroundColor(static_cast<Fl_Color>(stoi(line)));
+        state = BUTTON_COLOR;
+        break;
+    case BUTTON_COLOR:
+        settings.setButtonColor(static_cast<Fl_Color>(stoi(line)));
+        state = TEXT_COLOR;
+        break;
+    case TEXT_COLOR:
+        settings.setTextColor(static_cast<Fl_Color>(stoi(line)));
+        break;
+    }
 }
 
 }

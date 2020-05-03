@@ -18,27 +18,27 @@ namespace view
 //
 class DifficultySelectionWindow : public Fl_Window
 {
-    public:
-        DifficultySelectionWindow();
-        virtual ~DifficultySelectionWindow();
+public:
+    DifficultySelectionWindow();
+    virtual ~DifficultySelectionWindow();
 
-        Difficulty getDifficultyValue();
-        void setDifficultyValue(Difficulty puzzleNumber);
+    Difficulty getDifficultyValue();
+    void setDifficultyValue(Difficulty puzzleNumber);
 
-    private:
-        Fl_Choice* difficultyChoice;
-        Fl_Button* okButton;
-        Fl_Button* cancelButton;
+private:
+    Fl_Choice* difficultyChoice;
+    Fl_Button* okButton;
+    Fl_Button* cancelButton;
 
-        Difficulty difficultyValue;
+    Difficulty difficultyValue;
 
-        void addDifficultyOptions();
+    void addDifficultyOptions();
 
-        void okHandler();
-        void cancelHandler();
+    void okHandler();
+    void cancelHandler();
 
-        static void cbOk(Fl_Widget*, void*);
-        static void cbCancel(Fl_Widget*, void*);
+    static void cbOk(Fl_Widget*, void*);
+    static void cbCancel(Fl_Widget*, void*);
 };
 
 }
